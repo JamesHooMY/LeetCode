@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// method 1
+// method 1 Brute Force
 // 1) use two for loop
 // 2) The first loop will be used to scan each number in the target minus nums, while the second loop will confirm whether each result is equal to the following number. If they are equal, we have found two targets.
 // TC = O(N^2), SC = (O)1
@@ -25,9 +25,9 @@ func twoSum1(nums []int, target int) []int {
 	return []int{}
 }
 
-// method 2
+// method 2 Hash Table (Map) Solution
 // 1) use one for loop and one map
-// 2) when running the for loop, use one resultMap (map[int]int, key is "result", value is "index") to store the result from target minus each num in nums
+// 2) Hash Table (Map) Solution: when running the for loop, use one resultMap (map[int]int, key is "result" of target minus num, value is "index" of num) to store the result from target minus each num in nums
 // 3) during the for loop scanning process, check each "result" and make sure whether it have been store in the map, if it was found in the map that mean we found the two targets
 // TC = O(N), SC = O(N)
 func twoSum2(nums []int, target int) []int {
@@ -48,8 +48,8 @@ func twoSum2(nums []int, target int) []int {
 
 func Test_twoSum1(t *testing.T) {
 	type args struct {
-		nums     []int
-		target   int
+		nums   []int
+		target int
 	}
 	type expected struct {
 		result []int
@@ -105,8 +105,8 @@ func Test_twoSum1(t *testing.T) {
 
 func Test_twoSum2(t *testing.T) {
 	type args struct {
-		nums     []int
-		target   int
+		nums   []int
+		target int
 	}
 	type expected struct {
 		result []int
