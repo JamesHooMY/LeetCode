@@ -8,7 +8,7 @@ import (
 )
 
 // method 1 Brute Force
-// 1) use two for loop, and profit store the max profit
+// 1) use nested for loop, and profit store the max profit
 // TC = O(N^2), SC = (O)1
 func maxProfit1(prices []int) int {
 	maxProfit := 0
