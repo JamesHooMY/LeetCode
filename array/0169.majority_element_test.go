@@ -94,7 +94,7 @@ func majorityElement3(nums []int) int {
 
 func Test_majorityElement1(t *testing.T) {
 	type args struct {
-		prices []int
+		nums []int
 	}
 	type expected struct {
 		result int
@@ -109,7 +109,7 @@ func Test_majorityElement1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				prices: []int{3, 2, 3},
+				nums: []int{3, 2, 3},
 			},
 			expected: expected{
 				result: 3,
@@ -118,7 +118,7 @@ func Test_majorityElement1(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				prices: []int{2, 2, 1, 1, 1, 2, 2},
+				nums: []int{2, 2, 1, 1, 1, 2, 2},
 			},
 			expected: expected{
 				result: 2,
@@ -127,7 +127,7 @@ func Test_majorityElement1(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				prices: []int{3, 1, 3, 4, 3, 4, 1, 4, 3, 3, 3, 3, 3, 5, 5, 5},
+				nums: []int{3, 1, 3, 4, 3, 4, 1, 4, 3, 3, 3, 3, 3, 5, 5, 5},
 			},
 			expected: expected{
 				result: -1,
@@ -139,7 +139,7 @@ func Test_majorityElement1(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			majorityElement1(tc.args.prices),
+			majorityElement1(tc.args.nums),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
@@ -147,7 +147,7 @@ func Test_majorityElement1(t *testing.T) {
 
 func Test_majorityElement2(t *testing.T) {
 	type args struct {
-		prices []int
+		nums []int
 	}
 	type expected struct {
 		result int
@@ -162,7 +162,7 @@ func Test_majorityElement2(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				prices: []int{3, 2, 3},
+				nums: []int{3, 2, 3},
 			},
 			expected: expected{
 				result: 3,
@@ -171,7 +171,7 @@ func Test_majorityElement2(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				prices: []int{2, 2, 1, 1, 1, 2, 2},
+				nums: []int{2, 2, 1, 1, 1, 2, 2},
 			},
 			expected: expected{
 				result: 2,
@@ -192,7 +192,7 @@ func Test_majorityElement2(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			majorityElement2(tc.args.prices),
+			majorityElement2(tc.args.nums),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
@@ -200,7 +200,7 @@ func Test_majorityElement2(t *testing.T) {
 
 func Test_majorityElement3(t *testing.T) {
 	type args struct {
-		prices []int
+		nums []int
 	}
 	type expected struct {
 		result int
@@ -215,7 +215,7 @@ func Test_majorityElement3(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				prices: []int{3, 2, 3},
+				nums: []int{3, 2, 3},
 			},
 			expected: expected{
 				result: 3,
@@ -224,7 +224,7 @@ func Test_majorityElement3(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				prices: []int{2, 2, 1, 1, 1, 2, 2},
+				nums: []int{2, 2, 1, 1, 1, 2, 2},
 			},
 			expected: expected{
 				result: 2,
@@ -233,7 +233,7 @@ func Test_majorityElement3(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				prices: []int{3, 1, 3, 4, 3, 4, 1, 4, 3, 3, 3, 3, 3, 5, 5, 5},
+				nums: []int{3, 1, 3, 4, 3, 4, 1, 4, 3, 3, 3, 3, 3, 5, 5, 5},
 			},
 			expected: expected{
 				result: -1,
@@ -245,7 +245,7 @@ func Test_majorityElement3(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			majorityElement3(tc.args.prices),
+			majorityElement3(tc.args.nums),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}

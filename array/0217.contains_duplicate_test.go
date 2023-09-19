@@ -47,7 +47,7 @@ func containsDuplicate2(nums []int) bool {
 
 func Test_containsDuplicate1(t *testing.T) {
 	type args struct {
-		prices []int
+		nums []int
 	}
 	type expected struct {
 		result bool
@@ -62,7 +62,7 @@ func Test_containsDuplicate1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				prices: []int{1, 2, 3, 1},
+				nums: []int{1, 2, 3, 1},
 			},
 			expected: expected{
 				result: true,
@@ -71,7 +71,7 @@ func Test_containsDuplicate1(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				prices: []int{1, 2, 3, 4},
+				nums: []int{1, 2, 3, 4},
 			},
 			expected: expected{
 				result: false,
@@ -80,7 +80,7 @@ func Test_containsDuplicate1(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				prices: []int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2},
+				nums: []int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2},
 			},
 			expected: expected{
 				result: true,
@@ -92,7 +92,7 @@ func Test_containsDuplicate1(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			containsDuplicate1(tc.args.prices),
+			containsDuplicate1(tc.args.nums),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
@@ -100,7 +100,7 @@ func Test_containsDuplicate1(t *testing.T) {
 
 func Test_containsDuplicate2(t *testing.T) {
 	type args struct {
-		prices []int
+		nums []int
 	}
 	type expected struct {
 		result bool
@@ -115,7 +115,7 @@ func Test_containsDuplicate2(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				prices: []int{1, 2, 3, 1},
+				nums: []int{1, 2, 3, 1},
 			},
 			expected: expected{
 				result: true,
@@ -124,7 +124,7 @@ func Test_containsDuplicate2(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				prices: []int{1, 2, 3, 4},
+				nums: []int{1, 2, 3, 4},
 			},
 			expected: expected{
 				result: false,
@@ -133,7 +133,7 @@ func Test_containsDuplicate2(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				prices: []int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2},
+				nums: []int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2},
 			},
 			expected: expected{
 				result: true,
@@ -145,7 +145,7 @@ func Test_containsDuplicate2(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			containsDuplicate2(tc.args.prices),
+			containsDuplicate2(tc.args.nums),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
