@@ -10,8 +10,9 @@ import (
 
 // method 1
 // use one for loop, one map
-// 1) first for loop, use map to store key with each num and and value with initialize struct (https://geektutu.com/post/hpg-empty-struct.html)
+// 1) first for loop, use map to store key with each num and and value with initialize struct, https://geektutu.com/post/hpg-empty-struct.html
 // TC = O(N), SC = O(N)
+// * this is the best solution for me currently
 func containsDuplicate1(nums []int) bool {
 	numMap := map[int]struct{}{}
 
@@ -27,8 +28,9 @@ func containsDuplicate1(nums []int) bool {
 }
 
 // method 2
-// sort the nums, and use one for loop
-// 1) first for loop, use map to store key with each num and and value with initialize struct (https://geektutu.com/post/hpg-empty-struct.html)
+// sort the nums, and use one for loop and one tmp variable
+// 1) use sort.Ints(nums) to sort the nums, TC = O(N*logN), SC = O(logN), https://blog.csdn.net/nieling3/article/details/118102350
+// 2) use one for loop to check each num, tmp variable store the previous num, if nums[i] == tmp, return true
 // TC = O(N*logN), SC = O(logN)
 func containsDuplicate2(nums []int) bool {
 	sort.Ints(nums) // TC = O(N*logN), SC = O(logN)

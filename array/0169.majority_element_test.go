@@ -62,7 +62,7 @@ func majorityElement2(nums []int) int {
 // 2) first for loop, if count == 0, set candidate = num
 // 3) if num == candidate, count++
 // TC = O(2N), SC = O(1)
-// * this is the best solution to fit all situation and optimize the SC to 0(1) for me by now
+// * this is the best solution for me currently, fit all situation and optimize the SC to 0(1)
 func majorityElement3(nums []int) int {
 	count := 0
 	candidate := 0

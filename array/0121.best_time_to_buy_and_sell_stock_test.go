@@ -29,6 +29,7 @@ func maxProfit1(prices []int) int {
 // 2) during the for loop scanning process, check each "prices[i]" and make sure whether it is less than minPrice, if it is less than minPrice, update minPrice to prices[i]
 // 3) during the for loop scanning process, check each "prices[i]", if it is greater than minPrice, and (prices[i] - minPrice) is greater than maxProfit, update maxProfit to (prices[i] - minPrice)
 // TC = O(N), SC = (O)1
+// * this is the best solution for me currently
 func maxProfit2(prices []int) int {
 	if len(prices) <= 1 {
 		return 0
