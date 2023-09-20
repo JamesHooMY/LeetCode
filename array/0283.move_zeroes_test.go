@@ -24,8 +24,8 @@ func moveZeroes1(nums []int) {
 	}
 }
 
-// method 2 two pointer
-// 1) use two pointer, one pointer is zeroIndex, another pointer is i
+// method 2 one pointer
+// 1) use one pointer zeroIndex to record the index of zero
 // 2) first for loop, if nums[i] != 0, then swap nums[i] and nums[zeroIndex], and zeroIndex++
 // TC = O(N), SC = O(1)
 // * this is the best solution for me currently
