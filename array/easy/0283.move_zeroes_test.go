@@ -1,4 +1,4 @@
-package array
+package easy
 
 import (
 	"fmt"
@@ -6,6 +6,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
+
+// https://leetcode.com/problems/move-zeroes/description/
 
 // method 1 brute force
 // 1) use two for loop, first for loop scan each num in nums, if found num is 0, then use second for loop to swap the zero num to the last

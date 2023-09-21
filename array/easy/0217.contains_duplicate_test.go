@@ -1,4 +1,4 @@
-package array
+package easy
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
+
+// https://leetcode.com/problems/contains-duplicate/description/
 
 // method 1
 // use one for loop, one map

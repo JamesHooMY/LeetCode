@@ -1,4 +1,4 @@
-package array
+package easy
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
+
+// https://leetcode.com/problems/squares-of-a-sorted-array/description/
 
 // method 1 brute force
 // 1) use two for loop, first for loop square the num of nums

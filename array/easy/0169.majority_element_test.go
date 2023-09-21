@@ -1,4 +1,4 @@
-package array
+package easy
 
 import (
 	"fmt"
@@ -6,6 +6,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
+
+// https://leetcode.com/problems/majority-element/description/
 
 // method 1
 // use two for loop, one map

@@ -1,4 +1,4 @@
-package array
+package easy
 
 import (
 	"fmt"
@@ -6,6 +6,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
+
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
 // method 1 Brute Force
 // 1) use nested for loop, and profit store the max profit
