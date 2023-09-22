@@ -10,7 +10,7 @@ import (
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
 // method 1 Brute Force
-// 1) use nested for loop, and profit store the max profit
+// 1) use two nested for loop, and profit store the max profit
 // TC = O(N^2), SC = (O)1
 func maxProfit1(prices []int) int {
 	maxProfit := 0
@@ -42,11 +42,13 @@ func maxProfit2(prices []int) int {
 
 	for i := 1; i < len(prices); i++ {
 		if prices[i] < minPrice {
+			// always update minPrice to the lowest price
 			minPrice = prices[i]
 			continue // skip the following code, directly turn into next i++ process
 		}
 
 		if prices[i]-minPrice > maxProfit {
+			// always update maxProfit to the highest profit
 			maxProfit = prices[i] - minPrice
 		}
 	}

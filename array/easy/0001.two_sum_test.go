@@ -10,7 +10,7 @@ import (
 // https://leetcode.com/problems/two-sum/description/
 
 // method 1 Brute Force
-// 1) use nested for loop
+// 1) use two nested for loop
 // 2) The first loop will be used to scan each number in the target minus nums, while the second loop will confirm whether each result is equal to the following number. If they are equal, we have found two targets.
 // TC = O(N^2), SC = (O)1
 func twoSum1(nums []int, target int) []int {
