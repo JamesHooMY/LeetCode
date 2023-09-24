@@ -9,13 +9,13 @@ import (
 )
 
 // https://leetcode.com/problems/3sum/description/
+// * the description show that [-1,0,1], [1,0,-1], and [0,1,-1] are same, due to the order does not matter
 
 // method 1 use two for loop
 // 1) sort the nums, TC = O(NlogN), SC = O(logN)
 // 2) use two nested for loop to scan the nums, and use result to store the three sum values
 // 3) during the second for loop process, we need to store every complement into the seen map (this seen map will be refresh, when turn into the next loop of in first for loop)
 // TC = O(N^2), SC = O(N)
-// * the description show that [-1,0,1], [1,0,-1], and [0,1,-1] are same, due to the order does not matter
 func threeSum1(nums []int) [][]int {
 	// * this sort step is essential, if we want to eliminate the repeat from [-1,0,1], [1,0,-1], and [0,1,-1] during the following steps. Finally only has one result like [-1,0,1]
 	sort.Ints(nums) // TC = O(NlogN), SC = O(logN)

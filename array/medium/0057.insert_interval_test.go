@@ -17,6 +17,7 @@ import (
 // 5) 3th, append the newIntervals to the "new array"
 // 6) finally, the following range in intervals, intervals[i][0] lower value is bigger than the newIntervals[1] max value, we can directly append them to the "new array"
 // TC = O(N), SC = O(N)
+// * this is the best solution for me currently
 func insert(intervals [][]int, newInterval []int) [][]int {
     newIntervalsList := [][]int{}
 
