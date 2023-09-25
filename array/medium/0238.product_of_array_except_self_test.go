@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// https://leetcode.com/problems/3sum/description/
+// https://leetcode.com/problems/product-of-array-except-self/description/
 
 // method 1
 // use two for loop, to scan the nums

@@ -18,54 +18,53 @@ import (
 // 6) finally, the following range in intervals, intervals[i][0] lower value is bigger than the newIntervals[1] max value, we can directly append them to the "new array"
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
-func insert(intervals [][]int, newInterval []int) [][]int {
-    newIntervalsList := [][]int{}
+func insert1(intervals [][]int, newInterval []int) [][]int {
+	newIntervalsList := [][]int{}
 
-    i, n := 0, len(intervals)
-    // 1st, find the ranges in intervals, which max value are lower than the min value of the newIntervals
-    for i < n && intervals[i][1] < newInterval[0] {
-        newIntervalsList = append(newIntervalsList, intervals[i])
-        i++
-    }
+	i, n := 0, len(intervals)
+	// 1st, find the ranges in intervals, which max value are lower than the min value of the newIntervals
+	for i < n && intervals[i][1] < newInterval[0] {
+		newIntervalsList = append(newIntervalsList, intervals[i])
+		i++
+	}
 
-    // 2nd, find "overlapping" between the range of intervals with newIntervals, then update newIntervals
-    for i < n && intervals[i][0] <= newInterval[1] {
-        newInterval[0] = min(newInterval[0], intervals[i][0])
-        newInterval[1] = max(newInterval[1], intervals[i][1])
-        i++
-    }
+	// 2nd, find "overlapping" between the range of intervals with newIntervals, then update newIntervals
+	for i < n && intervals[i][0] <= newInterval[1] {
+		newInterval[0] = min(newInterval[0], intervals[i][0])
+		newInterval[1] = max(newInterval[1], intervals[i][1])
+		i++
+	}
 
-    // 3th
-    newIntervalsList = append(newIntervalsList, newInterval)
+	// 3th
+	newIntervalsList = append(newIntervalsList, newInterval)
 
-    // finally
-    newIntervalsList = append(newIntervalsList, intervals[i:]...)
-    // for i < n {
-    //     newIntervalsList = append(newIntervalsList, intervals[i])
-    //     i++
-    // }
+	// finally
+	newIntervalsList = append(newIntervalsList, intervals[i:]...)
+	// for i < n {
+	//     newIntervalsList = append(newIntervalsList, intervals[i])
+	//     i++
+	// }
 
-
-    return newIntervalsList
+	return newIntervalsList
 }
 
 func min(a int, b int) int {
-    if a < b {
-        return a
-    }
+	if a < b {
+		return a
+	}
 
-    return b
+	return b
 }
 
 func max(a int, b int) int {
-    if a > b {
-        return a
-    }
+	if a > b {
+		return a
+	}
 
-    return b
+	return b
 }
 
-func Test_insert(t *testing.T) {
+func Test_insert1(t *testing.T) {
 	type args struct {
 		intervals   [][]int
 		newInterval []int
@@ -106,7 +105,7 @@ func Test_insert(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			insert(tc.args.intervals, tc.args.newInterval),
+			insert1(tc.args.intervals, tc.args.newInterval),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
