@@ -16,6 +16,7 @@ import (
 // 4) if nums[currentIndex] == 2, then swap the nums[currentIndex] with nums[rightIndex], and rightIndex--
 // 5) if nums[currentIndex] == 1, then currentIndex++
 // TC = O(N), SC = O(1)
+// * this is the best solution for me currently
 func sortColors1(nums []int) {
 	leftIndex := 0
 	rightIndex := len(nums) - 1
