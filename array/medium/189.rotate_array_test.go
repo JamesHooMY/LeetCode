@@ -16,7 +16,6 @@ import (
 // TC = O(2N) ≈ O(N), SC = O(1)
 func rotate1(nums []int, k int) {
 	n := len(nums)
-	k %= n // if k > n, then we can use k %= n to get the real k
 
 	// reverse all the nums
 	reverse(nums, 0, n-1)
@@ -61,7 +60,6 @@ func rotate2(nums []int, k int) {
 // * this is the best solution for me currently
 func rotate3(nums []int, k int) {
 	n := len(nums)
-	k %= n // if k > n, then we can use k %= n to get the real k
 
 	count := 0 // use count to count the number of the replaced numbers, if count == n, then we can stop the loop
 	for startIndex := 0; count < n; startIndex++ {
