@@ -16,7 +16,7 @@ import (
 // 4) if not overlap, then update the end to the end of next interval
 // TC = O(NlogN), SC = O(logN)
 // * this is the best solution for me currently
-func eraseOverlapIntervals(intervals [][]int) int {
+func eraseOverlapIntervals1(intervals [][]int) int {
 	if len(intervals) == 0 || len(intervals) == 1 {
 		return 0
 	}
@@ -42,7 +42,7 @@ func eraseOverlapIntervals(intervals [][]int) int {
 	return count
 }
 
-func Test_eraseOverlapIntervals(t *testing.T) {
+func Test_eraseOverlapIntervals1(t *testing.T) {
 	type args struct {
 		intervals [][]int
 	}
@@ -116,7 +116,7 @@ func Test_eraseOverlapIntervals(t *testing.T) {
 			assert.Equal(
 				t,
 				tc.expected.result,
-				eraseOverlapIntervals(tc.args.intervals),
+				eraseOverlapIntervals1(tc.args.intervals),
 			)
 		})
 	}

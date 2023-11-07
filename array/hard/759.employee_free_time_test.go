@@ -1,4 +1,4 @@
-package medium
+package hard
 
 import (
 	"sort"
@@ -20,9 +20,12 @@ func employeeFreeTime1(intervals [][][]int) [][]int {
 	combinedIntervals := [][]int{}
 	// TC = O(N*M), SC = O(N*M), N is the number of intervals, M is the number of intervals in each interval
 	for _, interval := range intervals {
-		for _, i := range interval {
-			combinedIntervals = append(combinedIntervals, i)
-		}
+		/*
+			for _, i := range interval {
+				combinedIntervals = append(combinedIntervals, i)
+			}
+		*/
+		combinedIntervals = append(combinedIntervals, interval...)
 	}
 
 	// TC = O(NlogN), SC = O(logN)
@@ -58,9 +61,12 @@ func employeeFreeTime2(intervals [][][]int) [][]int {
 	combinedIntervals := [][]int{}
 	// TC = O(N*M), SC = O(N*M), N is the number of intervals, M is the number of intervals in each interval
 	for _, interval := range intervals {
-		for _, i := range interval {
-			combinedIntervals = append(combinedIntervals, i)
-		}
+		/*
+			for _, i := range interval {
+				combinedIntervals = append(combinedIntervals, i)
+			}
+		*/
+		combinedIntervals = append(combinedIntervals, interval...)
 	}
 
 	// TC = O(NlogN), SC = O(logN)
@@ -248,4 +254,11 @@ func Test_employeeFreeTime2(t *testing.T) {
 			)
 		})
 	}
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }

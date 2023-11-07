@@ -38,16 +38,18 @@ func sortColors1(nums []int) {
 	}
 
 	// this method have repeat step i-- & i++
-	// for i:=0; i<=rightIndex; i++ {
-	//     if nums[i] == 2 {
-	//         nums[i], nums[rightIndex] = nums[rightIndex], nums[i]
-	//         i--
-	//         rightIndex--
-	//     } else if nums[i] == 0 {
-	//         nums[i], nums[leftIndex] = nums[leftIndex], nums[i]
-	//         leftIndex++
-	//     }
-	// }
+	/*
+		for i:=0; i<=rightIndex; i++ {
+			if nums[i] == 2 {
+				nums[i], nums[rightIndex] = nums[rightIndex], nums[i]
+				i--
+				rightIndex--
+			} else if nums[i] == 0 {
+				nums[i], nums[leftIndex] = nums[leftIndex], nums[i]
+				leftIndex++
+			}
+		}
+	*/
 }
 
 func Test_sortColors1(t *testing.T) {

@@ -40,10 +40,12 @@ func insert1(intervals [][]int, newInterval []int) [][]int {
 
 	// finally
 	newIntervalsList = append(newIntervalsList, intervals[i:]...)
-	// for i < n {
-	//     newIntervalsList = append(newIntervalsList, intervals[i])
-	//     i++
-	// }
+	/*
+		for i < n {
+		    newIntervalsList = append(newIntervalsList, intervals[i])
+		    i++
+		}
+	*/
 
 	return newIntervalsList
 }

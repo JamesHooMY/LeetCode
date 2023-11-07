@@ -14,7 +14,7 @@ import (
 // 2) compare the end time of current meeting with the start time of next meeting
 // TC = O(NlogN), SC = O(logN)
 // * this is the best solution for me currently
-func canAttendMeetings(intervals [][]int) bool {
+func canAttendMeetings1(intervals [][]int) bool {
 	if len(intervals) == 0 || len(intervals) == 1 {
 		return true
 	}
@@ -25,13 +25,15 @@ func canAttendMeetings(intervals [][]int) bool {
 	})
 
 	// * endTime can be remove, because we can use intervals[i-1][1] to replace it
-	// endTime := intervals[0][1]
-	// for i := 1; i < len(intervals); i++ {
-	// 	if intervals[i][0] < endTime {
-	// 		return false
-	// 	}
-	// 	endTime = intervals[i][1]
-	// }
+	/*
+		endTime := intervals[0][1]
+		for i := 1; i < len(intervals); i++ {
+			if intervals[i][0] < endTime {
+				return false
+			}
+			endTime = intervals[i][1]
+		}
+	*/
 
 	for i := 1; i < len(intervals); i++ {
 		if intervals[i][0] < intervals[i-1][1] {
@@ -42,7 +44,7 @@ func canAttendMeetings(intervals [][]int) bool {
 	return true
 }
 
-func Test_canAttendMeetings(t *testing.T) {
+func Test_canAttendMeetings1(t *testing.T) {
 	type args struct {
 		intervals [][]int
 	}
@@ -100,7 +102,7 @@ func Test_canAttendMeetings(t *testing.T) {
 			assert.Equal(
 				t,
 				tc.expected.result,
-				canAttendMeetings(tc.args.intervals),
+				canAttendMeetings1(tc.args.intervals),
 			)
 		})
 	}

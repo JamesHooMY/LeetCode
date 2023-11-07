@@ -17,7 +17,7 @@ import (
 // 5) sort the minHeap by end time
 // TC = O(NlogN), SC = O(logN)
 // * this is the best solution for me currently
-func minMeetingRooms(intervals [][]int) int {
+func minMeetingRooms1(intervals [][]int) int {
 	if len(intervals) == 0 {
 		return 0
 	}
@@ -50,7 +50,7 @@ func minMeetingRooms(intervals [][]int) int {
 	return len(minHeap)
 }
 
-func Test_minMeetingRooms(t *testing.T) {
+func Test_minMeetingRooms1(t *testing.T) {
 	type args struct {
 		intervals [][]int
 	}
@@ -89,7 +89,7 @@ func Test_minMeetingRooms(t *testing.T) {
 			assert.Equal(
 				t,
 				tc.expected.result,
-				minMeetingRooms(tc.args.intervals),
+				minMeetingRooms1(tc.args.intervals),
 			)
 		})
 	}
