@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"leetcode/linked_list/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -19,9 +21,9 @@ import (
 // 7) return the next node of the dummy node
 // TC = O(N), SC = O(1)
 // * this is the best solution for me currently
-func mergeTwoLists1(list1 *ListNode, list2 *ListNode) *ListNode {
+func mergeTwoLists1(list1 *util.ListNode, list2 *util.ListNode) *util.ListNode {
 	// use a dummy node to store the result in dummy.Next
-	dummy := &ListNode{}
+	dummy := &util.ListNode{}
 	// use a current node to store the last node of the result
 	current := dummy
 
@@ -52,11 +54,11 @@ func mergeTwoLists1(list1 *ListNode, list2 *ListNode) *ListNode {
 
 func Test_mergeTwoLists1(t *testing.T) {
 	type args struct {
-		list1 *ListNode
-		list2 *ListNode
+		list1 *util.ListNode
+		list2 *util.ListNode
 	}
 	type expected struct {
-		result *ListNode
+		result *util.ListNode
 	}
 	type testCase struct {
 		name     string
@@ -68,11 +70,11 @@ func Test_mergeTwoLists1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				list1: arrayToLinkedList([]int{1, 2, 4}).Head,
-				list2: arrayToLinkedList([]int{1, 3, 4}).Head,
+				list1: util.ArrayToSinglyLinkedList([]int{1, 2, 4}).Head,
+				list2: util.ArrayToSinglyLinkedList([]int{1, 3, 4}).Head,
 			},
 			expected: expected{
-				result: arrayToLinkedList([]int{1, 1, 2, 3, 4, 4}).Head,
+				result: util.ArrayToSinglyLinkedList([]int{1, 1, 2, 3, 4, 4}).Head,
 			},
 		},
 	}
@@ -85,30 +87,4 @@ func Test_mergeTwoLists1(t *testing.T) {
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}
-}
-
-type LinkedList struct {
-	Head *ListNode
-}
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func arrayToLinkedList(arr []int) *LinkedList {
-	ll := &LinkedList{}
-	current := ll.Head
-
-	for _, value := range arr {
-		if current == nil {
-			ll.Head = &ListNode{Val: value, Next: nil}
-			current = ll.Head
-		} else {
-			current.Next = &ListNode{Val: value, Next: nil}
-			current = current.Next
-		}
-	}
-
-	return ll
 }
