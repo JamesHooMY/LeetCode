@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"leetcode/array/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -22,8 +24,8 @@ func maxArea1(height []int) int {
 	rightIndex := len(height) - 1
 
 	for leftIndex < rightIndex {
-		currentArea := min(height[leftIndex], height[rightIndex]) * (rightIndex - leftIndex)
-		maxArea = max(maxArea, currentArea)
+		currentArea := util.Min(height[leftIndex], height[rightIndex]) * (rightIndex - leftIndex)
+		maxArea = util.Max(maxArea, currentArea)
 
 		if height[leftIndex] < height[rightIndex] {
 			leftIndex++

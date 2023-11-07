@@ -4,6 +4,8 @@ import (
 	"sort"
 	"testing"
 
+	"leetcode/array/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -39,7 +41,7 @@ func employeeFreeTime1(intervals [][][]int) [][]int {
 	for i := 1; i < len(combinedIntervals); i++ {
 		if combinedIntervals[i][0] <= end {
 			// * this is the key point, if overlap, then we should keep the max end, this is different from 435.non-overlapping_intervals_test.go
-			end = max(end, combinedIntervals[i][1])
+			end = util.Max(end, combinedIntervals[i][1])
 		} else {
 			// * this is the key point, if not overlap, then we should add the free time which is the interval between end and the start of next interval into the result
 			result = append(result, []int{end, combinedIntervals[i][0]})
@@ -254,11 +256,4 @@ func Test_employeeFreeTime2(t *testing.T) {
 			)
 		})
 	}
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

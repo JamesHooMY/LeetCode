@@ -4,6 +4,8 @@ import (
 	"sort"
 	"testing"
 
+	"leetcode/array/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -33,7 +35,7 @@ func eraseOverlapIntervals1(intervals [][]int) int {
 		if intervals[i][0] < end {
 			count++
 			// * this is the key point, if overlap, then we should keep the min end, this can keep as much as possible intervals without overlap during the whole process
-			end = min(end, intervals[i][1])
+			end = util.Min(end, intervals[i][1])
 		} else {
 			end = intervals[i][1]
 		}

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"leetcode/array/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,8 +32,8 @@ func insert1(intervals [][]int, newInterval []int) [][]int {
 
 	// 2nd, find "overlapping" between the range of intervals with newIntervals, then update newIntervals
 	for i < n && intervals[i][0] <= newInterval[1] {
-		newInterval[0] = min(newInterval[0], intervals[i][0])
-		newInterval[1] = max(newInterval[1], intervals[i][1])
+		newInterval[0] = util.Min(newInterval[0], intervals[i][0])
+		newInterval[1] = util.Max(newInterval[1], intervals[i][1])
 		i++
 	}
 
@@ -48,22 +50,6 @@ func insert1(intervals [][]int, newInterval []int) [][]int {
 	*/
 
 	return newIntervalsList
-}
-
-func min(a int, b int) int {
-	if a < b {
-		return a
-	}
-
-	return b
-}
-
-func max(a int, b int) int {
-	if a > b {
-		return a
-	}
-
-	return b
 }
 
 func Test_insert1(t *testing.T) {

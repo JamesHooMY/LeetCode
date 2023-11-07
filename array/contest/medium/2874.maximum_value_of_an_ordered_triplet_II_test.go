@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"leetcode/array/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,13 +26,13 @@ func maximumTripletValue1(nums []int) int64 {
 	leftMaxList := make([]int, n)
 	leftMaxList[0] = nums[0]
 	for i := 1; i < n; i++ {
-		leftMaxList[i] = max(leftMaxList[i-1], nums[i-1])
+		leftMaxList[i] = util.Max(leftMaxList[i-1], nums[i-1])
 	}
 
 	rightMaxList := make([]int, n)
 	rightMaxList[n-1] = nums[n-1]
 	for i := n - 2; i >= 0; i-- {
-		rightMaxList[i] = max(rightMaxList[i+1], nums[i+1])
+		rightMaxList[i] = util.Max(rightMaxList[i+1], nums[i+1])
 	}
 
 	result := int64(0)
@@ -38,19 +40,11 @@ func maximumTripletValue1(nums []int) int64 {
 		// * leftMaxList[i] store the max value before nums[i]
 		// * rightMaxList[i] store the max value after nums[i]
 		if nums[i] < leftMaxList[i] {
-			result = max(result, int64((leftMaxList[i]-nums[i])*rightMaxList[i]))
+			result = util.Max(result, int64((leftMaxList[i]-nums[i])*rightMaxList[i]))
 		}
 	}
 
 	return result
-}
-
-func max[T int | int64 | float64](a, b T) T {
-	if a > b {
-		return a
-	}
-
-	return b
 }
 
 func Test_maximumTripletValue1(t *testing.T) {
