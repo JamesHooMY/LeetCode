@@ -70,11 +70,11 @@ func Test_mergeTwoLists1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				list1: util.ArrayToSinglyLinkedList([]int{1, 2, 4}).Head,
-				list2: util.ArrayToSinglyLinkedList([]int{1, 3, 4}).Head,
+				list1: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 4}, -1).Head,
+				list2: util.ArrayToCycleOrSinglyLinkedList([]int{1, 3, 4}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{1, 1, 2, 3, 4, 4}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1, 1, 2, 3, 4, 4}, -1).Head,
 			},
 		},
 	}

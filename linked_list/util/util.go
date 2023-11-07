@@ -1,10 +1,5 @@
 package util
 
-import (
-	"math/rand"
-	"time"
-)
-
 type LinkedList struct {
 	Head *ListNode
 }
@@ -14,24 +9,8 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func ArrayToSinglyLinkedList(arr []int) *LinkedList {
-	ll := &LinkedList{}
-	current := ll.Head
-
-	for _, value := range arr {
-		if current == nil {
-			ll.Head = &ListNode{Val: value, Next: nil}
-			current = ll.Head
-		} else {
-			current.Next = &ListNode{Val: value, Next: nil}
-			current = current.Next
-		}
-	}
-
-	return ll
-}
-
-func ArrayToCycleLinkedList(arr []int) *LinkedList {
+// pos = -1 means no cycle, otherwise pos is the index of the node where the cycle begins
+func ArrayToCycleOrSinglyLinkedList(arr []int, pos int) *LinkedList {
 	if len(arr) == 0 {
 		return &LinkedList{}
 	}
@@ -50,12 +29,15 @@ func ArrayToCycleLinkedList(arr []int) *LinkedList {
 		nodes = append(nodes, node)
 	}
 
-	// Randomly select a node as the start of the cycle
-	seed := time.Now().UnixNano()
-	randomGenerator := rand.New(rand.NewSource(seed))
-	cycleStartNode := nodes[randomGenerator.Intn(len(arr))]
+	// If pos is -1, then return the linked list without cycle
+	if pos < 0 {
+		return &LinkedList{Head: head}
+	}
 
-	// Connect the last node to the selected start node to create the random cycle
+	// Decide the start node of the cycle
+	cycleStartNode := nodes[pos]
+
+	// Connect the last node to the selected start node to create the cycle
 	current.Next = cycleStartNode
 
 	return &LinkedList{Head: head}

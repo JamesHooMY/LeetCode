@@ -67,28 +67,28 @@ func Test_reverseList1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{5, 4, 3, 2, 1}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{5, 4, 3, 2, 1}, -1).Head,
 			},
 		},
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{2, 1}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{2, 1}, -1).Head,
 			},
 		},
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{}, -1).Head,
 			},
 		},
 	}

@@ -114,28 +114,28 @@ func Test_middleNode1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{3, 4, 5}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 5}, -1).Head,
 			},
 		},
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{4, 5, 6}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{4, 5, 6}, -1).Head,
 			},
 		},
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 		},
 	}
@@ -167,28 +167,28 @@ func Test_middleNode2(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{3, 4, 5}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 5}, -1).Head,
 			},
 		},
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{4, 5, 6}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{4, 5, 6}, -1).Head,
 			},
 		},
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 		},
 	}
@@ -220,28 +220,28 @@ func Test_middleNode3(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{3, 4, 5}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 5}, -1).Head,
 			},
 		},
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5, 6}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{4, 5, 6}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{4, 5, 6}, -1).Head,
 			},
 		},
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 			expected: expected{
-				result: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 		},
 	}
@@ -259,18 +259,18 @@ func Test_middleNode3(t *testing.T) {
 // benchmark
 func Benchmark_middleNode1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		middleNode1(util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head)
+		middleNode1(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head)
 	}
 }
 
 func Benchmark_middleNode2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		middleNode2(util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head)
+		middleNode2(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head)
 	}
 }
 
 func Benchmark_middleNode3(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		middleNode3(util.ArrayToSinglyLinkedList([]int{1, 2, 3, 4, 5}).Head)
+		middleNode3(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 3, 4, 5}, -1).Head)
 	}
 }

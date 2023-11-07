@@ -93,7 +93,7 @@ func Test_hasCycle1(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToCycleLinkedList([]int{3, 2, 0, -4}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{3, 2, 0, -4}, 1).Head,
 			},
 			expected: expected{
 				result: true,
@@ -102,7 +102,7 @@ func Test_hasCycle1(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToCycleLinkedList([]int{1, 2}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2}, 0).Head,
 			},
 			expected: expected{
 				result: true,
@@ -111,7 +111,7 @@ func Test_hasCycle1(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 			expected: expected{
 				result: false,
@@ -146,7 +146,7 @@ func Test_hasCycle2(t *testing.T) {
 		{
 			name: "1",
 			args: args{
-				head: util.ArrayToCycleLinkedList([]int{3, 2, 0, -4}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{3, 2, 0, -4}, 1).Head,
 			},
 			expected: expected{
 				result: true,
@@ -155,7 +155,7 @@ func Test_hasCycle2(t *testing.T) {
 		{
 			name: "2",
 			args: args{
-				head: util.ArrayToCycleLinkedList([]int{1, 2}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2}, 0).Head,
 			},
 			expected: expected{
 				result: true,
@@ -164,7 +164,7 @@ func Test_hasCycle2(t *testing.T) {
 		{
 			name: "3",
 			args: args{
-				head: util.ArrayToSinglyLinkedList([]int{1}).Head,
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
 			},
 			expected: expected{
 				result: false,
@@ -184,7 +184,7 @@ func Test_hasCycle2(t *testing.T) {
 
 // benchmark
 func Benchmark_hasCycle1(b *testing.B) {
-	head := util.ArrayToCycleLinkedList([]int{3, 2, 0, -4}).Head
+	head := util.ArrayToCycleOrSinglyLinkedList([]int{3, 2, 0, -4}, 1).Head
 
 	for i := 0; i < b.N; i++ {
 		hasCycle1(head)
@@ -192,7 +192,7 @@ func Benchmark_hasCycle1(b *testing.B) {
 }
 
 func Benchmark_hasCycle2(b *testing.B) {
-	head := util.ArrayToCycleLinkedList([]int{3, 2, 0, -4}).Head
+	head := util.ArrayToCycleOrSinglyLinkedList([]int{3, 2, 0, -4}, 0).Head
 
 	for i := 0; i < b.N; i++ {
 		hasCycle2(head)
