@@ -17,6 +17,7 @@ import (
 // 5) if prefix == "", then return ""
 // 6) finally, return prefix
 // TC = O(N), SC = O(1)
+// * this is the best solution for me currently
 func longestCommonPrefix1(strs []string) string {
 	if len(strs) == 0 {
 		return ""
