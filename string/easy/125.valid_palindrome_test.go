@@ -11,6 +11,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// https://leetcode.com/problems/valid-palindrome/
+
 // method 1 two pointers
 // 1) use two pointers, left and right
 // 2) use while loop to scan the string, if left < right, then compare s[left] and s[right]

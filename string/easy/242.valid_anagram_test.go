@@ -7,6 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// https://leetcode.com/problems/valid-anagram/description/
+
 // method 1 use map
 // 1) check if the length of s and t are equal, if not, then return false
 // 2) use a map to store the characters of s and t
