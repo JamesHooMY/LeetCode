@@ -42,9 +42,16 @@ func subarraySum2(nums []int, k int) int {
 	count := 0
 	sum := 0
 	sumCountMap := map[int]int{
-		0: 1, // this initial value is nessary !!!
+		0: 1, // this initial value is necessary !!!
 	} // key: sum, value: count
 
+	/*
+		example: nums = [1, 1, 1], k = 2
+
+		i = 0, sum = 1, count = 0, sumCountMap = {0: 1, 1: 1}
+		i = 1, sum = 2, count = 1, sumCountMap = {0: 1, 1: 1, 2: 1}
+		i = 2, sum = 3, count = 2, sumCountMap = {0: 1, 1: 1, 2: 1, 3: 1}
+	*/
 	for i := 0; i < n; i++ {
 		sum += nums[i]
 

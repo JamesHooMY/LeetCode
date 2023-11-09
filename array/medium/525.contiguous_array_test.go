@@ -53,9 +53,20 @@ func findMaxLength2(nums []int) int {
 	maxLen := 0
 	sum := 0
 
-	// sumMap with initial value {0: -1} is very important, because if the second same sum is 0, then the maxLen will be i+1
-	sumMap := map[int]int{0: -1} // key: sum, value: index
+	// initial {0: -1} due to the first same sum is 0, then the maxLen will be i+1
+	// for example, nums = [0, 1], then sum = 0, maxLen = i - (-1) = 2
+	sumMap := map[int]int{
+		0: -1, // this initial value is necessary !!!
+	} // key: sum, value: index
 
+	/*
+		example: nums = [0, 1, 0, 1]
+
+		i = 0, sum = -1, maxLen = 0, sumMap = {0: -1, -1: 0}
+		i = 1, sum = 0, maxLen = 2, sumMap = {0: -1, -1: 0}
+		i = 2, sum = -1, maxLen = 2, sumMap = {0: -1, -1: 0}
+		i = 3, sum = 0, maxLen = 4, sumMap = {0: -1, -1: 0}
+	*/
 	for i := 0; i < len(nums); i++ {
 		if nums[i] == 0 {
 			sum--
