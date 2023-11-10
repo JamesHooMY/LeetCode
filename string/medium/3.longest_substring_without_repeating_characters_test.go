@@ -58,7 +58,7 @@ func lengthOfLongestSubstring1(s string) int {
 
 // method 2 sliding window + index array, only suitable for lowercase letters, cannot pass leetcode ! because of s consists of English letters, digits, symbols and spaces.
 // 1) use two pointers, start and end
-// 2) use an array to store the next index of the character in the string, the index of the array is the unicode of the character - 'a'
+// 2) use an array to store the next index of the character in the string, the index of the array is the ASCII code of the character - 'a'
 // 3) use a variable to store the maxLength (end - start + 1)
 // 4) for each character in the string, if the next index of the character is not 0, then move start to the next index of the character
 // 5) update the next index of the character in the array, update end to the current index
@@ -74,7 +74,7 @@ func lengthOfLongestSubstring2(s string) int {
 	end := 0
 
 	// use an array to store the index of the character
-	charIndex := [26]int{} // index: unicode of the character - 'a', value: next index (index + 1) of the character in the string
+	charIndex := [26]int{} // index: ASCII code of the character - 'a', value: next index (index + 1) of the character in the string
 
 	// use a variable to store the maxLength
 	maxLength := 0
