@@ -22,7 +22,7 @@ func isAnagram1(s string, t string) bool {
 		return false
 	}
 
-	charMap := make(map[rune]int)
+	charMap := make(map[rune]int) // key: character, value: count
 	for i := range s {
 		charMap[rune(s[i])]++
 		charMap[rune(t[i])]--

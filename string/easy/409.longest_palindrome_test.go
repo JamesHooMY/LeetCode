@@ -21,7 +21,7 @@ import (
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func longestPalindrome1(s string) int {
-	charMap := map[rune]int{}
+	charMap := map[rune]int{} // key: character, value: count
 	for _, v := range s {
 		charMap[v]++
 	}
