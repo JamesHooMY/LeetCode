@@ -16,7 +16,7 @@ import (
 // 4) if the character is in t, then subtract 1 to the value of the map
 // 5) if the value of the map is not 0, then return false
 // 6) finally, return true
-// TC = O(2N), SC = O(N)
+// TC = O(N), SC = O(N)
 func isAnagram1(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
