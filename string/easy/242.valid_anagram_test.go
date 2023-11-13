@@ -58,7 +58,7 @@ func isAnagram2(s string, t string) bool {
 	}
 
 	// make an array with 26 length, the memory address of the array will not be changed during the execution of the program
-	charArr := make([]int, 26)
+	charArr := make([]int, 26) // index: character - 'a', value: count
 	for i := range s {
 		// * this is the key point, use charArr[s[i]-'a']++ instead of charArr[s[i]]++
 		// s[i]-'a' and t[i]-'a' are the index of the array, subtracting 'a' is to make the index start from 0, charArr is make with 26 length, so the index is from 0 to 25, if not subtracting 'a', then the index will be from 97 to 122, this will cause index out of range
