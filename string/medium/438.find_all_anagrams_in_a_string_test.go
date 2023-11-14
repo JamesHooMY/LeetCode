@@ -87,12 +87,7 @@ func isAnagramMap(sMap map[rune]int, pMap map[rune]int) bool {
 }
 
 // method 2 sliding window + array, performance and memory usage are better than method 1
-// 1) use an array to store the characters of p (index: character - 'a', value: count)
-// 2) use an array to store the characters of s (index: character - 'a', value: count), the size of the sliding windows is len(p), initial the sArr with the first len(p) characters of s
-// 3) initial sliding window, the size of the window is len(p), use two pointers, left and right, left = 0, right = len(p) - 1
-// 4) for each iteration, check if the sArr is an anagram of pArr, if yes, then append the left to the result
-// 5) remove the character from the left of the window, move window to right, add the character of the right of the window to the map
-// 6) finally, return the result
+// the logic thinking is same as method 1, but use array instead of map
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func findAnagrams2(s string, p string) []int {
