@@ -17,7 +17,7 @@ import (
 // 5) use right pointer to move the window, and update the charMap and maxCount
 // 6) if the current window size - maxCount > k, it means the other characters count should be replaced in current window is more than the k requirement, so we need to move the left pointer to shrink the window, and update the charMap, maxCount and maxLength
 // 7) repeat step 5 and 6 until right pointer reach the end of s, and return maxLength
-// TC = O(n), SC = O(n)
+// TC = O(N), SC = O(N)
 func characterReplacement1(s string, k int) int {
 	if len(s) == 0 {
 		return 0
@@ -75,7 +75,7 @@ func characterReplacement1(s string, k int) int {
 
 // method 2 sliding window + array
 // logic thinking is same as method 1, but use array instead of map
-// TC = O(n), SC = O(n)
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func characterReplacement2(s string, k int) int {
 	if len(s) == 0 {
