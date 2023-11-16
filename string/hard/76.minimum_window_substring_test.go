@@ -19,9 +19,7 @@ import (
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func minWindow1(s string, t string) string {
-	sLen := len(s)
-	tLen := len(t)
-	if sLen == 0 || tLen == 0 || sLen < tLen {
+	if len(s) == 0 || len(t) == 0 || len(s) < len(t) {
 		return ""
 	}
 
@@ -36,7 +34,7 @@ func minWindow1(s string, t string) string {
 		}
 	*/
 	tMap := make(map[byte]int) // key: character, value: count
-	for i := 0; i < tLen; i++ {
+	for i := 0; i < len(t); i++ {
 		tMap[t[i]]++
 	}
 
@@ -48,11 +46,11 @@ func minWindow1(s string, t string) string {
 	// initial sliding window for result
 	start, end := 0, 0
 
-	minLength := sLen + 1 // * this is the key point, initial minLength with sLen + 1
-	count := tLen
+	minLength := len(s) + 1 // * this is the key point, initial minLength with len(s) + 1
+	count := len(t)
 
 	// use two pointers, left and right, to represent the current window
-	for right < sLen {
+	for right < len(s) {
 		wMap[s[right]]++
 		// * this is the key point, check if the current character is in tMap
 		if tMap[s[right]] > 0 && tMap[s[right]] >= wMap[s[right]] {
@@ -85,7 +83,7 @@ func minWindow1(s string, t string) string {
 	}
 
 	// if minLength is not updated, it means there is no window contains all the characters of t
-	if minLength == sLen+1 {
+	if minLength == len(s)+1 {
 		return ""
 	}
 
