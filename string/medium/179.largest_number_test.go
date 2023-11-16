@@ -17,7 +17,7 @@ import (
 // 2) sort the string array, compare a + b and b + a (if a + b > b + a, then a should be in front of b, otherwise b should be in front of a)
 // 3) if the first element is "0", then return "0"
 // 4) join the string array
-// TC = O(NlogN), SC = O(N)
+// TC = O(NlogN), SC = O(logN)
 // * this is the best solution for me currently
 func largestNumber1(nums []int) string {
 	// convert nums to string

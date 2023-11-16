@@ -14,7 +14,7 @@ import (
 // 1) use a strMap to store the sortedStr of the string
 // 2) for each string in strs, sort the string, then check if the sortedStr is in the strMap, if yes, then append the string to the value of the strMap, if no, then add the sortedStr to the strMap, and append the string to the value of the strMap
 // 3) finally, return the values of the strMap
-// TC = O(NKlogK), SC = O(NK)
+// TC = O(N * KlogK), SC = O(N * K)
 // * this is the best solution for me currently
 func groupAnagrams1(strs []string) [][]string {
 	result := [][]string{}
