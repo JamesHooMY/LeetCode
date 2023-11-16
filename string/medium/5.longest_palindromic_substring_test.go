@@ -1,9 +1,11 @@
-package easy
+package medium
 
 import (
 	"fmt"
 	"math"
 	"testing"
+
+	"leetcode/string/util"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -29,7 +31,7 @@ func longestPalindrome1(s string) string {
 	for i := 0; i < len(s); i++ {
 		oddLen := expandAroundCenter(s, i, i)
 		evenLen := expandAroundCenter(s, i, i+1)
-		maxLen := max(oddLen, evenLen)
+		maxLen := util.Max(oddLen, evenLen)
 
 		// if maxLen > end-start {
 		// 	start = i - (maxLen-1)/2
@@ -43,14 +45,6 @@ func longestPalindrome1(s string) string {
 
 	// return s[start : end+1]
 	return s[start : start+maxLength]
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-
-	return b
 }
 
 func expandAroundCenter(s string, left int, right int) int {
@@ -108,7 +102,7 @@ func longestPalindrome2(s string) string {
 		*/
 		if i < maxRight {
 			mirror := 2*center - i
-			p[i] = min(maxRight-i, p[mirror])
+			p[i] = util.Min(maxRight-i, p[mirror])
 		}
 
 		/*
@@ -172,14 +166,6 @@ func longestPalindrome2(s string) string {
 	}
 
 	return s[begin : begin+maxLen]
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-
-	return b
 }
 
 func Test_longestPalindrome1(t *testing.T) {

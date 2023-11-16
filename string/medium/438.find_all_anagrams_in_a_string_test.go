@@ -1,4 +1,4 @@
-package easy
+package medium
 
 import (
 	"fmt"
@@ -11,9 +11,9 @@ import (
 
 // method 1 sliding window + hash table
 // 1) use a pMap to store the characters of p (key: character, value: count)
-// 2) use a sMap to store the characters of s (key: character, value: count), the size of the sliding windows is len(p), initial the sMap with the first len(p) characters of s
+// 2) use a wMap to store the characters of s (key: character, value: count), the size of the sliding windows is len(p), initial the wMap with the first len(p) characters of s
 // 3) initial sliding window, the size of the window is len(p), use two pointers, left and right, left = 0, right = len(p) - 1
-// 4) for each iteration, check if the sMap is an anagram of pMap, if yes, then append the left to the result
+// 4) for each iteration, check if the wMap is an anagram of pMap, if yes, then append the left to the result
 // 5) remove the character from the left of the window, move window to right, add the character of the right of the window to the map
 // 6) finally, return the result
 // TC = O(N), SC = O(N)
@@ -29,7 +29,7 @@ func findAnagrams1(s string, p string) []int {
 		pMap[v]++
 	}
 
-	// use a map to store the characters of s
+	// use a map to store the characters of s in the current window
 	/*
 		p = "abc"
 		pMap := {
@@ -39,16 +39,16 @@ func findAnagrams1(s string, p string) []int {
 		}
 
 		s = "cbaebabacd"
-		sMap := {
+		wMap := {
 			'c': 1,
 			'b': 1,
 			'a': 1,
 		}
 	*/
-	sMap := make(map[rune]int) // key: character, value: count
-	// the size of the sliding windows is len(p), initial the sMap with the first len(p) characters of s
+	wMap := make(map[rune]int) // key: character, value: count
+	// the size of the sliding windows is len(p), initial the wMap with the first len(p) characters of s
 	for i := 0; i < len(p); i++ {
-		sMap[rune(s[i])]++
+		wMap[rune(s[i])]++
 	}
 
 	// initial sliding window, the size of the window is len(p)
@@ -56,12 +56,12 @@ func findAnagrams1(s string, p string) []int {
 	right := len(p) - 1
 
 	for right < len(s) {
-		if isAnagramMap(sMap, pMap) {
+		if isAnagramMap(wMap, pMap) {
 			result = append(result, left)
 		}
 
 		// remove the character from the left of the window
-		sMap[rune(s[left])]--
+		wMap[rune(s[left])]--
 
 		// move window to right
 		left++
@@ -69,16 +69,16 @@ func findAnagrams1(s string, p string) []int {
 
 		// add the character of the right of the window to the map
 		if right < len(s) {
-			sMap[rune(s[right])]++
+			wMap[rune(s[right])]++
 		}
 	}
 
 	return result
 }
 
-func isAnagramMap(sMap map[rune]int, pMap map[rune]int) bool {
+func isAnagramMap(wMap map[rune]int, pMap map[rune]int) bool {
 	for k, v := range pMap {
-		if sMap[k] != v {
+		if wMap[k] != v {
 			return false
 		}
 	}

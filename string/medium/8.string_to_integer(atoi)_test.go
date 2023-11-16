@@ -1,4 +1,4 @@
-package easy
+package medium
 
 import (
 	"fmt"
@@ -86,60 +86,60 @@ func Test_myAtoi1(t *testing.T) {
 	}
 
 	testCases := []testCase{
-		// {
-		// 	name: "1",
-		// 	args: args{
-		// 		s: "42",
-		// 	},
-		// 	expected: expected{
-		// 		result: 42,
-		// 	},
-		// },
-		// {
-		// 	name: "2",
-		// 	args: args{
-		// 		s: "   -42",
-		// 	},
-		// 	expected: expected{
-		// 		result: -42,
-		// 	},
-		// },
-		// {
-		// 	name: "3",
-		// 	args: args{
-		// 		s: "4193 with words",
-		// 	},
-		// 	expected: expected{
-		// 		result: 4193,
-		// 	},
-		// },
-		// {
-		// 	name: "4",
-		// 	args: args{
-		// 		s: "words and 987",
-		// 	},
-		// 	expected: expected{
-		// 		result: 0,
-		// 	},
-		// },
-		// {
-		// 	name: "5",
-		// 	args: args{
-		// 		s: "-91283472332",
-		// 	},
-		// 	expected: expected{
-		// 		result: -2147483648,
-		// 	},
-		// },
-		// {
-		// 	name: "6",
-		// 	args: args{
-		// 		s: "2147483648",
-		// 	},
-		// 	expected: expected{
-		// 		result: 2147483647,
-		// 	},
-		// },
+		{
+			name: "1",
+			args: args{
+				s: "42",
+			},
+			expected: expected{
+				result: 42,
+			},
+		},
+		{
+			name: "2",
+			args: args{
+				s: "   -42",
+			},
+			expected: expected{
+				result: -42,
+			},
+		},
+		{
+			name: "3",
+			args: args{
+				s: "4193 with words",
+			},
+			expected: expected{
+				result: 4193,
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				s: "words and 987",
+			},
+			expected: expected{
+				result: 0,
+			},
+		},
+		{
+			name: "5",
+			args: args{
+				s: "-91283472332",
+			},
+			expected: expected{
+				result: -2147483648,
+			},
+		},
+		{
+			name: "6",
+			args: args{
+				s: "2147483648",
+			},
+			expected: expected{
+				result: 2147483647,
+			},
+		},
 		{
 			name: "7",
 			args: args{
