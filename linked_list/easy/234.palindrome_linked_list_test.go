@@ -46,7 +46,7 @@ func isPalindrome1(head *util.ListNode) bool {
 			1(head) -> 2 -> 3(slow) -> 4 -> nil(fast)
 	*/
 	// * this is the key point, reverse the second half of the list
-	secondHalf := reverseList(slow)
+	reversedSecondHalfHead := reverseList(slow)
 	/*
 		*nil is initialized as prev
 
@@ -70,7 +70,7 @@ func isPalindrome1(head *util.ListNode) bool {
 				1(head) -> 2 -> 3(same node) -> *nil(same node)
 				5(prev) -> 4 -> 3(same node) -> *nil(same node)
 
-			secondHalf result:
+			reversedSecondHalfHead result:
 				5(prev) -> 4 -> 3 -> *nil
 
 		case2: even number of nodes
@@ -88,19 +88,19 @@ func isPalindrome1(head *util.ListNode) bool {
 				1(head) -> 2 -> 3(same node) -> *nil(same node)
 				4(prev) -> 3(same node) -> *nil(same node)
 
-			secondHalf result:
+			reversedSecondHalfHead result:
 				4(prev) -> 3 -> *nil
 	*/
 
 	// compare the first half and the second half of the list
-	for head != nil && secondHalf != nil {
+	for head != nil && reversedSecondHalfHead != nil {
 		// if the value is not equal, then return false
-		if head.Val != secondHalf.Val {
+		if head.Val != reversedSecondHalfHead.Val {
 			return false
 		}
 
 		head = head.Next
-		secondHalf = secondHalf.Next
+		reversedSecondHalfHead = reversedSecondHalfHead.Next
 	}
 
 	return true
@@ -370,5 +370,24 @@ func Test_isPalindrome3(t *testing.T) {
 			isPalindrome3(tc.args.head),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
+	}
+}
+
+// benchmark
+func Benchmark_isPalindrome1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		isPalindrome1(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 2, 1}, -1).Head)
+	}
+}
+
+func Benchmark_isPalindrome2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		isPalindrome2(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 2, 1}, -1).Head)
+	}
+}
+
+func Benchmark_isPalindrome3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		isPalindrome3(util.ArrayToCycleOrSinglyLinkedList([]int{1, 2, 2, 1}, -1).Head)
 	}
 }

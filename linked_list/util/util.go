@@ -1,9 +1,11 @@
 package util
 
+// singly linked list
 type LinkedList struct {
 	Head *ListNode
 }
 
+// singly linked list node
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -41,4 +43,18 @@ func ArrayToCycleOrSinglyLinkedList(arr []int, pos int) *LinkedList {
 	current.Next = cycleStartNode
 
 	return &LinkedList{Head: head}
+}
+
+// doubly linked list
+type DLinkedList struct {
+	Head *DListNode
+	Tail *DListNode
+}
+
+// doubly linked list node
+type DListNode struct {
+	Key  int // * this is optional, it is needed to delete the node from the cache in 146._LRU_cache_test.go
+	Val  int
+	Prev *DListNode
+	Next *DListNode
 }

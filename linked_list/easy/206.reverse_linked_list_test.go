@@ -20,6 +20,8 @@ import (
 // 6) move the prev node to the current node, prev = cur
 // 7) move the current node to the next node, cur = next
 // 8) return prev
+// TC = O(N), SC = O(1)
+// * this is the best solution for me currently
 func reverseList1(head *util.ListNode) *util.ListNode {
 	if head == nil || head.Next == nil {
 		return head
