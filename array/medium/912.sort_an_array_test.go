@@ -173,10 +173,10 @@ func sortArray5(nums []int) []int {
 		* [3, 1] separated into [3] and [1], then merge [3] and [1] into [1, 3]
 	*/
 
-	return merge(leftArr, rightArr)
+	return mergeSort(leftArr, rightArr)
 }
 
-func merge(leftArr, rightArr []int) []int {
+func mergeSort(leftArr, rightArr []int) []int {
 	result := make([]int, 0, len(leftArr)+len(rightArr))
 
 	leftIndex, rightIndex := 0, 0
@@ -192,19 +192,17 @@ func merge(leftArr, rightArr []int) []int {
 
 	// if leftIndex < len(leftArr) {
 	// 	result = append(result, leftArr[leftIndex:]...)
-	// }
-	result = append(result, leftArr[leftIndex:]...)
-
-	// if rightIndex < len(rightArr) {
+	// } else {
 	// 	result = append(result, rightArr[rightIndex:]...)
 	// }
+	result = append(result, leftArr[leftIndex:]...)
 	result = append(result, rightArr[rightIndex:]...)
 
 	/*
-		slice example
+		slice operation example
 		s := []int{1}
 
-		s1 := s[len(s):] => [], this will not out of range, but the result is empty slice
+		s1 := s[len(s):] => [], this will not out of range, the result is empty slice
 		s1 := s[len(s)+1:] => out of range
 		s1 := s[len(s)-1:] => [1]
 	*/
@@ -226,13 +224,14 @@ func sortArray6(nums []int) []int {
 	}
 
 	/*
-		example: [5, 2, 3, 1], len(nums) => n = 4
-		step => 1 2
+		example: [5, 2, 3, 1, 6, 4], len(nums) => n = 6
+		step => 1 2 4
 	*/
 	for step := 1; step < n; step *= 2 {
 		/*
-			step => 1, i => 0 2
-			step => 2, i => 0
+			step => 1, n - step => 5, i => 0 2 4
+			step => 2, n - step => 4, i => 0
+			step => 4, n - step => 2, i => 0
 		*/
 		for i := 0; i < n-step; i += 2 * step {
 			left := i
@@ -243,21 +242,35 @@ func sortArray6(nums []int) []int {
 			}
 			/*
 				step => 1:
-					left => 0, mid => 1, right => 2
-					[5(left), 2(mid), 3(right), 1] => [2, 5, 3, 1]
-					* [5, 2] separated into [5] and [2], then merge [5] and [2] into [2, 5]
+					i => 0:
+						left => 0, mid => 1, right => 2
+						[5(left), 2(mid), 3(right), 1, 6, 4] => [2, 5, 3, 1, 6, 4]
+						* [5, 2] separated into [5] and [2], then merge [5] and [2] into [2, 5]
 
-					left => 2, mid => 3, right => 4
-					[2, 5, 3(left), 1(mid)] => [2, 5, 1, 3]
-					* [3, 1] separated into [3] and [1], then merge [3] and [1] into [1, 3]
+					i => 2:
+						left => 2, mid => 3, right => 4
+						[2, 5, 3(left), 1(mid), 6(right), 4] => [2, 5, 1, 3, 6, 4]
+						* [3, 1] separated into [3] and [1], then merge [3] and [1] into [1, 3]
+
+					i => 4:
+						left => 4, mid => 5, right => 6
+						[2, 5, 1, 3, 6(left), 4(mid)] => [2, 5, 1, 3, 4, 6]
+						* [6, 4] separated into [6] and [4], then merge [6] and [4] into [4, 6]
 
 				step => 2:
-					left => 0, mid => 2, right => 4
-					[2(left), 5, 1(mid), 3] => [1, 2, 5, 3]
-					* [2, 5, 1, 3] separated into [2, 5] and [1, 3], then merge [2, 5] and [1, 3] into [1, 2, 5, 3]
+					i => 0:
+						left => 0, mid => 2, right => 4
+						[2(left), 5, 1(mid), 3, 4(right), 6] => [1, 2, 5, 3, 4, 6]
+						* [2, 5, 1, 3] separated into [2, 5] and [1, 3], then merge [2, 5] and [1, 3] into [1, 2, 5, 3]
+
+				step => 4:
+					i => 0:
+						left => 0, mid => 4, right => 6 (right != 8, due to right > n, right = n)
+						[1(left), 2, 5, 3, 4(mid), 6] => [1, 2, 3, 4, 5, 6]
+						* [1, 2, 5, 3, 4, 6] separated into [1, 2, 5, 3] and [4, 6], then merge [1, 2, 5, 3] and [4, 6] into [1, 2, 3, 4, 5, 6]
 			*/
 
-			merged := merge(nums[left:mid], nums[mid:right])
+			merged := mergeSort(nums[left:mid], nums[mid:right])
 			copy(nums[left:left+len(merged)], merged)
 		}
 	}
@@ -586,7 +599,6 @@ func Test_sortArray6(t *testing.T) {
 		)
 	}
 }
-
 
 var nums = []int{5, 1, 1, 2, 0, 0, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13}
 

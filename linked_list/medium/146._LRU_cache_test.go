@@ -20,10 +20,10 @@ import (
 // TC = O(1), SC = O(N)
 // * this is the best solution for me currently
 type LRUCache struct {
-	capacity int // the capacity of the cache
-	cache    map[int]*util.DListNode
-	head     *util.DListNode
-	tail     *util.DListNode
+	capacity int                     // the capacity of the cache
+	cache    map[int]*util.DListNode // key: key, value: node
+	head     *util.DListNode         // dummy head
+	tail     *util.DListNode         // dummy tail
 }
 
 func Constructor(capacity int) LRUCache {
@@ -83,8 +83,8 @@ func (this *LRUCache) removeNode(dListNode *util.DListNode) {
 	// nil <- 1(dummy head) <-> 3 <-> 2(dummy tail) -> nil
 	// remove 3
 	// nil <- 1(dummy head) <-> 2(dummy tail) -> nil
-	dListNode.Prev.Next = dListNode.Next
-	dListNode.Next.Prev = dListNode.Prev
+	dListNode.Prev.Next = dListNode.Next // update the next of the prev node of the dListNode
+	dListNode.Next.Prev = dListNode.Prev // update the prev of the next node of the dListNode
 }
 
 // * always add the new node at next of the dummy head
@@ -92,12 +92,12 @@ func (this *LRUCache) addNodeToHead(dListNode *util.DListNode) {
 	// nil <- 1(dummy head) <-> 2(dummy tail) -> nil
 	// add 3
 	// 1(dummy head) <- 3(dListNode) -> 2(dummy tail); nil <- 1(dummy head) <-> 2(dummy tail) -> nil
-	dListNode.Prev = this.head      // dummy head
-	dListNode.Next = this.head.Next // dummy tail
+	dListNode.Prev = this.head      // update the prev of the new node to the dummy head
+	dListNode.Next = this.head.Next // update the next of the new node to the next of the dummy head
 
 	// nil <- 1(dummy head) <-> 3(dListNode) <-> 2(dummy tail) -> nil
-	this.head.Next.Prev = dListNode
-	this.head.Next = dListNode
+	this.head.Next.Prev = dListNode // update the prev of the next node of the dummy head
+	this.head.Next = dListNode      // update the next of the dummy head
 }
 
 // * always remove the node from prev of the dummy tail
