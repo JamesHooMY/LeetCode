@@ -93,12 +93,19 @@ func sortArray4(nums []int) []int {
 		return nums
 	}
 
-	// * random pivot index is better for reducing the worst case, but it will increase the time complexity
-	// pivotIndex := rand.Intn(len(nums))
+	// * use partition function, less code but poor performance -----
+	// left, right := 0, len(nums)-1
+	// pivotIndex := partition(nums, left, right)
+
+	// sortArray4(nums[:pivotIndex])
+	// sortArray4(nums[pivotIndex+1:])
+	// * use partition function --------------------------------------
+
+	// * pivotIndex := rand.Intn(len(nums)) is better for reducing the worst case, but it will increase the time complexity
 	pivotIndex := len(nums) / 2
 	pivot := nums[pivotIndex]
 
-	// * pivot was set to the first element
+	// * pivot was set to the first element ------------------------------------------------------
 	nums[pivotIndex], nums[0] = nums[0], nums[pivotIndex]
 	left, right := 0, len(nums)-1
 
@@ -121,8 +128,9 @@ func sortArray4(nums []int) []int {
 
 	sortArray4(nums[:right])
 	sortArray4(nums[right+1:])
+	// * pivot was set to the first element ------------------------------------------------------
 
-	// * pivot was set to the last element
+	// * pivot was set to the last element ------------------------------------------------------
 	// nums[pivotIndex], nums[len(nums)-1] = nums[len(nums)-1], nums[pivotIndex]
 	// left, right := 0, len(nums)-1
 
@@ -145,8 +153,28 @@ func sortArray4(nums []int) []int {
 
 	// sortArray4(nums[:left])
 	// sortArray4(nums[left+1:])
+	// * pivot was set to the last element ------------------------------------------------------
 
 	return nums
+}
+
+// partition function separates the array into two parts, left parts are smaller than the pivot, right parts are bigger or equal to the pivot
+func partition(nums []int, left, right int) int {
+	// always select the last element as the pivot
+	pivot := nums[right]
+	leftIndex := left
+
+	// keep the elements before leftIndex are smaller than the pivot
+	for i := left; i < right; i++ {
+		if nums[i] < pivot {
+			nums[i], nums[leftIndex] = nums[leftIndex], nums[i]
+			leftIndex++
+		}
+	}
+
+	nums[leftIndex], nums[right] = nums[right], nums[leftIndex]
+
+	return leftIndex
 }
 
 // method 5 merge sort (recursion + divide and conquer) top-down, easy to understand, https://www.youtube.com/watch?v=4VqmGXwpLqc&list=RDCMUCzDJwLWoYCUQowF_nG3m5OQ&index=2
