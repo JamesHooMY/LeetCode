@@ -314,7 +314,8 @@ func sortArray6(nums []int) []int {
 			*/
 
 			merged := mergeSort(nums[left:mid], nums[mid:right])
-			copy(nums[left:left+len(merged)], merged)
+			// copy(nums[left:left+len(merged)], merged)
+			copy(nums[left:right], merged)
 		}
 	}
 
