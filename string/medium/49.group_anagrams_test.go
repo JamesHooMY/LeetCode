@@ -120,7 +120,7 @@ func Test_groupAnagrams1(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		assert.Equal(
+		assert.ElementsMatch(
 			t,
 			tc.expected.result,
 			groupAnagrams1(tc.args.strs),
