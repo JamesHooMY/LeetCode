@@ -143,38 +143,15 @@ func partition(nums []int, left, right int) int {
 	pivot := nums[pivotIndex]
 
 	// * pivot was set to the first element ------------------------------------------------------
-	nums[pivotIndex], nums[0] = nums[0], nums[pivotIndex]
-
-	for left <= right {
-		for left <= right && nums[left] <= pivot {
-			left++
-		}
-
-		// * nums[right] > pivot, make the elements after right pointer are bigger than the pivot
-		for left <= right && nums[right] > pivot {
-			right--
-		}
-
-		if left < right {
-			nums[left], nums[right] = nums[right], nums[left]
-		}
-	}
-
-	nums[0], nums[right] = nums[right], nums[0]
-
-	return right
-	// * pivot was set to the first element ------------------------------------------------------
-
-	// * pivot was set to the last element ------------------------------------------------------
-	// nums[pivotIndex], nums[len(nums)-1] = nums[len(nums)-1], nums[pivotIndex]
+	// nums[pivotIndex], nums[0] = nums[0], nums[pivotIndex]
 
 	// for left <= right {
-	// 	// * nums[left] < pivot, make the elements before left pointer are smaller than the pivot
-	// 	for left <= right && nums[left] < pivot {
+	// 	for left <= right && nums[left] <= pivot {
 	// 		left++
 	// 	}
 
-	// 	for left <= right && nums[right] >= pivot {
+	// 	// * nums[right] > pivot, make the elements after right pointer are bigger than the pivot
+	// 	for left <= right && nums[right] > pivot {
 	// 		right--
 	// 	}
 
@@ -183,12 +160,32 @@ func partition(nums []int, left, right int) int {
 	// 	}
 	// }
 
-	// nums[len(nums)-1], nums[left] = nums[left], nums[len(nums)-1]
+	// nums[0], nums[right] = nums[right], nums[0]
 
-	// sortArray4(nums[:left])
-	// sortArray4(nums[left+1:])
+	// return right
+	// * pivot was set to the first element ------------------------------------------------------
 
-	// return left
+	// * pivot was set to the last element ------------------------------------------------------
+	nums[pivotIndex], nums[len(nums)-1] = nums[len(nums)-1], nums[pivotIndex]
+
+	for left <= right {
+		// * nums[left] < pivot, make the elements before left pointer are smaller than the pivot
+		for left <= right && nums[left] < pivot {
+			left++
+		}
+
+		for left <= right && nums[right] >= pivot {
+			right--
+		}
+
+		if left < right {
+			nums[left], nums[right] = nums[right], nums[left]
+		}
+	}
+
+	nums[len(nums)-1], nums[left] = nums[left], nums[len(nums)-1]
+
+	return left
 	// * pivot was set to the last element ------------------------------------------------------
 }
 
