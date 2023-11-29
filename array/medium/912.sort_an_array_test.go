@@ -160,6 +160,7 @@ func partition(nums []int, left, right int) int {
 	// 	}
 	// }
 
+	// // swap the pivot to the right pointer
 	// nums[0], nums[right] = nums[right], nums[0]
 
 	// return right
@@ -183,6 +184,7 @@ func partition(nums []int, left, right int) int {
 		}
 	}
 
+	// swap the pivot to the left pointer
 	nums[len(nums)-1], nums[left] = nums[left], nums[len(nums)-1]
 
 	return left
@@ -310,7 +312,10 @@ func sortArray6(nums []int) []int {
 						* [1, 2, 5, 3, 4, 6] separated into [1, 2, 5, 3] and [4, 6], then merge [1, 2, 5, 3] and [4, 6] into [1, 2, 3, 4, 5, 6]
 			*/
 
-			merged := mergeSort(nums[left:mid], nums[mid:right])
+			leftArr := nums[left:mid]
+			rightArr := nums[mid:right]
+
+			merged := mergeSort(leftArr, rightArr)
 			// copy(nums[left:left+len(merged)], merged)
 			copy(nums[left:right], merged)
 		}
