@@ -16,6 +16,7 @@ import (
 // 3) reverse the second half list
 // 4) interleave merge the two lists
 // TC = O(N), SC = O(1)
+// * this is the best solution for me currently
 func reorderList1(head *util.ListNode) *util.ListNode {
 	if head == nil || head.Next == nil {
 		return head
