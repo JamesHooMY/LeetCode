@@ -30,7 +30,7 @@ func sortList1(head *util.ListNode) *util.ListNode {
 }
 
 // split the list from the node before the middle node, and return the middle node (slow, the first node of the right list)
-func split_from_middle_prev(head *util.ListNode) *util.ListNode {
+func split_from_middle_prev(head *util.ListNode) (middle *util.ListNode) {
 	if head == nil || head.Next == nil {
 		return head
 	}
@@ -52,7 +52,7 @@ func split_from_middle_prev(head *util.ListNode) *util.ListNode {
 	return slow
 }
 
-func mergeSort(left *util.ListNode, right *util.ListNode) *util.ListNode {
+func mergeSort(left *util.ListNode, right *util.ListNode) (head *util.ListNode) {
 	// merge the two lists
 	// 1) use a dummy node to store the result
 	// 2) use a current node to store the current node of the result
@@ -98,7 +98,6 @@ func sortList2(head *util.ListNode) *util.ListNode {
 		return head
 	}
 
-	dummy := &util.ListNode{Next: head}
 	length := 0
 	current := head
 
@@ -108,10 +107,11 @@ func sortList2(head *util.ListNode) *util.ListNode {
 		current = current.Next
 	}
 
+	dummy := &util.ListNode{Next: head}
 	// example: 4 -> 2 -> 3 -> 1 -> 6 -> 5, length = 6, step = 1, 2, 4
 	for step := 1; step < length; step *= 2 {
 		prev := dummy
-		current := dummy.Next
+		current := prev.Next
 
 		for current != nil {
 			// left stores the start node of the left list
@@ -270,40 +270,51 @@ func sortList3(head *util.ListNode) *util.ListNode {
 	return head
 }
 
-func quickSort(head *util.ListNode, end *util.ListNode) {
+func quickSort(head, end *util.ListNode) {
+	// head == end means there is only one node in the list
+	// head == end.Next means there is a cycle in the list
 	if head == nil || end == nil || head == end || head == end.Next {
 		return
 	}
 
 	// partition the list
 	pivotPrev := partition(head, end)
-	// pivot := pivotPrev.Next
+	pivot := pivotPrev.Next
 
-	// * this is the key point, singly linked list not like slice, we can not directly skip the pivot node, because we can not access the previous node of the pivot node
+	// * this is the key point, singly linked list not like slice, we must get the node before the pivot to defined the end node of the left list.
+	// * Also, we cannot skip the pivot node in right list. Not like slice 912.sort_array.go, we can skip the pivotIndex and start from pivotIndex+1 in right slice.
 	quickSort(head, pivotPrev)
-	quickSort(pivotPrev.Next.Next, end)
+	quickSort(pivot, end)
+	/*
+		* quickSort(pivot.Next, end) will cause error in test case 4
+
+		3(head) -> 4 -> 1(end) -> nil, after partition:
+		1(pivotPrev, head) -> 3(pivot) -> 4(pivot.Next, end) -> nil
+	*/
 }
 
-func partition(head *util.ListNode, end *util.ListNode) *util.ListNode {
-	if head == nil || end == nil || head == end {
+func partition(head, end *util.ListNode) (pivotPrev *util.ListNode) {
+	if head == nil || end == nil || head == end || head == end.Next {
 		return head
 	}
 
-	pivotVal := end.Val // use the last node as the pivot
+	// use the last node as the pivot
+	pivot := end
 
-	// * prev stores the node before the pivot
-	var prev *util.ListNode
+	// nodes before pivotTmp are smaller than the pivot， current for iteration
+	pivotTmp, current := head, head
 
-	pivotTmp := head // nodes before pivotTmp are smaller than the pivot
-	current := head  // for iteration scan the list
+	// * pivotPrev stores the node before the pivot for return
+	pivotPrev = pivotTmp
 
 	for current != end {
-		prev = pivotTmp
-
 		// 1) keep the nodes before pivotTmp smaller than the pivot
 		// 2) keep the pivotTmp and the nodes after pivotTmp larger than or equal to the pivot
-		if current.Val < pivotVal {
+		if current.Val < pivot.Val {
+			// swap the val of node smaller than the pivot to pivotTmp
 			pivotTmp.Val, current.Val = current.Val, pivotTmp.Val
+
+			pivotPrev = pivotTmp
 			pivotTmp = pivotTmp.Next
 		}
 
@@ -311,12 +322,12 @@ func partition(head *util.ListNode, end *util.ListNode) *util.ListNode {
 	}
 
 	// swap the pivot and the pivotTmp
-	pivotTmp.Val, end.Val = end.Val, pivotTmp.Val
+	pivotTmp.Val, pivot.Val = pivot.Val, pivotTmp.Val
 
-	return prev
+	return pivotPrev
 }
 
-// method 3 heap sort
+// method 4 heap sort
 // TODO: waiting for implementation after heap structure learned
 
 func Test_sortList1(t *testing.T) {
@@ -358,6 +369,15 @@ func Test_sortList1(t *testing.T) {
 			},
 			expected: expected{
 				result: util.ArrayToCycleOrSinglyLinkedList([]int{}, -1).Head,
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 1}, -1).Head,
+			},
+			expected: expected{
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1, 3, 4}, -1).Head,
 			},
 		},
 	}
@@ -413,6 +433,15 @@ func Test_sortList2(t *testing.T) {
 				result: util.ArrayToCycleOrSinglyLinkedList([]int{}, -1).Head,
 			},
 		},
+		{
+			name: "4",
+			args: args{
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 1}, -1).Head,
+			},
+			expected: expected{
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1, 3, 4}, -1).Head,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -464,6 +493,15 @@ func Test_sortList3(t *testing.T) {
 			},
 			expected: expected{
 				result: util.ArrayToCycleOrSinglyLinkedList([]int{}, -1).Head,
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{3, 4, 1}, -1).Head,
+			},
+			expected: expected{
+				result: util.ArrayToCycleOrSinglyLinkedList([]int{1, 3, 4}, -1).Head,
 			},
 		},
 	}
