@@ -278,6 +278,7 @@ func sortArray6(nums []int) []int {
 		for i := 0; i < n-step; i += 2 * step {
 			left := i
 			mid := i + step
+
 			right := i + 2*step
 			if right > n {
 				right = n
@@ -369,6 +370,15 @@ func Test_sortArray1(t *testing.T) {
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
 			},
 		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -420,6 +430,15 @@ func Test_sortArray2(t *testing.T) {
 			},
 			expected: expected{
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
 			},
 		},
 	}
@@ -475,6 +494,15 @@ func Test_sortArray3(t *testing.T) {
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
 			},
 		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -526,6 +554,15 @@ func Test_sortArray4(t *testing.T) {
 			},
 			expected: expected{
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
 			},
 		},
 	}
@@ -581,6 +618,15 @@ func Test_sortArray5(t *testing.T) {
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
 			},
 		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -632,6 +678,15 @@ func Test_sortArray6(t *testing.T) {
 			},
 			expected: expected{
 				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
 			},
 		},
 	}
