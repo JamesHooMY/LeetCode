@@ -58,3 +58,22 @@ type DListNode struct {
 	Prev *DListNode
 	Next *DListNode
 }
+
+func ReverseList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	var prev *ListNode // nil
+	current := head
+
+	for current != nil {
+		next := current.Next // 1) save the next node
+		current.Next = prev  // 2) reverse the current node
+
+		// 3) update the prev and current node, for the next iteration
+		prev, current = current, next
+	}
+
+	return prev
+}

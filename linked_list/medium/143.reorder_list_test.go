@@ -30,7 +30,7 @@ func reorderList1(head *util.ListNode) *util.ListNode {
 	middle.Next = nil
 
 	// reverse the second half list
-	reversedSecondHalfHead := reverseList(secondHalf)
+	reversedSecondHalfHead := util.ReverseList(secondHalf)
 
 	// interleave merge the two lists
 	return interleaveMerge(head, reversedSecondHalfHead)
@@ -49,24 +49,6 @@ func findMiddle(head *util.ListNode) *util.ListNode {
 	}
 
 	return slow
-}
-
-func reverseList(head *util.ListNode) *util.ListNode {
-	if head == nil || head.Next == nil {
-		return head
-	}
-
-	var prev *util.ListNode
-	current := head
-
-	for current != nil {
-		next := current.Next
-		current.Next = prev
-		prev = current
-		current = next
-	}
-
-	return prev
 }
 
 func interleaveMerge(l1 *util.ListNode, l2 *util.ListNode) *util.ListNode {

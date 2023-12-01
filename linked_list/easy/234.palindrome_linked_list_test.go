@@ -46,7 +46,7 @@ func isPalindrome1(head *util.ListNode) bool {
 			1(head) -> 2 -> 3(slow) -> 4 -> nil(fast)
 	*/
 	// * this is the key point, reverse the second half of the list
-	reversedSecondHalfHead := reverseList(slow)
+	reversedSecondHalfHead := util.ReverseList(slow)
 	/*
 		*nil is initialized as prev
 
@@ -104,20 +104,6 @@ func isPalindrome1(head *util.ListNode) bool {
 	}
 
 	return true
-}
-
-func reverseList(head *util.ListNode) *util.ListNode {
-	var prev *util.ListNode // *nil
-	current := head
-
-	for current != nil {
-		next := current.Next // 1)
-		current.Next = prev  // 2)
-		prev = current       // 3)
-		current = next       // 4)
-	}
-
-	return prev
 }
 
 // method 2 array two pointers

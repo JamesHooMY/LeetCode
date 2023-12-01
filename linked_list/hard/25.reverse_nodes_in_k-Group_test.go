@@ -1,4 +1,4 @@
-package medium
+package hard
 
 import (
 	"testing"
@@ -52,7 +52,7 @@ func reverseKGroup1(head *util.ListNode, k int) *util.ListNode {
 		end.Next = nil
 
 		// reverse the list from the start node
-		prev.Next = reverseList(start)
+		prev.Next = util.ReverseList(start)
 
 		// start is the end node of the reversed list, connect it to the next node, which is the next start node for reversing
 		start.Next = next
@@ -88,7 +88,7 @@ func reverseKGroup2(head *util.ListNode, k int) *util.ListNode {
 			next := end.Next
 			end.Next = nil
 
-			prev.Next = reverseList(start)
+			prev.Next = util.ReverseList(start)
 
 			start.Next = next
 			prev, start, end = start, next, next
