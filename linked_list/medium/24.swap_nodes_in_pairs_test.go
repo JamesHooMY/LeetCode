@@ -18,7 +18,7 @@ import (
 // 5) return the next node of the dummy node
 // TC = O(N), SC = O(1)
 // * this is the best solution for me currently
-func swapPairs1(head *util.ListNode) *util.ListNode{
+func swapPairs1(head *util.ListNode) *util.ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
