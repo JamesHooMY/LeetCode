@@ -16,6 +16,7 @@ import (
 // 4) if the character is in the hash table, then minus 1 from the count of the character in the hash table
 // 5) if the count of the character in the hash table is less than 0, then return false
 // 6) return true
+// TC = O(N), SC = O(N)
 func canConstruct1(ransomNote string, magazine string) bool {
 	if len(ransomNote) > len(magazine) {
 		return false
