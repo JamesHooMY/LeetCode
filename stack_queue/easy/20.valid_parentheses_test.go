@@ -37,11 +37,7 @@ func isValid1(s string) bool {
 		}
 	}
 
-	if len(stack) != 0 {
-		return false
-	}
-
-	return true
+	return len(stack) == 0
 }
 
 func Test_isValid1(t *testing.T) {
