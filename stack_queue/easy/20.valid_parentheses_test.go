@@ -26,14 +26,14 @@ func isValid1(s string) bool {
 		'}': '{',
 	}
 
-	for _, v := range s {
-		if val, exist := charMap[v]; exist {
+	for _, char := range s {
+		if val, exist := charMap[char]; exist {
 			if len(stack) == 0 || stack[len(stack)-1] != val {
 				return false
 			}
 			stack = stack[:len(stack)-1]
 		} else {
-			stack = append(stack, v)
+			stack = append(stack, char)
 		}
 	}
 

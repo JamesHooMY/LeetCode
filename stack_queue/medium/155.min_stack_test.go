@@ -71,7 +71,6 @@ func Test_MinStack_Pop_Top_GetMin(t *testing.T) {
 		val int
 	}
 	type expected struct {
-		resultPop    int
 		resultTop    int
 		resultGetMin int
 	}

@@ -25,8 +25,8 @@ func findAnagrams1(s string, p string) []int {
 
 	// use a map to store the characters of p
 	pMap := make(map[rune]int) // key: character, value: count
-	for _, v := range p {
-		pMap[v]++
+	for _, char := range p {
+		pMap[char]++
 	}
 
 	// use a map to store the characters of s in the current window
@@ -98,8 +98,8 @@ func findAnagrams2(s string, p string) []int {
 
 	// use an array to store the characters of p
 	pArr := [26]int{} // index: character - 'a', value: count
-	for _, v := range p {
-		pArr[v-'a']++
+	for _, char := range p {
+		pArr[char-'a']++
 	}
 
 	// use an array to store the characters of s

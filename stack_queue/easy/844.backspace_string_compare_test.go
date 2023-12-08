@@ -21,9 +21,9 @@ func backspaceCompare1(s string, t string) bool {
 func processString(str string) string {
 	stack := []rune{}
 
-	for _, v := range str {
-		if v != '#' {
-			stack = append(stack, v)
+	for _, char := range str {
+		if char != '#' {
+			stack = append(stack, char)
 		} else if len(stack) > 0 {
 			stack = stack[:len(stack)-1]
 		}

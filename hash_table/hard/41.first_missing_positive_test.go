@@ -26,10 +26,10 @@ func firstMissingPositive1(nums []int) int {
 	hashTable := make(map[int]struct{})
 
 	// 1st iteration collect the positive integer map
-	for _, v := range nums {
+	for _, num := range nums {
 		// if the number is positive, then add the number to the hash table
-		if v > 0 {
-			hashTable[v] = struct{}{} // key: number, value: struct{}
+		if num > 0 {
+			hashTable[num] = struct{}{} // key: number, value: struct{}
 		}
 	}
 

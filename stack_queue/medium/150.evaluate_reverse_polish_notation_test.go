@@ -20,8 +20,8 @@ import (
 func evalRPN1(tokens []string) int {
 	stack := []int{}
 
-	for _, v := range tokens {
-		switch v {
+	for _, str := range tokens {
+		switch str {
 		case "+", "-", "*", "/":
 			if len(stack) < 2 {
 				return 0
@@ -31,7 +31,7 @@ func evalRPN1(tokens []string) int {
 			first := stack[len(stack)-2]
 			stack = stack[:len(stack)-2]
 
-			switch v {
+			switch str {
 			case "+":
 				stack = append(stack, first+second)
 			case "-":
@@ -42,7 +42,7 @@ func evalRPN1(tokens []string) int {
 				stack = append(stack, first/second)
 			}
 		default:
-			val, _ := strconv.Atoi(v)
+			val, _ := strconv.Atoi(str)
 			stack = append(stack, val)
 		}
 	}

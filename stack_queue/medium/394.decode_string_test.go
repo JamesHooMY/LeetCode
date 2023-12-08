@@ -25,16 +25,16 @@ func decodeString1(s string) string {
 	currentStr := ""
 	mult := 0 // multiplier of current string
 
-	for _, v := range s {
-		if v >= '0' && v <= '9' {
-			mult = mult*10 + int(v-'0')
-		} else if v == '[' {
+	for _, char := range s {
+		if char >= '0' && char <= '9' {
+			mult = mult*10 + int(char-'0')
+		} else if char == '[' {
 			strStack = append(strStack, currentStr) // store the current string
 			currentStr = ""                         // reset the current string
 
 			multStack = append(multStack, mult) // store the multiplier of current string
 			mult = 0                            // reset the multiplier
-		} else if v == ']' {
+		} else if char == ']' {
 			prevStr := strStack[len(strStack)-1]  // get the previous string
 			strStack = strStack[:len(strStack)-1] // pop the previous string
 
@@ -43,7 +43,7 @@ func decodeString1(s string) string {
 
 			currentStr = prevStr + strings.Repeat(currentStr, curMult)
 		} else {
-			currentStr += string(v) // store the current string
+			currentStr += string(char) // store the current string
 		}
 	}
 

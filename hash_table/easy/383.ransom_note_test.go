@@ -23,16 +23,16 @@ func canConstruct1(ransomNote string, magazine string) bool {
 	}
 
 	magazineMap := make(map[rune]int) // key: character, value: count of the character
-	for _, v := range magazine {
-		magazineMap[v]++
+	for _, char := range magazine {
+		magazineMap[char]++
 	}
 
-	for _, v := range ransomNote {
-		// magazineMap[v] == 0, mean the character is not for magazineMap[v]--
-		if magazineMap[v] == 0 {
+	for _, char := range ransomNote {
+		// magazineMap[char] == 0, mean the character is not for magazineMap[v]--
+		if magazineMap[char] == 0 {
 			return false
 		}
-		magazineMap[v]--
+		magazineMap[char]--
 	}
 
 	return true
@@ -54,15 +54,15 @@ func canConstruct2(ransomNote string, magazine string) bool {
 
 	magazineArray := [26]int{} // index: character - 'a', value: count of the character
 
-	// for _, v := range magazine {
-	// 	magazineArray[v-'a']++
+	// for _, char := range magazine {
+	// 	magazineArray[char-'a']++
 	// }
 
-	// for _, v := range ransomNote {
-	// 	if magazineArray[v-'a'] == 0 {
+	// for _, char := range ransomNote {
+	// 	if magazineArray[char-'a'] == 0 {
 	// 		return false
 	// 	}
-	// 	magazineArray[v-'a']--
+	// 	magazineArray[char-'a']--
 	// }
 
 	// * this performance is better than for range

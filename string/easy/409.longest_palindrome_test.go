@@ -22,8 +22,8 @@ import (
 // * this is the best solution for me currently
 func longestPalindrome1(s string) int {
 	charMap := map[rune]int{} // key: character, value: count
-	for _, v := range s {
-		charMap[v]++
+	for _, char := range s {
+		charMap[char]++
 	}
 
 	result := 0
