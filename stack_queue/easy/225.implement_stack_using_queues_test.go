@@ -11,14 +11,14 @@ import (
 
 // method 1 two queues
 // 1) use two queues to implement stack, queue and queueTmp
-// 2) queue is used to store the input of push of stack, the first of queue will be the top of the stack
+// 2) queue is used to store the input of push of stack, the front of queue will be the top of the stack
 // 3) queueTmp is used to store the result of pop and peek of stack
-// 4) when pop or peek, if queueTmp is empty, then move all queue to queueTmp from the first of queue, first of queue will be the top of the queueTmp
-// 5) pop or peek the first of queueTmp
+// 4) when pop or peek, if queueTmp is empty, then move all queue to queueTmp from the front of queue, front of queue will be the top of the queueTmp
+// 5) pop or peek the front of queueTmp
 // 6) empty is true if queue and queueTmp are empty
 // TC = O(N), SC = O(N)
 type MyStack struct {
-	// * key point: queue is FIFO, we can only get the first of queue, queue[0]
+	// * key point: queue is FIFO, we can only get the front of queue, queue[0]
 	queue    []int // store the input of push of stack
 	queueTmp []int // store the result of pop and peek of stack
 }
@@ -36,18 +36,18 @@ func (this *MyStack) Push(x int) {
 	*/
 	this.queue = append(this.queue, x)
 	for len(this.queueTmp) > 0 {
-		first := this.queueTmp[0]
+		front := this.queueTmp[0]
 		this.queueTmp = this.queueTmp[1:]
-		this.queue = append(this.queue, first)
+		this.queue = append(this.queue, front)
 	}
 
 	this.queue, this.queueTmp = this.queueTmp, this.queue
 }
 
 func (this *MyStack) Pop() int {
-	first := this.queueTmp[0]
+	front := this.queueTmp[0]
 	this.queueTmp = this.queueTmp[1:]
-	return first
+	return front
 }
 
 func (this *MyStack) Top() int {
