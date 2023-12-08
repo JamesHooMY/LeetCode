@@ -77,8 +77,8 @@ func findAnagrams1(s string, p string) []int {
 }
 
 func isAnagramMap(wMap map[rune]int, pMap map[rune]int) bool {
-	for k, v := range pMap {
-		if wMap[k] != v {
+	for char, count := range pMap {
+		if wMap[char] != count {
 			return false
 		}
 	}

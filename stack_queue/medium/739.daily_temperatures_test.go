@@ -24,8 +24,8 @@ func dailyTemperatures1(temperatures []int) []int {
 	// monotonic decreasing stack
 	stack := []int{} // value store the index of iterated temperature in temperatures slice
 
-	for i, v := range temperatures {
-		for len(stack) > 0 && v > temperatures[stack[len(stack)-1]] {
+	for i, temp := range temperatures {
+		for len(stack) > 0 && temp > temperatures[stack[len(stack)-1]] {
 			top := stack[len(stack)-1]
 
 			// save the waiting days of the top of stack

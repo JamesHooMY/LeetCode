@@ -28,12 +28,12 @@ func longestPalindrome1(s string) int {
 
 	result := 0
 	hasOdd := false
-	for _, v := range charMap {
-		// * this is the key point, get the even number no matter v is even or odd
-		// for example, if v is 3, then v / 2 * 2 = 1 * 2 = 2, if v is 4, then v / 2 * 2 = 2 * 2 = 4
-		result += v / 2 * 2
+	for _, count := range charMap {
+		// * this is the key point, get the even number no matter count is even or odd
+		// for example, if count is 3, then count / 2 * 2 = 1 * 2 = 2, if count is 4, then count / 2 * 2 = 2 * 2 = 4
+		result += count / 2 * 2
 
-		if v%2 != 0 {
+		if count%2 != 0 {
 			hasOdd = true
 		}
 	}

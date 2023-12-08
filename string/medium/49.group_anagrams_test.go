@@ -45,8 +45,8 @@ func groupAnagrams1(strs []string) [][]string {
 	// }
 
 	// * manipulate the values of strMap is faster than manipulate the keys of strMap
-	for _, v := range strMap {
-		result = append(result, v)
+	for _, sliceStr := range strMap {
+		result = append(result, sliceStr)
 	}
 	// for k := range strMap {
 	// 	result = append(result, strMap[k])
@@ -57,15 +57,15 @@ func groupAnagrams1(strs []string) [][]string {
 
 func sortString(str string) string {
 	// convert string to slice
-	strSlice := []byte(str)
+	sliceByte := []byte(str)
 
 	// use sort.Slice to sort the slice, TC = O(NlogN), SC = O(logN)
-	sort.Slice(strSlice, func(i, j int) bool {
-		return strSlice[i] < strSlice[j]
+	sort.Slice(sliceByte, func(i, j int) bool {
+		return sliceByte[i] < sliceByte[j]
 	})
 
 	// convert slice to string
-	return string(strSlice)
+	return string(sliceByte)
 }
 
 func Test_groupAnagrams1(t *testing.T) {

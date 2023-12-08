@@ -23,7 +23,7 @@ func employeeFreeTime1(intervals [][][]int) [][]int {
 	// TC = O(N*M), SC = O(N*M), N is the number of intervals, M is the number of intervals in each interval
 	for _, interval := range intervals {
 		/*
-			for _, i := range interval {
+			for _, interval := range interval {
 				combinedIntervals = append(combinedIntervals, i)
 			}
 		*/
@@ -64,7 +64,7 @@ func employeeFreeTime2(intervals [][][]int) [][]int {
 	// TC = O(N*M), SC = O(N*M), N is the number of intervals, M is the number of intervals in each interval
 	for _, interval := range intervals {
 		/*
-			for _, i := range interval {
+			for _, interval := range interval {
 				combinedIntervals = append(combinedIntervals, i)
 			}
 		*/

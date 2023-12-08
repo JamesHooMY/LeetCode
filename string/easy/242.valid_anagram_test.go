@@ -34,8 +34,8 @@ func isAnagram1(s string, t string) bool {
 	// 	charMap[byte(t[i])]--
 	// }
 
-	for _, v := range charMap {
-		if v != 0 {
+	for _, count := range charMap {
+		if count != 0 {
 			return false
 		}
 	}
@@ -66,8 +66,8 @@ func isAnagram2(s string, t string) bool {
 		charArr[t[i]-'a']--
 	}
 
-	for _, v := range charArr {
-		if v != 0 {
+	for _, count := range charArr {
+		if count != 0 {
 			return false
 		}
 	}
