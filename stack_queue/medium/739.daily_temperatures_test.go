@@ -9,7 +9,7 @@ import (
 
 // https://leetcode.com/problems/daily-temperatures/description/
 
-// method 1 stack monotonic decreasing
+// method 1 stack monotonous decreasing
 // 1) use a stack to store the index of iterated temperature in temperatures slice
 // 2) if the current temperature is greater than the top of stack, then pop the top of stack
 // 3) the waiting days of the top of stack is the difference between the current index and the top of stack
