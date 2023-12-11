@@ -99,6 +99,13 @@ func trap2(height []int) int {
 }
 
 // method 3 stack monotonous decreasing
+// 1) use a stack to store the index of iterated height from left to right
+// 2) use one for loop, to scan the height from left to right
+// 3) if the current height is larger than the top of stack, then pop the top of stack
+// 4) if the stack is empty, then break, because there is no left wall
+// 5) calculate the area of water of topIndex position
+// 6) push the current index into stack
+// TC = O(N), SC = O(N)
 func trap3(height []int) int {
 	n := len(height)
 	if n == 0 {
