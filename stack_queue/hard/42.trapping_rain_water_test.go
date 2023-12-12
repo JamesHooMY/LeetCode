@@ -23,8 +23,8 @@ func trap1(height []int) int {
 		return 0
 	}
 
-	leftMax := make([]int, n)
-	rightMax := make([]int, n)
+	leftMax := make([]int, n) // store the max height from left
+	rightMax := make([]int, n) // store the max height from right
 
 	/*
 		| height                         | 0 | 1 | 0 | 2 | 1 | 0 | 1 | 3 | 2 | 1 | 2 | 1 |
@@ -85,13 +85,17 @@ func trap2(height []int) int {
 		*/
 		if leftMax < rightMax {
 			leftIndex++
-			leftMax = util.Max(leftMax, height[leftIndex])
-			result += leftMax - height[leftIndex]
+			currentHeight := height[leftIndex]
+
+			leftMax = util.Max(leftMax, currentHeight)
+			result += leftMax - currentHeight
 		} else {
 			// condition leftMax >= rightMax
 			rightIndex--
-			rightMax = util.Max(rightMax, height[rightIndex])
-			result += rightMax - height[rightIndex]
+			currentHeight := height[rightIndex]
+
+			rightMax = util.Max(rightMax, currentHeight)
+			result += rightMax - currentHeight
 		}
 	}
 
