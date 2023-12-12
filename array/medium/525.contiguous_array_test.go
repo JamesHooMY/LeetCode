@@ -18,7 +18,7 @@ import (
 func findMaxLength1(nums []int) int {
 	maxLen := 0
 	sum := 0
-	sumMap := map[int]int{} // key: sum, value: index
+	sumIdxMap := map[int]int{} // key: sum, value: index
 
 	for i := 0; i < len(nums); i++ {
 		if nums[i] == 0 {
@@ -32,12 +32,12 @@ func findMaxLength1(nums []int) int {
 			maxLen = i + 1
 		}
 
-		if index, exist := sumMap[sum]; exist {
+		if index, exist := sumIdxMap[sum]; exist {
 			if maxLen < i-index {
 				maxLen = i - index
 			}
 		} else {
-			sumMap[sum] = i
+			sumIdxMap[sum] = i
 		}
 	}
 
@@ -55,7 +55,7 @@ func findMaxLength2(nums []int) int {
 
 	// initial {0: -1} due to the first same sum is 0, then the maxLen will be i+1
 	// for example, nums = [0, 1], then sum = 0, maxLen = i - (-1) = 2
-	sumMap := map[int]int{
+	sumIdxMap := map[int]int{ // key: sum, value: index
 		0: -1, // this initial value is necessary !!!
 	} // key: sum, value: index
 
@@ -74,12 +74,12 @@ func findMaxLength2(nums []int) int {
 			sum++
 		}
 
-		if index, exist := sumMap[sum]; exist {
+		if index, exist := sumIdxMap[sum]; exist {
 			if maxLen < i-index {
 				maxLen = i - index
 			}
 		} else {
-			sumMap[sum] = i
+			sumIdxMap[sum] = i
 		}
 	}
 

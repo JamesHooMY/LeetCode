@@ -23,7 +23,10 @@ type MinStack struct {
 }
 
 func ConstructorMinStack() MinStack {
-	return MinStack{}
+	return MinStack{
+		stack:    make([]int, 0),
+		stackMin: make([]int, 0),
+	}
 }
 
 func (this *MinStack) Push(val int) {

@@ -29,23 +29,23 @@ func lengthOfLongestSubstring1(s string) int {
 
 	// use a map to store the character and its index
 	// * benchmark shows that the performance of using rune is better than using byte
-	charMap := map[rune]int{} // key: character, value: index
-	// charMap := map[byte]int{} // key: character, value: index
+	charIdxMap := map[rune]int{} // key: character, value: index
+	// charIdxMap := map[byte]int{} // key: character, value: index
 
 	// use a variable to store the maxLength
 	maxLength := 0
 
 	for i := 0; i < len(s); i++ {
-		// if index, exist := charMap[s[i]]; exist {
-		if index, exist := charMap[rune(s[i])]; exist {
+		// if index, exist := charIdxMap[s[i]]; exist {
+		if index, exist := charIdxMap[rune(s[i])]; exist {
 			// index >= start instead of index > start, because of the case "bbbbb"
 			if index >= start {
 				start = index + 1
 			}
 		}
 
-		// charMap[s[i]] = i
-		charMap[rune(s[i])] = i
+		// charIdxMap[s[i]] = i
+		charIdxMap[rune(s[i])] = i
 		end = i
 
 		if maxLength < end-start+1 {

@@ -44,9 +44,9 @@ func palindromePairs1(words []string) [][]int {
 func palindromePairs2(words []string) [][]int {
 	result := [][]int{}
 
-	wordMap := make(map[string]int) // key: word, value: index
+	wordIdxMap := make(map[string]int) // key: word, value: index
 	for i := 0; i < len(words); i++ {
-		wordMap[words[i]] = i
+		wordIdxMap[words[i]] = i
 	}
 
 	for i := 0; i < len(words); i++ {
@@ -56,7 +56,7 @@ func palindromePairs2(words []string) [][]int {
 		// check if the word is palindrome
 		if isPalindrome(word) {
 			// check if there is an empty string in the map
-			if index, exist := wordMap[""]; exist && index != i {
+			if index, exist := wordIdxMap[""]; exist && index != i {
 				result = append(result, []int{i, index}) // word + ""
 				result = append(result, []int{index, i}) // "" + word
 
@@ -65,7 +65,7 @@ func palindromePairs2(words []string) [][]int {
 
 		// check if the reverse of the word is in the map
 		reverseWord := reverseString(word)
-		if index, exist := wordMap[reverseWord]; exist && index != i {
+		if index, exist := wordIdxMap[reverseWord]; exist && index != i {
 			result = append(result, []int{i, index}) // word + reverse(word)
 		}
 
@@ -76,7 +76,7 @@ func palindromePairs2(words []string) [][]int {
 			// check if left is palindrome, if yes, then check if there is a reverse of right in the map
 			if isPalindrome(leftWord) {
 				reverseRight := reverseString(rightWord)
-				if index, ok := wordMap[reverseRight]; ok {
+				if index, ok := wordIdxMap[reverseRight]; ok {
 					if index != i {
 						result = append(result, []int{index, i}) // reverseRight + word
 					}
@@ -86,7 +86,7 @@ func palindromePairs2(words []string) [][]int {
 			// check if right is palindrome, if yes, then check if there is a reverse of left in the map
 			if isPalindrome(rightWord) {
 				reverseLeft := reverseString(leftWord)
-				if index, ok := wordMap[reverseLeft]; ok {
+				if index, ok := wordIdxMap[reverseLeft]; ok {
 					if index != i {
 						result = append(result, []int{i, index}) // word + reverseLeft
 					}

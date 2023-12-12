@@ -21,14 +21,14 @@ import (
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func longestPalindrome1(s string) int {
-	charMap := map[rune]int{} // key: character, value: count
+	charCountMap := map[rune]int{} // key: character, value: count
 	for _, char := range s {
-		charMap[char]++
+		charCountMap[char]++
 	}
 
 	result := 0
 	hasOdd := false
-	for _, count := range charMap {
+	for _, count := range charCountMap {
 		// * this is the key point, get the even number no matter count is even or odd
 		// for example, if count is 3, then count / 2 * 2 = 1 * 2 = 2, if count is 4, then count / 2 * 2 = 2 * 2 = 4
 		result += count / 2 * 2

@@ -29,21 +29,21 @@ func twoSum1(nums []int, target int) []int {
 
 // method 2 Hash Table (Map) Solution
 // 1) use one for loop and one map
-// 2) Hash Table (Map) Solution: when running the for loop, use one resultMap (map[int]int, key is "result" of target minus num, value is "index" of num) to store the result from target minus each num in nums
+// 2) Hash Table (Map) Solution: when running the for loop, use one numMap (map[int]int, key is "result" of target minus num, value is "index" of num) to store the result from target minus each num in nums
 // 3) during the for loop scanning process, check each "result" and make sure whether it have been store in the map, if it was found in the map that mean we found the two targets
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func twoSum2(nums []int, target int) []int {
-	resultMap := map[int]int{}
+	numMap := map[int]int{} // key: result of target minus num, value: index of num
 
 	for i := 0; i < len(nums); i++ {
-		index, ok := resultMap[nums[i]]
+		index, ok := numMap[nums[i]]
 
 		if ok {
 			return []int{index, i}
 		}
 
-		resultMap[target-nums[i]] = i
+		numMap[target-nums[i]] = i
 	}
 
 	return []int{}

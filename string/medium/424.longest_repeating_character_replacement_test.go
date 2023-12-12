@@ -28,12 +28,12 @@ func characterReplacement1(s string, k int) int {
 	// use a map to store the characters of s in the current window
 	/*
 		s = "AABABBA"
-		wMap := {
+		wCharCountMap := {
 			'A': 3,
 			'B': 4,
 		}
 	*/
-	wMap := make(map[byte]int) // key: character, value: count
+	wCharCountMap := make(map[byte]int) // key: character, value: count
 
 	// initial sliding window
 	left := 0
@@ -42,8 +42,8 @@ func characterReplacement1(s string, k int) int {
 	maxLength := 0 // maxLength of current window
 
 	for right < len(s) {
-		wMap[s[right]]++
-		maxCount = util.Max(maxCount, wMap[s[right]])
+		wCharCountMap[s[right]]++
+		maxCount = util.Max(maxCount, wCharCountMap[s[right]])
 
 		// right - left + 1 is the current window size, current window size - maxCount = the other characters count should be replaced in current window
 		/*
@@ -51,21 +51,21 @@ func characterReplacement1(s string, k int) int {
 			index: 0 1 2 3 4 5 6
 				k: 1
 
-			right = 0, left = 0, wMap = {'A': 1}, maxCount = 1, result = 1
-			right = 1, left = 0, wMap = {'A': 2}, maxCount = 2, result = 2
-			right = 2, left = 0, wMap = {'A': 2, 'B': 1}, maxCount = 2, result = 3
-			right = 3, left = 0, wMap = {'A': 3, 'B': 1}, maxCount = 3, result = 4
-			right = 4, left = 0 => 1, wMap = {'A': 3, 'B': 2} => {'A': 2, 'B': 2}, maxCount = 3, result = 4
+			right = 0, left = 0, wCharCountMap = {'A': 1}, maxCount = 1, result = 1
+			right = 1, left = 0, wCharCountMap = {'A': 2}, maxCount = 2, result = 2
+			right = 2, left = 0, wCharCountMap = {'A': 2, 'B': 1}, maxCount = 2, result = 3
+			right = 3, left = 0, wCharCountMap = {'A': 3, 'B': 1}, maxCount = 3, result = 4
+			right = 4, left = 0 => 1, wCharCountMap = {'A': 3, 'B': 2} => {'A': 2, 'B': 2}, maxCount = 3, result = 4
 			* right = 4, this step remove the first 'A' in the current window (index 0 -> 4), and move the left pointer to the next position, shrink the window (index from 0 -> 4 shrink to 1 -> 4)
 
-			right = 5, left = 1 => 2, wMap = {'A': 2, 'B': 3} => {'A': 1, 'B': 3}, maxCount = 3, result = 4
+			right = 5, left = 1 => 2, wCharCountMap = {'A': 2, 'B': 3} => {'A': 1, 'B': 3}, maxCount = 3, result = 4
 			* right = 5, this step remove the first 'A' in the current window (index 1 -> 5), and move the left pointer to the next position, shrink the window (index from 1 -> 5 shrink to 2 -> 5)
 
-			right = 6, left = 2 => 3, wMap = {'A': 2, 'B': 3} => {'A': 2, 'B': 2}, maxCount = 3, result = 4
+			right = 6, left = 2 => 3, wCharCountMap = {'A': 2, 'B': 3} => {'A': 2, 'B': 2}, maxCount = 3, result = 4
 			* right = 6, this step remove the first 'B' in the current window (index 2 -> 6), and move the left pointer to the next position, shrink the window (index from 2 -> 6 shrink to 3 -> 6)
 		*/
 		if (right-left+1)-maxCount > k {
-			wMap[s[left]]--
+			wCharCountMap[s[left]]--
 			left++
 		}
 		maxLength = util.Max(maxLength, right-left+1)

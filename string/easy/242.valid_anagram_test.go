@@ -22,19 +22,19 @@ func isAnagram1(s string, t string) bool {
 		return false
 	}
 
-	charMap := make(map[rune]int) // key: character, value: count
+	charCountMap := make(map[rune]int) // key: character, value: count
 	for i := range s {
-		charMap[rune(s[i])]++
-		charMap[rune(t[i])]--
+		charCountMap[rune(s[i])]++
+		charCountMap[rune(t[i])]--
 	}
 	// * byte in map is slower than rune ? howerver in 125.valid_palindrome_test.go, byte is faster than rune in IsAlphanumeric and ToLowerCase. why ?
-	// charMap := make(map[byte]int)
+	// charCountMap := make(map[byte]int)
 	// for i := range s {
-	// 	charMap[byte(s[i])]++
-	// 	charMap[byte(t[i])]--
+	// 	charCountMap[byte(s[i])]++
+	// 	charCountMap[byte(t[i])]--
 	// }
 
-	for _, count := range charMap {
+	for _, count := range charCountMap {
 		if count != 0 {
 			return false
 		}

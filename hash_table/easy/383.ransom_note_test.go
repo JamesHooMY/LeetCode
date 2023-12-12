@@ -22,17 +22,17 @@ func canConstruct1(ransomNote string, magazine string) bool {
 		return false
 	}
 
-	magazineMap := make(map[rune]int) // key: character, value: count of the character
+	magazineCountMap := make(map[rune]int) // key: character, value: count of the character
 	for _, char := range magazine {
-		magazineMap[char]++
+		magazineCountMap[char]++
 	}
 
 	for _, char := range ransomNote {
-		// magazineMap[char] == 0, mean the character is not for magazineMap[v]--
-		if magazineMap[char] == 0 {
+		// magazineCountMap[char] == 0, mean the character is not for magazineCountMap[v]--
+		if magazineCountMap[char] == 0 {
 			return false
 		}
-		magazineMap[char]--
+		magazineCountMap[char]--
 	}
 
 	return true

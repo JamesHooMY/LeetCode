@@ -14,7 +14,7 @@ import (
 // method 1 use two for loop
 // 1) sort the nums, TC = O(NlogN), SC = O(logN)
 // 2) use two nested for loop to scan the nums, and use result to store the three sum values
-// 3) during the second for loop process, we need to store every complement into the seen map (this seen map will be refresh, when turn into the next loop of in first for loop)
+// 3) during the second for loop process, we need to store every complement into the numMap (this numMap will be refresh, when turn into the next loop of in first for loop)
 // TC = O(N^2), SC = O(N)
 func threeSum1(nums []int) [][]int {
 	// * this sort step is essential, if we want to eliminate the repeat from [-1,0,1], [1,0,-1], and [0,1,-1] during the following steps. Finally only has one result like [-1,0,1]
@@ -28,12 +28,12 @@ func threeSum1(nums []int) [][]int {
 			continue
 		}
 
-		seen := map[int]bool{}
+		numMap := map[int]bool{}
 
 		for j := i + 1; j < len(nums); j++ {
 			complement := -(nums[i] + nums[j])
 
-			if seen[complement] {
+			if numMap[complement] {
 				result = append(result, []int{nums[i], complement, nums[j]})
 
 				// if nums[j] == nums[j+1] == 1; mean result of nums[j]  is [-1,0,1]; result of nums[j+1] is same as [-1,0,1]
@@ -43,7 +43,7 @@ func threeSum1(nums []int) [][]int {
 				}
 			}
 
-			seen[nums[j]] = true
+			numMap[nums[j]] = true
 		}
 	}
 
@@ -51,7 +51,7 @@ func threeSum1(nums []int) [][]int {
 }
 
 // method 2 use two nested for loop and two pointer
-// the steps reason are almost same as method 1, but thie method 2 use two pointer to replace the seen map, and the two pointer will be refresh when turn into the next loop of in first for loop
+// the steps reason are almost same as method 1, but thie method 2 use two pointer to replace the numMap, and the two pointer will be refresh when turn into the next loop of in first for loop
 // TC = O(N^2), SC = O(N)
 // although the complexity are same as method 1, but this method 2 get the best performance than method 1 in leetcode !!!
 // * this is the best solution for me currently

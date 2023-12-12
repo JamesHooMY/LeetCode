@@ -11,21 +11,21 @@ import (
 
 // method 1
 // 1) use one for loop and one map
-// 2) numSet is used to store the number which is less or equal to k, the length of numSet is used to check whether we have found all the numbers which is less or equal to k
+// 2) numMap is used to store the number which is less or equal to k, the length of numMap is used to check whether we have found all the numbers which is less or equal to k
 // 3) count is used to count the number of operations
 // TC = O(N), SC = O(N)
 // * this method is the best solution for me currently
 func minOperations1(nums []int, k int) int {
     count := 0
-    numSet := map[int]bool{}
+    numMap := map[int]bool{}
 
     for i:=len(nums)-1; i>=0; i-- {
-        if nums[i] <= k && len(numSet) <= k && !numSet[nums[i]] {
-            numSet[nums[i]] = true
+        if nums[i] <= k && len(numMap) <= k && !numMap[nums[i]] {
+            numMap[nums[i]] = true
         }
         count++
 
-        if len(numSet) == k {
+        if len(numMap) == k {
             break
         }
     }

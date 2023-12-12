@@ -23,19 +23,19 @@ func firstMissingPositive1(nums []int) int {
 	}
 
 	// use a hash table to store the positive numbers
-	hashTable := make(map[int]struct{})
+	numMap := make(map[int]struct{})
 
 	// 1st iteration collect the positive integer map
 	for _, num := range nums {
 		// if the number is positive, then add the number to the hash table
 		if num > 0 {
-			hashTable[num] = struct{}{} // key: number, value: struct{}
+			numMap[num] = struct{}{} // key: number, value: struct{}
 		}
 	}
 
 	// 2nd iteration make sure the missing lowest positive integer
 	for i := 1; i <= n; i++ {
-		if _, ok := hashTable[i]; !ok {
+		if _, ok := numMap[i]; !ok {
 			return i
 		}
 	}

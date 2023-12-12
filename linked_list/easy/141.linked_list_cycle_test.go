@@ -23,17 +23,17 @@ func hasCycle1(head *util.ListNode) bool {
 	}
 
 	// use a hash table to store the node
-	hashTable := make(map[*util.ListNode]struct{})
+	nodeMap := make(map[*util.ListNode]struct{})
 	current := head
 
 	for current != nil {
 		// if the node is already in the hash table, then return true
-		if _, ok := hashTable[current]; ok {
+		if _, ok := nodeMap[current]; ok {
 			return true
 		}
 
 		// if the node is not in the hash table, then add the node to the hash table
-		hashTable[current] = struct{}{}
+		nodeMap[current] = struct{}{}
 
 		// if the next node of last node is nil, then return false
 		if current.Next == nil {

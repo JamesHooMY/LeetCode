@@ -10,10 +10,10 @@ import (
 // https://leetcode.com/problems/minimum-window-substring/description/
 
 // method 1 sliding window + hash table
-// 1) use a tMap to store the characters of t (key: character, value: count)
-// 2) use a wMap to store the characters of s (key: character, value: count) in the current window
-// 3) initial sliding window, use two pointers, left and right, left = 0, right = 0, for each iteration, add the character of the right of the window to the wMap
-// 4) count == 0 means the current window contains all the characters of t, then move the left pointer to shrink the window, and update the wMap, update the minLength, update the start and end index of the current window for result
+// 1) use a tCharCountMap to store the characters of t (key: character, value: count)
+// 2) use a wCharCountMap to store the characters of s (key: character, value: count) in the current window
+// 3) initial sliding window, use two pointers, left and right, left = 0, right = 0, for each iteration, add the character of the right of the window to the wCharCountMap
+// 4) count == 0 means the current window contains all the characters of t, then move the left pointer to shrink the window, and update the wCharCountMap, update the minLength, update the start and end index of the current window for result
 // 5) check minLength, if minLength no updated, it means there is no window contains all the characters of t
 // 6) finally, return the result
 // TC = O(N), SC = O(N)
@@ -27,19 +27,19 @@ func minWindow1(s string, t string) string {
 	/*
 		s = "ADOBECODEBANC"
 		t = "ABC"
-		tMap := {
+		tCharCountMap := {
 			'A': 1,
 			'B': 1,
 			'C': 1,
 		}
 	*/
-	tMap := make(map[byte]int) // key: character, value: count
+	tCharCountMap := make(map[byte]int) // key: character, value: count
 	for i := 0; i < len(t); i++ {
-		tMap[t[i]]++
+		tCharCountMap[t[i]]++
 	}
 
 	// use a map to store the characters of s in the current window
-	wMap := make(map[byte]int) // key: character, value: count
+	wCharCountMap := make(map[byte]int) // key: character, value: count
 
 	// initial sliding window for scanning s
 	left, right := 0, 0
@@ -51,9 +51,9 @@ func minWindow1(s string, t string) string {
 
 	// use two pointers, left and right, to represent the current window
 	for right < len(s) {
-		wMap[s[right]]++
-		// * this is the key point, check if the current character is in tMap
-		if tMap[s[right]] > 0 && tMap[s[right]] >= wMap[s[right]] {
+		wCharCountMap[s[right]]++
+		// * this is the key point, check if the current character is in tCharCountMap
+		if tCharCountMap[s[right]] > 0 && tCharCountMap[s[right]] >= wCharCountMap[s[right]] {
 			count--
 		}
 
@@ -68,9 +68,9 @@ func minWindow1(s string, t string) string {
 			}
 
 			// remove the character from the left of the window
-			wMap[s[left]]--
-			// * this is the key point, check if the current character is in tMap
-			if tMap[s[left]] > 0 && tMap[s[left]] > wMap[s[left]] {
+			wCharCountMap[s[left]]--
+			// * this is the key point, check if the current character is in tCharCountMap
+			if tCharCountMap[s[left]] > 0 && tCharCountMap[s[left]] > wCharCountMap[s[left]] {
 				count++
 			}
 

@@ -11,9 +11,9 @@ import (
 // https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
 // method 1 hash table
-// 1) use a strMap to store the sortedStr of the string
-// 2) for each string in strs, sort the string, then check if the sortedStr is in the strMap, if yes, then append the string to the value of the strMap, if no, then add the sortedStr to the strMap, and append the string to the value of the strMap
-// 3) finally, return the values of the strMap
+// 1) use a strSliceStrMap to store the sortedStr of the string
+// 2) for each string in strs, sort the string, then check if the sortedStr is in the strSliceStrMap, if yes, then append the string to the value of the strSliceStrMap, if no, then add the sortedStr to the strSliceStrMap, and append the string to the value of the strSliceStrMap
+// 3) finally, return the values of the strSliceStrMap
 // TC = O(N * KlogK), SC = O(N * K), N is the length of strs, K is the average length of string in strs
 // * this is the best solution for me currently
 func groupAnagrams1(strs []string) [][]string {
@@ -22,7 +22,7 @@ func groupAnagrams1(strs []string) [][]string {
 		return result
 	}
 
-	// use a strMap to store the sortedStr of the string
+	// use a strSliceStrMap to store the sortedStr of the string
 	/*
 		str -> sorted string
 
@@ -33,23 +33,23 @@ func groupAnagrams1(strs []string) [][]string {
 		"nat" -> "ant"
 		"bat" -> "abt"
 	*/
-	strMap := make(map[string][]string) // key: sorted string, value: []anagrams
+	strSliceStrMap := make(map[string][]string) // key: sorted string, value: []anagrams
 	// * manipulate value of slice strs is faster than manipulate index of slice strs
 	for _, str := range strs {
 		sortedStr := sortString(str)
-		strMap[sortedStr] = append(strMap[sortedStr], str)
+		strSliceStrMap[sortedStr] = append(strSliceStrMap[sortedStr], str)
 	}
 	// for i := range strs {
 	// 	sortedStr := sortString(strs[i])
-	// 	strMap[sortedStr] = append(strMap[sortedStr], strs[i])
+	// 	strSliceStrMap[sortedStr] = append(strSliceStrMap[sortedStr], strs[i])
 	// }
 
-	// * manipulate the values of strMap is faster than manipulate the keys of strMap
-	for _, sliceStr := range strMap {
+	// * manipulate the values of strSliceStrMap is faster than manipulate the keys of strSliceStrMap
+	for _, sliceStr := range strSliceStrMap {
 		result = append(result, sliceStr)
 	}
-	// for k := range strMap {
-	// 	result = append(result, strMap[k])
+	// for k := range strSliceStrMap {
+	// 	result = append(result, strSliceStrMap[k])
 	// }
 
 	return result

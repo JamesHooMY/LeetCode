@@ -13,28 +13,28 @@ import (
 // method 1
 type RandomizedSet struct {
 	nums   []int
-	numMap map[int]int // key: num, value: index of num in nums
+	numIdxMap map[int]int // key: num, value: index of num in nums
 }
 
 func Constructor() RandomizedSet {
 	return RandomizedSet{
 		nums:   []int{},
-		numMap: make(map[int]int),
+		numIdxMap: make(map[int]int),
 	}
 }
 
 func (this *RandomizedSet) Insert(val int) bool {
-	if _, exist := this.numMap[val]; exist {
+	if _, exist := this.numIdxMap[val]; exist {
 		return false
 	}
 
 	this.nums = append(this.nums, val)
-	this.numMap[val] = len(this.nums) - 1
+	this.numIdxMap[val] = len(this.nums) - 1
 	return true
 }
 
 func (this *RandomizedSet) Remove(val int) bool {
-	index, exist := this.numMap[val]
+	index, exist := this.numIdxMap[val]
 	if !exist {
 		return false
 	}
@@ -42,13 +42,13 @@ func (this *RandomizedSet) Remove(val int) bool {
 	lastIndex := len(this.nums) - 1
 	lastNum := this.nums[lastIndex]
 
-	// change the lastNum index to the index of val, update the numMap of lastNum
+	// change the lastNum index to the index of val, update the numIdxMap of lastNum
 	this.nums[index] = lastNum
-	this.numMap[lastNum] = index
+	this.numIdxMap[lastNum] = index
 
-	// remove lastNum index in nums and delete val in numMap
+	// remove lastNum index in nums and delete val in numIdxMap
 	this.nums = this.nums[:lastIndex]
-	delete(this.numMap, val)
+	delete(this.numIdxMap, val)
 
 	return true
 }
