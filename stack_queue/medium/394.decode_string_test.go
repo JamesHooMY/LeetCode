@@ -19,8 +19,8 @@ import (
 // 6) finally, the current string is the result
 // TC = O(N), SC = O(N)
 func decodeString1(s string) string {
-	strStack := []string{} // store the previous string
-	multStack := []int{}   // store the multiple of current string
+	stackStr := []string{} // store the previous string
+	stackMult := []int{}   // store the multiple of current string
 
 	currentStr := ""
 	mult := 0 // multiplier of current string
@@ -29,17 +29,17 @@ func decodeString1(s string) string {
 		if char >= '0' && char <= '9' {
 			mult = mult*10 + int(char-'0')
 		} else if char == '[' {
-			strStack = append(strStack, currentStr) // store the current string
+			stackStr = append(stackStr, currentStr) // store the current string
 			currentStr = ""                         // reset the current string
 
-			multStack = append(multStack, mult) // store the multiplier of current string
+			stackMult = append(stackMult, mult) // store the multiplier of current string
 			mult = 0                            // reset the multiplier
 		} else if char == ']' {
-			prevStr := strStack[len(strStack)-1]  // get the previous string
-			strStack = strStack[:len(strStack)-1] // pop the previous string
+			prevStr := stackStr[len(stackStr)-1]  // get the previous string
+			stackStr = stackStr[:len(stackStr)-1] // pop the previous string
 
-			curMult := multStack[len(multStack)-1]   // get the multiplier of current string
-			multStack = multStack[:len(multStack)-1] // pop the multiplier of current string
+			curMult := stackMult[len(stackMult)-1]   // get the multiplier of current string
+			stackMult = stackMult[:len(stackMult)-1] // pop the multiplier of current string
 
 			currentStr = prevStr + strings.Repeat(currentStr, curMult)
 		} else {

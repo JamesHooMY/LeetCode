@@ -26,28 +26,28 @@ func sortedSquares1(nums []int) []int {
 }
 
 // method 2 two pointer
-// 1) use two pointer, one pointer is leftIndex, another pointer is rightIndex; one sortedSquaresList to store the result
-// 2) use one for loop, the index start form the last of sortedSquaresList, if leftValue^2 > rightValue^2, then add leftValue^2 to sortedSquaresList[i], and leftIndex++
-// 3) else add rightValue^2 to sortedSquaresList[i], and rightIndex--
+// 1) use two pointer, one pointer is leftIdx, another pointer is rightIdx; one sortedSquaresList to store the result
+// 2) use one for loop, the index start form the last of sortedSquaresList, if leftValue^2 > rightValue^2, then add leftValue^2 to sortedSquaresList[i], and leftIdx++
+// 3) else add rightValue^2 to sortedSquaresList[i], and rightIdx--
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func sortedSquares2(nums []int) []int{
-	leftIndex := 0
-    rightIndex := len(nums) - 1
+	leftIdx := 0
+    rightIdx := len(nums) - 1
 
     sortedSquaresList := make([]int, len(nums))
 
     for i := len(nums) - 1; i >= 0; i-- {
         // these two variable must initialize in for loop
-        leftValue := nums[leftIndex]
-        rightValue := nums[rightIndex]
+        leftValue := nums[leftIdx]
+        rightValue := nums[rightIdx]
 
         if leftValue * leftValue > rightValue * rightValue {
             sortedSquaresList[i] = leftValue * leftValue
-            leftIndex++
+            leftIdx++
         } else {
             sortedSquaresList[i] = rightValue * rightValue
-            rightIndex--
+            rightIdx--
         }
     }
 

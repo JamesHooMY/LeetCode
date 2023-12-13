@@ -12,25 +12,25 @@ import (
 // https://leetcode.com/problems/container-with-most-water/
 
 // method 1
-// 1) use two pointers, leftIndex and rightIndex
+// 1) use two pointers, leftIdx and rightIdx
 // 2) use one for loop, to scan the height
 // 3) calculate the currentArea, and compare with the maxArea
-// 4) if height[leftIndex] < height[rightIndex], then leftIndex++
-// 5) if height[leftIndex] >= height[rightIndex], then rightIndex--
+// 4) if height[leftIdx] < height[rightIdx], then leftIdx++
+// 5) if height[leftIdx] >= height[rightIdx], then rightIdx--
 // TC = O(N), SC = O(1)
 func maxArea1(height []int) int {
 	maxArea := 0
-	leftIndex := 0
-	rightIndex := len(height) - 1
+	leftIdx := 0
+	rightIdx := len(height) - 1
 
-	for leftIndex < rightIndex {
-		currentArea := util.Min(height[leftIndex], height[rightIndex]) * (rightIndex - leftIndex)
+	for leftIdx < rightIdx {
+		currentArea := util.Min(height[leftIdx], height[rightIdx]) * (rightIdx - leftIdx)
 		maxArea = util.Max(maxArea, currentArea)
 
-		if height[leftIndex] < height[rightIndex] {
-			leftIndex++
+		if height[leftIdx] < height[rightIdx] {
+			leftIdx++
 		} else {
-			rightIndex--
+			rightIdx--
 		}
 	}
 
@@ -43,19 +43,19 @@ func maxArea1(height []int) int {
 // * this is the best solution for me currently
 func maxArea2(height []int) int {
 	maxArea := 0
-	leftIndex := 0
-	rightIndex := len(height) - 1
+	leftIdx := 0
+	rightIdx := len(height) - 1
 
-	for leftIndex < rightIndex {
+	for leftIdx < rightIdx {
 		h := 0
-		w := rightIndex - leftIndex
+		w := rightIdx - leftIdx
 
-		if height[leftIndex] < height[rightIndex] {
-			h = height[leftIndex]
-			leftIndex++
+		if height[leftIdx] < height[rightIdx] {
+			h = height[leftIdx]
+			leftIdx++
 		} else {
-			h = height[rightIndex]
-			rightIndex--
+			h = height[rightIdx]
+			rightIdx--
 		}
 
 		currentArea := h * w

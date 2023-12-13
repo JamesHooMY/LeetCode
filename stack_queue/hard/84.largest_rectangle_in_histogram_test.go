@@ -37,7 +37,7 @@ func largestRectangleArea1(heights []int) int {
 	// store the first index right that has height lower than heights[i] for getting right farthest extend edge
 	right := make([]int, n)
 
-	left[0] = -1
+	left[0] = -1 // the left edge of index 0 is -1，calculate in right[i] - left[i] - 1
 	for i := 1; i < n; i++ {
 		prevIndex := i - 1
 		for prevIndex >= 0 && heights[prevIndex] >= heights[i] {
@@ -47,7 +47,7 @@ func largestRectangleArea1(heights []int) int {
 		left[i] = prevIndex
 	}
 
-	right[n-1] = n
+	right[n-1] = n // the right edge of index n-1 is n，calculate in right[i] - left[i] - 1
 	for i := n - 2; i >= 0; i-- {
 		prevIndex := i + 1
 		for prevIndex < n && heights[prevIndex] >= heights[i] {
@@ -69,13 +69,13 @@ func largestRectangleArea1(heights []int) int {
 	// maxArea := 0
 	// for i := 0; i < n; i++ {
 	// 	// find the right farthest extend edge
-	// 	rightIndex := i + 1
-	// 	for rightIndex < n && heights[rightIndex] >= heights[i] {
-	// 		rightIndex++
+	// 	rightIdx := i + 1
+	// 	for rightIdx < n && heights[rightIdx] >= heights[i] {
+	// 		rightIdx++
 	// 	}
 
 	// 	h := heights[i]
-	// 	w := rightIndex - left[i] - 1
+	// 	w := rightIdx - left[i] - 1
 	// 	maxArea = util.Max(maxArea, h*w)
 	// }
 
@@ -83,7 +83,7 @@ func largestRectangleArea1(heights []int) int {
 }
 
 // method 2 two pointers dynamic programming, cannot pass leetcode ! because of time limit exceeded
-// 1) use two pointers, leftIndex and rightIndex
+// 1) use two pointers, leftIdx and rightIdx
 // 2) use one for loop, to scan the height from left to right, and alway keep the first index left that has height lower than heights[i]
 // 3) use one for loop, to scan the height from right to left, and alway keep the first index right that has height lower than heights[i]
 // 4) use one for loop, to scan the height, and calculate the result
@@ -104,31 +104,31 @@ func largestRectangleArea2(heights []int) int {
 	maxArea := 0
 	for i := 0; i < n; i++ {
 		// find the left farthest extend edge
-		leftIndex := i - 1
-		for leftIndex >= 0 && heights[leftIndex] >= heights[i] {
-			leftIndex--
+		leftIdx := i - 1
+		for leftIdx >= 0 && heights[leftIdx] >= heights[i] {
+			leftIdx--
 		}
 
 		// find the right farthest extend edge
-		rightIndex := i + 1
-		for rightIndex < n && heights[rightIndex] >= heights[i] {
-			rightIndex++
+		rightIdx := i + 1
+		for rightIdx < n && heights[rightIdx] >= heights[i] {
+			rightIdx++
 		}
 
 		h := heights[i]
-		w := rightIndex - leftIndex - 1
+		w := rightIdx - leftIdx - 1
 		maxArea = util.Max(maxArea, h*w)
 	}
 
 	return maxArea
 }
 
-// method 3 stack monotonous increasing
-// 1) use a stack to store the index of iterated height in heights slice
-// 2) if the current height is greater than the top of stack, then pop the top of stack
-// 3) the area of the top of stack is the height of top * (the difference between the current index and the top of stack)
-// 4) push the current index into stack
-// 5) finally, the area of remaining index in stack is the height of top * (the difference between the current index and the top of stack)
+// method 3 stackIdx monotonous increasing
+// 1) use a stackIdx to store the index of iterated height in heights slice
+// 2) if the current height is greater than the top of stackIdx, then pop the top of stackIdx
+// 3) the area of the top of stackIdx is the height of top * (the difference between the current index and the top of stackIdx)
+// 4) push the current index into stackIdx
+// 5) finally, the area of remaining index in stackIdx is the height of top * (the difference between the current index and the top of stackIdx)
 // TC = O(N), SC = O(N)
 func largestRectangleArea3(heights []int) int {
 	n := len(heights)
@@ -137,7 +137,7 @@ func largestRectangleArea3(heights []int) int {
 	}
 
 	maxArea := 0
-	stack := []int{} // value store the index of iterated height in heights slice
+	stackIdx := []int{} // value store the index of iterated height in heights slice
 
 	for i := 0; i <= n; i++ {
 		curHeight := 0
@@ -148,32 +148,32 @@ func largestRectangleArea3(heights []int) int {
 		/*
 			[2,5,6,1]
 
-			i = 0, stack = [], maxArea = 0, curHeight = 2 => stack = [0], maxArea = 0
-			i = 1, stack = [0], maxArea = 0, curHeight = 5 => stack = [0, 1], maxArea = 0
-			i = 2, stack = [0, 1], maxArea = 0, curHeight = 6 => stack = [0, 1, 2], maxArea = 0
+			i = 0, stackIdx = [], maxArea = 0, curHeight = 2 => stackIdx = [0], maxArea = 0
+			i = 1, stackIdx = [0], maxArea = 0, curHeight = 5 => stackIdx = [0, 1], maxArea = 0
+			i = 2, stackIdx = [0, 1], maxArea = 0, curHeight = 6 => stackIdx = [0, 1, 2], maxArea = 0
 
-			i = 3, stack = [0, 1, 2], maxArea = 0, curHeight = 1
-			iterating stack:
-			=> stack = [0, 1], width = 1, maxArea = 6
-			=> stack = [0], width = 2, maxArea = 10
-			=> stack = [], width = 3, maxArea = 10
+			i = 3, stackIdx = [0, 1, 2], maxArea = 0, curHeight = 1
+			iterating stackIdx:
+			=> stackIdx = [0, 1], width = 1, maxArea = 6
+			=> stackIdx = [0], width = 2, maxArea = 10
+			=> stackIdx = [], width = 3, maxArea = 10
 		*/
-		for len(stack) > 0 && curHeight < heights[stack[len(stack)-1]] {
-			topIndex := stack[len(stack)-1]
-			stack = stack[:len(stack)-1] // pop the top index
+		for len(stackIdx) > 0 && curHeight < heights[stackIdx[len(stackIdx)-1]] {
+			topIndex := stackIdx[len(stackIdx)-1]
+			stackIdx = stackIdx[:len(stackIdx)-1] // pop the top index
 
 			// calculate the area of water of topIndex position
-			// if stack is empty, then the width of topIndex position is i
-			// if stack is not empty, then the width of topIndex position is i - stack[len(stack)-1] - 1
+			// if stackIdx is empty, then the width of topIndex position is i
+			// if stackIdx is not empty, then the width of topIndex position is i - stackIdx[len(stackIdx)-1] - 1
 			width := i
-			if len(stack) > 0 {
-				width = i - stack[len(stack)-1] - 1
+			if len(stackIdx) > 0 {
+				width = i - stackIdx[len(stackIdx)-1] - 1
 			}
 
 			maxArea = util.Max(maxArea, heights[topIndex]*width)
 		}
 
-		stack = append(stack, i)
+		stackIdx = append(stackIdx, i)
 	}
 
 	return maxArea

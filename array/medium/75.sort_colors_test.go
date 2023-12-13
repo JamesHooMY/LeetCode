@@ -10,28 +10,28 @@ import (
 // https://leetcode.com/problems/sort-colors/description/
 
 // method 1 Dutch National Flag Algorithm
-// 1) use three pointers, leftIndex, rightIndex, currentIndex
+// 1) use three pointers, leftIdx, rightIdx, currentIndex
 // 2) use one for loop, to scan the nums
-// 3) if nums[currentIndex] == 0, then swap the nums[currentIndex] with nums[leftIndex], and leftIndex++ and currentIndex++
-// 4) if nums[currentIndex] == 2, then swap the nums[currentIndex] with nums[rightIndex], and rightIndex--
+// 3) if nums[currentIndex] == 0, then swap the nums[currentIndex] with nums[leftIdx], and leftIdx++ and currentIndex++
+// 4) if nums[currentIndex] == 2, then swap the nums[currentIndex] with nums[rightIdx], and rightIdx--
 // 5) if nums[currentIndex] == 1, then currentIndex++
 // TC = O(N), SC = O(1)
 // * this is the best solution for me currently
 func sortColors1(nums []int) {
-	leftIndex := 0
-	rightIndex := len(nums) - 1
+	leftIdx := 0
+	rightIdx := len(nums) - 1
 	currentIndex := 0
 
-	for currentIndex <= rightIndex {
+	for currentIndex <= rightIdx {
 		if nums[currentIndex] == 0 {
 			// swap the 0 to the left
-			nums[currentIndex], nums[leftIndex] = nums[leftIndex], nums[currentIndex]
-			leftIndex++
+			nums[currentIndex], nums[leftIdx] = nums[leftIdx], nums[currentIndex]
+			leftIdx++
 			currentIndex++
 		} else if nums[currentIndex] == 2 {
 			// swap the 2 to the right
-			nums[currentIndex], nums[rightIndex] = nums[rightIndex], nums[currentIndex]
-			rightIndex--
+			nums[currentIndex], nums[rightIdx] = nums[rightIdx], nums[currentIndex]
+			rightIdx--
 		} else {
 			currentIndex++
 		}
@@ -39,14 +39,14 @@ func sortColors1(nums []int) {
 
 	// this method have repeat step i-- & i++
 	/*
-		for i:=0; i<=rightIndex; i++ {
+		for i:=0; i<=rightIdx; i++ {
 			if nums[i] == 2 {
-				nums[i], nums[rightIndex] = nums[rightIndex], nums[i]
+				nums[i], nums[rightIdx] = nums[rightIdx], nums[i]
 				i--
-				rightIndex--
+				rightIdx--
 			} else if nums[i] == 0 {
-				nums[i], nums[leftIndex] = nums[leftIndex], nums[i]
-				leftIndex++
+				nums[i], nums[leftIdx] = nums[leftIdx], nums[i]
+				leftIdx++
 			}
 		}
 	*/

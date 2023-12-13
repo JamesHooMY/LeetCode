@@ -153,10 +153,10 @@ func isPalindrome2(head *util.ListNode) bool {
 	return true
 }
 
-// method 3 stack
-// 1) use a stack to store the node
-// 2) push the node to the stack
-// 3) pop the node from the stack, compare the value of the current node and the popped node
+// method 3 stackNode
+// 1) use a stackNode to store the node
+// 2) push the node to the stackNode
+// 3) pop the node from the stackNode, compare the value of the current node and the popped node
 // 4) if the value is not equal, then return false
 // 5) if the value is equal, then move the current node to the next node
 // 6) if the next node of the popped node is nil, then return true
@@ -166,23 +166,23 @@ func isPalindrome3(head *util.ListNode) bool {
 		return true
 	}
 
-	// use a stack to store the node
-	stack := make([]*util.ListNode, 0)
+	// use a stackNode to store the node
+	stackNode := make([]*util.ListNode, 0)
 	current := head
 
 	// TC = O(N), SC = O(N)
 	for current != nil {
-		stack = append(stack, current)
+		stackNode = append(stackNode, current)
 		current = current.Next
 	}
 
 	current = head
 
 	// TC = O(N), SC = O(1)
-	for len(stack) > 0 {
-		// pop the last node from the stack
-		lastNode := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
+	for len(stackNode) > 0 {
+		// pop the last node from the stackNode
+		lastNode := stackNode[len(stackNode)-1]
+		stackNode = stackNode[:len(stackNode)-1]
 
 		// compare the value of the current node and the last node
 		if current.Val != lastNode.Val {

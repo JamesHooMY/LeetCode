@@ -23,7 +23,7 @@ type MyStack struct {
 	queueTmp []int // store the result of pop and peek of stack
 }
 
-func ConstructorStack() MyStack {
+func ConstructorMyStack() MyStack {
 	return MyStack{}
 }
 
@@ -59,7 +59,7 @@ func (this *MyStack) Empty() bool {
 }
 
 func Test_MyStack_Pop_Top_Empty(t *testing.T) {
-	myStack := ConstructorStack()
+	myStack := ConstructorMyStack()
 
 	type args struct {
 		x int

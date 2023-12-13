@@ -55,10 +55,10 @@ func trap1(height []int) int {
 }
 
 // method 2 two pointers dynamic programming
-// 1) use two pointers, leftIndex and rightIndex
+// 1) use two pointers, leftIdx and rightIdx
 // 2) use one for loop, to scan the height from left to right
-// 3) if leftMax < rightMax, then leftIndex++, and calculate the result
-// 4) if leftMax >= rightMax, then rightIndex--, and calculate the result
+// 3) if leftMax < rightMax, then leftIdx++, and calculate the result
+// 4) if leftMax >= rightMax, then rightIdx--, and calculate the result
 // TC = O(N), SC = O(1)
 // * this is the best solution for me currently
 func trap2(height []int) int {
@@ -67,14 +67,14 @@ func trap2(height []int) int {
 		return 0
 	}
 
-	leftIndex := 0
-	rightIndex := n - 1
+	leftIdx := 0
+	rightIdx := n - 1
 
-	leftMax := height[leftIndex]
-	rightMax := height[rightIndex]
+	leftMax := height[leftIdx]
+	rightMax := height[rightIdx]
 
 	result := 0
-	for leftIndex < rightIndex {
+	for leftIdx < rightIdx {
 		/*
 			| index  	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |
 			| height 	| 0 | 1 | 0 | 2 | 1 | 0 | 1 | 3 | 2 | 1 | 2 | 1 |
@@ -84,15 +84,15 @@ func trap2(height []int) int {
 			| result	| 0 | 0 | 1 | 0 | 1 | 2 | 1 | 0 | 0 | 1 | 0 | 0 |
 		*/
 		if leftMax < rightMax {
-			leftIndex++
-			currentHeight := height[leftIndex]
+			leftIdx++
+			currentHeight := height[leftIdx]
 
 			leftMax = util.Max(leftMax, currentHeight)
 			result += leftMax - currentHeight
 		} else {
 			// condition leftMax >= rightMax
-			rightIndex--
-			currentHeight := height[rightIndex]
+			rightIdx--
+			currentHeight := height[rightIdx]
 
 			rightMax = util.Max(rightMax, currentHeight)
 			result += rightMax - currentHeight
@@ -102,13 +102,13 @@ func trap2(height []int) int {
 	return result
 }
 
-// method 3 stack monotonous decreasing
-// 1) use a stack to store the index of iterated height from left to right
+// method 3 stackIdx monotonous decreasing
+// 1) use a stackIdx to store the index of iterated height from left to right
 // 2) use one for loop, to scan the height from left to right
-// 3) if the current height is larger than the top of stack, then pop the top of stack
-// 4) if the stack is empty, then break, because there is no left wall
+// 3) if the current height is larger than the top of stackIdx, then pop the top of stackIdx
+// 4) if the stackIdx is empty, then break, because there is no left wall
 // 5) calculate the area of water of topIndex position
-// 6) push the current index into stack
+// 6) push the current index into stackIdx
 // TC = O(N), SC = O(N)
 func trap3(height []int) int {
 	n := len(height)
@@ -116,39 +116,39 @@ func trap3(height []int) int {
 		return 0
 	}
 
-	stack := []int{} // store the index of iterated height from left to right
+	stackIdx := []int{} // store the index of iterated height from left to right
 	result := 0
 
 	for i := 0; i < n; i++ {
-		// compare the current height with the top of stack
-		for len(stack) > 0 && height[i] > height[stack[len(stack)-1]] {
-			topIndex := stack[len(stack)-1]
-			stack = stack[:len(stack)-1] // pop the top index
+		// compare the current height with the top of stackIdx
+		for len(stackIdx) > 0 && height[i] > height[stackIdx[len(stackIdx)-1]] {
+			topIndex := stackIdx[len(stackIdx)-1]
+			stackIdx = stackIdx[:len(stackIdx)-1] // pop the top index
 
-			// if stack is empty, then break, because there is no left wall
-			if len(stack) == 0 {
+			// if stackIdx is empty, then break, because there is no left wall
+			if len(stackIdx) == 0 {
 				break
 			}
 
 			/*
 			   area of topIndex position = width of topIndex position * height of topIndex position
 
-			   width of topIndex position = current position index(i) - current top(stack[len(stack)-1]) - 1
+			   width of topIndex position = current position index(i) - current top(stackIdx[len(stackIdx)-1]) - 1
 
-			   height of topIndex position = min(height[stack[len(stack)-1]], height[i]) - height[topIndex]
+			   height of topIndex position = min(height[stackIdx[len(stackIdx)-1]], height[i]) - height[topIndex]
 			*/
 
 			// calculate the distance between two walls, with is the width of topIndex position
-			w := i - stack[len(stack)-1] - 1
+			w := i - stackIdx[len(stackIdx)-1] - 1
 
 			// calculate the height of water, which is the height of topIndex position
-			h := util.Min(height[i], height[stack[len(stack)-1]]) - height[topIndex]
+			h := util.Min(height[i], height[stackIdx[len(stackIdx)-1]]) - height[topIndex]
 
 			// calculate the area of water of topIndex position
 			result += w * h
 		}
 
-		stack = append(stack, i)
+		stackIdx = append(stackIdx, i)
 	}
 
 	return result

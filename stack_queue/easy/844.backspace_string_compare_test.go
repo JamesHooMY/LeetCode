@@ -10,26 +10,26 @@ import (
 // https://leetcode.com/problems/backspace-string-compare/description/
 
 // method 1
-// 1) use stack to store the iterated charactor of string
-// 2) if the charactor is '#', pop the last charactor from stack
-// 3) compare the stack of two strings
+// 1) use stackChar to store the iterated charactor of string
+// 2) if the charactor is '#', pop the last charactor from stackChar
+// 3) compare the stackChar of two strings
 // TC = O(N), SC = O(N)
 func backspaceCompare1(s string, t string) bool {
     return processString(s) == processString(t)
 }
 
 func processString(str string) string {
-	stack := []rune{}
+	stackChar := []rune{}
 
 	for _, char := range str {
 		if char != '#' {
-			stack = append(stack, char)
-		} else if len(stack) > 0 {
-			stack = stack[:len(stack)-1]
+			stackChar = append(stackChar, char)
+		} else if len(stackChar) > 0 {
+			stackChar = stackChar[:len(stackChar)-1]
 		}
 	}
 
-	return string(stack)
+	return string(stackChar)
 }
 
 func Test_backspaceCompare1(t *testing.T) {

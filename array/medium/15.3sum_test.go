@@ -66,34 +66,34 @@ func threeSum2(nums []int) [][]int {
 			continue
 		}
 
-		leftIndex, rightIndex := i+1, len(nums)-1
+		leftIdx, rightIdx := i+1, len(nums)-1
 
-		for leftIndex < rightIndex {
-			sum := nums[i] + nums[leftIndex] + nums[rightIndex]
+		for leftIdx < rightIdx {
+			sum := nums[i] + nums[leftIdx] + nums[rightIdx]
 
 			if sum < 0 {
-				// due to the nums is sorted, so if sum < 0, mean the nums[leftIndex] is too small, need to increase the nums[leftIndex]
-				leftIndex++
+				// due to the nums is sorted, so if sum < 0, mean the nums[leftIdx] is too small, need to increase the nums[leftIdx]
+				leftIdx++
 			} else if sum > 0 {
-				// due to the nums is sorted, so if sum > 0, mean the nums[rightIndex] is too big, need to decrease the nums[rightIndex]
-				rightIndex--
+				// due to the nums is sorted, so if sum > 0, mean the nums[rightIdx] is too big, need to decrease the nums[rightIdx]
+				rightIdx--
 			} else {
-				result = append(result, []int{nums[i], nums[leftIndex], nums[rightIndex]})
+				result = append(result, []int{nums[i], nums[leftIdx], nums[rightIdx]})
 
-				// if nums[leftIndex] == nums[leftIndex+1] == 1; mean result of nums[leftIndex]  is [-1,0,1]; result of nums[leftIndex+1] is same as [-1,0,1]
+				// if nums[leftIdx] == nums[leftIdx+1] == 1; mean result of nums[leftIdx]  is [-1,0,1]; result of nums[leftIdx+1] is same as [-1,0,1]
 				// this step check the "current value" with "next value", mean the same result already exist. Then skip the repeat.
-				for leftIndex < rightIndex && nums[leftIndex] == nums[leftIndex+1] {
-					leftIndex++
+				for leftIdx < rightIdx && nums[leftIdx] == nums[leftIdx+1] {
+					leftIdx++
 				}
 
-				// if nums[rightIndex] == nums[rightIndex-1] == 1; mean result of nums[rightIndex]  is [-1,0,1]; result of nums[rightIndex-1] is same as [-1,0,1]
+				// if nums[rightIdx] == nums[rightIdx-1] == 1; mean result of nums[rightIdx]  is [-1,0,1]; result of nums[rightIdx-1] is same as [-1,0,1]
 				// this step check the "current value" with "next value", mean the same result already exist. Then skip the repeat.
-				for leftIndex < rightIndex && nums[rightIndex] == nums[rightIndex-1] {
-					rightIndex--
+				for leftIdx < rightIdx && nums[rightIdx] == nums[rightIdx-1] {
+					rightIdx--
 				}
 
-				leftIndex++
-				rightIndex--
+				leftIdx++
+				rightIdx--
 			}
 		}
 	}

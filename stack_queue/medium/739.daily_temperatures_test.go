@@ -9,32 +9,32 @@ import (
 
 // https://leetcode.com/problems/daily-temperatures/description/
 
-// method 1 stack monotonous decreasing
-// 1) use a stack to store the index of iterated temperature in temperatures slice
-// 2) if the current temperature is greater than the top of stack, then pop the top of stack
-// 3) the waiting days of the top of stack is the difference between the current index and the top of stack
-// 4) push the current index into stack
-// 5) finally, the waiting days of remaining index in stack is 0
+// method 1 stackIdx monotonous decreasing
+// 1) use a stackIdx to store the index of iterated temperature in temperatures slice
+// 2) if the current temperature is greater than the top of stackIdx, then pop the top of stackIdx
+// 3) the waiting days of the top of stackIdx is the difference between the current index and the top of stackIdx
+// 4) push the current index into stackIdx
+// 5) finally, the waiting days of remaining index in stackIdx is 0
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func dailyTemperatures1(temperatures []int) []int {
 	n := len(temperatures)
 	result := make([]int, n)
 
-	// monotonic decreasing stack
-	stack := []int{} // value store the index of iterated temperature in temperatures slice
+	// monotonic decreasing stackIdx
+	stackIdx := []int{} // value store the index of iterated temperature in temperatures slice
 
 	for i, temp := range temperatures {
-		for len(stack) > 0 && temp > temperatures[stack[len(stack)-1]] {
-			top := stack[len(stack)-1]
+		for len(stackIdx) > 0 && temp > temperatures[stackIdx[len(stackIdx)-1]] {
+			top := stackIdx[len(stackIdx)-1]
 
-			// save the waiting days of the top of stack
+			// save the waiting days of the top of stackIdx
 			result[top] = i - top
 
-			// pop the top of stack, the temperature of top is less than the current temperature
-			stack = stack[:len(stack)-1]
+			// pop the top of stackIdx, the temperature of top is less than the current temperature
+			stackIdx = stackIdx[:len(stackIdx)-1]
 		}
-		stack = append(stack, i)
+		stackIdx = append(stackIdx, i)
 	}
 
 	return result

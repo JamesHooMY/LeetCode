@@ -9,17 +9,17 @@ import (
 
 // https://leetcode.com/problems/valid-parentheses/description/
 
-// method 1 stack + map
-// 1) use a stack to store the left parentheses
+// method 1 stackChar + map
+// 1) use a stackChar to store the left parentheses
 // 2) use a map to store key: right parentheses, value: left parentheses
-// 3) if the current character is right parentheses, then use the value (left parentheses) of the map to compare with the top of the stack
-// 4) if the value is not equal, then return false. otherwise, pop the top of the stack
-// 5) if the current character is left parentheses, then push it into the stack
-// 6) finally, if the stack is not empty, then return false. otherwise, return true
+// 3) if the current character is right parentheses, then use the value (left parentheses) of the map to compare with the top of the stackChar
+// 4) if the value is not equal, then return false. otherwise, pop the top of the stackChar
+// 5) if the current character is left parentheses, then push it into the stackChar
+// 6) finally, if the stackChar is not empty, then return false. otherwise, return true
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func isValid1(s string) bool {
-	stack := []rune{} // '(', '[', '{'
+	stackChar := []rune{} // '(', '[', '{'
 	charMap := map[rune]rune{
 		')': '(',
 		']': '[',
@@ -28,16 +28,16 @@ func isValid1(s string) bool {
 
 	for _, char := range s {
 		if val, exist := charMap[char]; exist {
-			if len(stack) == 0 || stack[len(stack)-1] != val {
+			if len(stackChar) == 0 || stackChar[len(stackChar)-1] != val {
 				return false
 			}
-			stack = stack[:len(stack)-1]
+			stackChar = stackChar[:len(stackChar)-1]
 		} else {
-			stack = append(stack, char)
+			stackChar = append(stackChar, char)
 		}
 	}
 
-	return len(stack) == 0
+	return len(stackChar) == 0
 }
 
 func Test_isValid1(t *testing.T) {

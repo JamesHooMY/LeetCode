@@ -106,36 +106,36 @@ func sortArray4(nums []int) []int {
 func partition(nums []int, left, right int) int {
 	// * always select the first element as the pivot -----------------------
 	// pivot := nums[left]
-	// rightIndex := right
+	// rightIdx := right
 
-	// * keep the elements after rightIndex are bigger than the pivot
+	// * keep the elements after rightIdx are bigger than the pivot
 	// for i := right; i > left; i-- {
 	// 	if nums[i] > pivot {
-	// 		nums[i], nums[rightIndex] = nums[rightIndex], nums[i]
-	// 		rightIndex--
+	// 		nums[i], nums[rightIdx] = nums[rightIdx], nums[i]
+	// 		rightIdx--
 	// 	}
 	// }
 
-	// nums[left], nums[rightIndex] = nums[rightIndex], nums[left]
+	// nums[left], nums[rightIdx] = nums[rightIdx], nums[left]
 
-	// return rightIndex
+	// return rightIdx
 	// * always select the first element as the pivot -----------------------
 
 	// * always select the last element as the pivot -----------------------
 	// pivot := nums[right]
-	// leftIndex := left
+	// leftIdx := left
 
-	// * keep the elements before leftIndex are smaller than the pivot
+	// * keep the elements before leftIdx are smaller than the pivot
 	// for i := left; i < right; i++ {
 	// 	if nums[i] < pivot {
-	// 		nums[i], nums[leftIndex] = nums[leftIndex], nums[i]
-	// 		leftIndex++
+	// 		nums[i], nums[leftIdx] = nums[leftIdx], nums[i]
+	// 		leftIdx++
 	// 	}
 	// }
 
-	// nums[leftIndex], nums[right] = nums[right], nums[leftIndex]
+	// nums[leftIdx], nums[right] = nums[right], nums[leftIdx]
 
-	// return leftIndex
+	// return leftIdx
 	// * always select the last element as the pivot -----------------------
 
 	// * select the middle element as the pivot, pivotIndex := rand.Intn(len(nums)) is better for reducing the worst case, but it will increase the time complexity
@@ -221,24 +221,24 @@ func sortArray5(nums []int) []int {
 func mergeSort(leftArr, rightArr []int) []int {
 	result := make([]int, 0, len(leftArr)+len(rightArr))
 
-	leftIndex, rightIndex := 0, 0
-	for leftIndex < len(leftArr) && rightIndex < len(rightArr) {
-		if leftArr[leftIndex] <= rightArr[rightIndex] {
-			result = append(result, leftArr[leftIndex])
-			leftIndex++
+	leftIdx, rightIdx := 0, 0
+	for leftIdx < len(leftArr) && rightIdx < len(rightArr) {
+		if leftArr[leftIdx] <= rightArr[rightIdx] {
+			result = append(result, leftArr[leftIdx])
+			leftIdx++
 		} else {
-			result = append(result, rightArr[rightIndex])
-			rightIndex++
+			result = append(result, rightArr[rightIdx])
+			rightIdx++
 		}
 	}
 
-	// if leftIndex < len(leftArr) {
-	// 	result = append(result, leftArr[leftIndex:]...)
+	// if leftIdx < len(leftArr) {
+	// 	result = append(result, leftArr[leftIdx:]...)
 	// } else {
-	// 	result = append(result, rightArr[rightIndex:]...)
+	// 	result = append(result, rightArr[rightIdx:]...)
 	// }
-	result = append(result, leftArr[leftIndex:]...)
-	result = append(result, rightArr[rightIndex:]...)
+	result = append(result, leftArr[leftIdx:]...)
+	result = append(result, rightArr[rightIdx:]...)
 
 	/*
 		slice operation example
