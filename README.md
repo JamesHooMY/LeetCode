@@ -17,7 +17,7 @@
 - [x] Linked List
 - [x] Hash Table
 - [x] Stack
-- [ ] Queue
+- [x] Queue
 - [ ] Binary Tree
 - [ ] Binary Search Tree
 - [ ] Heap
