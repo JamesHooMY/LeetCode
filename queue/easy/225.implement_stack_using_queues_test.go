@@ -65,7 +65,7 @@ func Test_MyStack_Pop_Top_Empty(t *testing.T) {
 		x int
 	}
 	type expected struct {
-		resultTop  int
+		resultTop   int
 		resultPop   int
 		resultEmpty bool
 	}
@@ -86,7 +86,7 @@ func Test_MyStack_Pop_Top_Empty(t *testing.T) {
 				myStack.Push(x)
 			},
 			expected: expected{
-				resultTop:  1,
+				resultTop:   1,
 				resultPop:   1,
 				resultEmpty: true,
 			},
