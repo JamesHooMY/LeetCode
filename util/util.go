@@ -15,3 +15,11 @@ func Max[T int | int64 | float64](a, b T) T {
 
 	return b
 }
+
+func Abs[T int | int64 | float64](a T) T {
+	if a < 0 {
+		return -a
+	}
+
+	return a
+}

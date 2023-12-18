@@ -17,15 +17,15 @@ import (
 // TC = O(n), SC = O(n)
 // * this is the best solution for me currently
 func longestConsecutive1(nums []int) int {
-	numMap := make(map[int]bool) // SC = O(n)
+	numMap := make(map[int]bool) // SC = O(N)
 	maxLength := 0
 
 	// put all nums without duplicate into map
-	for _, num := range nums { // TC = O(n)
+	for _, num := range nums { // TC = O(N)
 		numMap[num] = true
 	}
 
-	for num := range numMap { // TC = O(n)
+	for num := range numMap { // TC = O(N)
 		// this condition make sure the num is the start of the sequence
 		// if num-1 is in the map, it means the sequence will be start from num-1
 		if !numMap[num-1] {

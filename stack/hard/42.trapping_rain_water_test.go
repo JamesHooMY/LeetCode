@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"leetcode/array/util"
+	"leetcode/util"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -23,7 +23,7 @@ func trap1(height []int) int {
 		return 0
 	}
 
-	leftMax := make([]int, n) // store the max height from left
+	leftMax := make([]int, n)  // store the max height from left
 	rightMax := make([]int, n) // store the max height from right
 
 	/*

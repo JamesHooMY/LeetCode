@@ -5,7 +5,7 @@ import (
 	"math"
 	"testing"
 
-	"leetcode/array/util"
+	"leetcode/util"
 
 	"github.com/stretchr/testify/assert"
 )
