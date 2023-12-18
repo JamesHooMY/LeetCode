@@ -12,7 +12,7 @@ import (
 
 // https://leetcode.com/problems/balanced-binary-tree/description/
 
-// method 1 recursive (top-down)
+// method 1 recursive DFS (top-down)
 // 1) get height of left subtree, get height of right subtree
 // 2) if |height of left subtree - height of right subtree| <= 1, then check if left subtree is balanced, check if right subtree is balanced
 // 3) return true if both left subtree and right subtree are balanced
@@ -50,7 +50,7 @@ func getHeight[T any](node *util.TreeNode[T]) int {
 	return commonUtil.Max(leftHeight, rightHeight) + 1
 }
 
-// method 2 recursive (top-down) dynamic programming
+// method 2 recursive DFS (top-down) dynamic programming
 // 1) get height of left subtree, get height of right subtree
 // 2) if height of left subtree or height of right subtree is -1, return -1
 // 3) if |height of left subtree - height of right subtree| > 1, return -1
@@ -61,7 +61,7 @@ func isBalanced2[T any](root *util.TreeNode[T]) bool {
 	return getHeightAndBalance(root) != -1
 }
 
-// return -1 means the tree is not balanced, otherwise return the height of tree
+// return -1 means the tree is not balanced, otherwise return the height of parent node
 func getHeightAndBalance[T any](node *util.TreeNode[T]) int {
 	// child nodes (Left, Right) of leaf nodes are nil, thus return 0 directly
 	if node == nil {
