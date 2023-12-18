@@ -17,12 +17,13 @@ import (
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func invertTree1[T int](root *util.TreeNode[T]) *util.TreeNode[T] {
-	if root == nil {
-		return root
-	} else if root.Left == nil && root.Right == nil {
+	if root == nil || (root.Left == nil && root.Right == nil) {
 		return root
 	}
 
+	// root.Left, root.Right = root.Right, root.Left
+	// invertTree1(root.Left)
+	// invertTree1(root.Right)
 	root.Left, root.Right = invertTree1(root.Right), invertTree1(root.Left)
 
 	return root
@@ -49,6 +50,15 @@ func Test_invertTree1(t *testing.T) {
 			},
 			expected: expected{
 				result: util.ArrayToBinaryTree([]int{4, 7, 2, 9, 6, 3, 1}),
+			},
+		},
+		{
+			name: "2",
+			args: args{
+				root: util.ArrayToBinaryTree([]int{1, 2}),
+			},
+			expected: expected{
+				result: util.ArrayToBinaryTree([]int{1, -1, 2}),
 			},
 		},
 	}

@@ -1,15 +1,15 @@
 package util
 
 type TreeNode[T any] struct {
-    Val   T
-    Left  *TreeNode[T]
-    Right *TreeNode[T]
+	Val   T
+	Left  *TreeNode[T]
+	Right *TreeNode[T]
 }
 
 /*
-	sequencial storage to binary tree
-	1) suitable for perfect binary tree
-	2) waste space to store nil node in non-perfect binary tree (eg. full binary tree and complete binary tree)
+sequencial storage to binary tree
+1) suitable for perfect binary tree
+2) waste space to store nil node(-1 refer to nil at here) in non-perfect binary tree (eg. full binary tree and complete binary tree)
 */
 func ArrayToBinaryTree[T int](arr []T) *TreeNode[T] {
 	if len(arr) == 0 {
@@ -20,8 +20,8 @@ func ArrayToBinaryTree[T int](arr []T) *TreeNode[T] {
 	queue := []*TreeNode[T]{root}
 
 	for i := 1; i < len(arr); i++ {
-		node := queue[0]
-		queue = queue[1:]
+		node := queue[0]  // peek
+		queue = queue[1:] // pop front
 
 		if arr[i] != -1 {
 			node.Left = &TreeNode[T]{Val: arr[i]}
