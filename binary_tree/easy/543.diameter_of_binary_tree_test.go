@@ -18,7 +18,7 @@ import (
 // 3) return the height of parent node
 // TC = O(N), SC = O(N), N is the height of tree
 // * this is the best solution for me currently
-func diameterOfBinaryTree1[T any](root *util.TreeNode[T]) int {
+func diameterOfBinaryTree1[T int](root *util.TreeNode[T]) int {
 	if root == nil {
 		return 0
 	}
@@ -29,7 +29,7 @@ func diameterOfBinaryTree1[T any](root *util.TreeNode[T]) int {
 	return maxDiameter
 }
 
-func calculateDiameter[T any](root *util.TreeNode[T], maxDiameter *int) int {
+func calculateDiameter[T int](root *util.TreeNode[T], maxDiameter *int) int {
 	// child nodes (Left, Right) of leaf nodes are nil, thus return 0 directly
 	if root == nil {
 		return 0
