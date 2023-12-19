@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"leetcode/tree/util"
+	"leetcode/binary_tree/util"
 	commonUtil "leetcode/util"
 
 	"github.com/stretchr/testify/assert"
@@ -44,7 +44,6 @@ func getHeight[T any](node *util.TreeNode[T]) int {
 	// leaf nodes will get leftHeight and rightHeight are equal to 0
 	leftHeight := getHeight(node.Left)
 	rightHeight := getHeight(node.Right)
-
 
 	// return height of each parent node
 	return commonUtil.Max(leftHeight, rightHeight) + 1

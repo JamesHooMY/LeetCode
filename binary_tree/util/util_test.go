@@ -3,7 +3,7 @@ package util_test
 import (
 	"testing"
 
-	"leetcode/tree/util"
+	"leetcode/binary_tree/util"
 
 	"github.com/stretchr/testify/assert"
 )

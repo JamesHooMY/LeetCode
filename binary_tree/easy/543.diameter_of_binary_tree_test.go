@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"leetcode/tree/util"
+	"leetcode/binary_tree/util"
 	commonUtil "leetcode/util"
 
 	"github.com/stretchr/testify/assert"
@@ -30,6 +30,7 @@ func diameterOfBinaryTree1[T any](root *util.TreeNode[T]) int {
 }
 
 func calculateDiameter[T any](root *util.TreeNode[T], maxDiameter *int) int {
+	// child nodes (Left, Right) of leaf nodes are nil, thus return 0 directly
 	if root == nil {
 		return 0
 	}
