@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// diameterOfBinaryTree(root *TreeNode) int
+// https://leetcode.com/problems/diameter-of-binary-tree/
 
 // method 1 recursive DFS (top-down)
 // 1) calculate the height of left subtree, calculate the height of right subtree
