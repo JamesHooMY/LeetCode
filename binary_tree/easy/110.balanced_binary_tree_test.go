@@ -12,7 +12,7 @@ import (
 
 // https://leetcode.com/problems/balanced-binary-tree/description/
 
-// method 1 recursive DFS (top-down)
+// method 1 recursive DFS (top-down) Postorder Traversal
 // 1) get height of left subtree, get height of right subtree
 // 2) if |height of left subtree - height of right subtree| <= 1, then check if left subtree is balanced, check if right subtree is balanced
 // 3) return true if both left subtree and right subtree are balanced
@@ -49,7 +49,7 @@ func getHeight[T int](node *util.TreeNode[T]) int {
 	return commonUtil.Max(leftHeight, rightHeight) + 1
 }
 
-// method 2 recursive DFS (top-down) dynamic programming
+// method 2 recursive DFS (top-down) Postorder Traversal dynamic programming
 // 1) get height of left subtree, get height of right subtree
 // 2) if height of left subtree or height of right subtree is -1, return -1
 // 3) if |height of left subtree - height of right subtree| > 1, return -1

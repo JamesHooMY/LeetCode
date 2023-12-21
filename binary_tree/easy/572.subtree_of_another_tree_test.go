@@ -11,7 +11,12 @@ import (
 
 // https://leetcode.com/problems/subtree-of-another-tree/
 
-// method
+// method 1 recursive DFS (top-down) Preorder Traversal
+// 1) check if root and subRoot are nil, if yes, return true
+// 2) check if root and subRoot are not nil, if yes, check if root.Val == subRoot.Val, if yes, check if root and subRoot are same tree
+// 3) return isSubtree1(root.Left, subRoot) || isSubtree1(root.Right, subRoot)
+// TC = O(N), SC = O(N), N is the height of tree
+// * this is the best solution for me currently
 func isSubtree1[T int](root *util.TreeNode[T], subRoot *util.TreeNode[T]) bool {
 	if root == nil || subRoot == nil {
 		return false

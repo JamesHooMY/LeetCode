@@ -12,7 +12,7 @@ import (
 
 // https://leetcode.com/problems/diameter-of-binary-tree/
 
-// method 1 recursive DFS (top-down)
+// method 1 recursive DFS (top-down) Postorder Traversal
 // 1) calculate the height of left subtree, calculate the height of right subtree
 // 2) calculate the diameter of current node and update the maxDiameter
 // 3) return the height of parent node

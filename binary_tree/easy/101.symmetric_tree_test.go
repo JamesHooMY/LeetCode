@@ -11,7 +11,7 @@ import (
 
 // https://leetcode.com/problems/same-tree/description/
 
-// method 1 recursive DFS (top-down) like binary_tree/easy/100.same_tree.go
+// method 1 recursive DFS (top-down) Postorder Traversal
 // 1) normally child nodes (Left, Right) of leaf nodes are nil, thus return true directly
 // 2) after the above 1) check, if one of p and q is nil, that means exist child nodes (Left, Right) not match, return false
 // 3) after the above 1) and 2) check, if both p and q are not nil, check if p.Val == q.Val, if not match, return false

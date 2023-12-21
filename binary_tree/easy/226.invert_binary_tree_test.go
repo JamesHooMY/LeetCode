@@ -11,7 +11,7 @@ import (
 
 // https://leetcode.com/problems/invert-binary-tree/
 
-// method 1 recursive DFS (top-down)
+// method 1 recursive DFS (top-down) Preorder Traversal
 // 1) invert left subtree, invert right subtree
 // 2) swap left and right
 // TC = O(N), SC = O(N)

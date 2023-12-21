@@ -11,7 +11,7 @@ import (
 
 // https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
 
-// method 1 recursive DFS (top-down)
+// method 1 recursive DFS (top-down) Postorder Traversal
 // getHeight same as binary_tree/easy/110.balanced_binary_tree.go
 // TC = O(N), SC = O(N), N is the height of tree
 // * this is the best solution for me currently
