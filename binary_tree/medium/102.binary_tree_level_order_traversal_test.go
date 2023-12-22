@@ -82,9 +82,8 @@ func levelOrder2DFS[T int](root *util.TreeNode[T], level int, result *[][]T) {
 	// * must use parentheses to wrap (*result), then operator index like (*result)[level]
 	(*result)[level] = append((*result)[level], root.Val)
 
-	level++
-	levelOrder2DFS(root.Left, level, result)
-	levelOrder2DFS(root.Right, level, result)
+	levelOrder2DFS(root.Left, level+1, result)
+	levelOrder2DFS(root.Right, level+1, result)
 }
 
 func Test_levelOrder1(t *testing.T) {
