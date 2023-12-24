@@ -210,3 +210,26 @@ func Test_lowestCommonAncestor2(t *testing.T) {
 		)
 	}
 }
+
+// benchmark
+func Benchmark_lowestCommonAncestor1(b *testing.B) {
+	roots := []*util.TreeNode[int]{
+		util.ArrayToBinaryTree([]int{3, 5, 1, 6, 2, 0, 8, -1, -1, 7, 4}),
+		util.ArrayToBinaryTree([]int{1, 2}),
+	}
+
+	for i := 0; i < b.N; i++ {
+		lowestCommonAncestor1(roots[0], roots[0].Left, roots[0].Right)
+	}
+}
+
+func Benchmark_lowestCommonAncestor2(b *testing.B) {
+	roots := []*util.TreeNode[int]{
+		util.ArrayToBinaryTree([]int{3, 5, 1, 6, 2, 0, 8, -1, -1, 7, 4}),
+		util.ArrayToBinaryTree([]int{1, 2}),
+	}
+
+	for i := 0; i < b.N; i++ {
+		lowestCommonAncestor2(roots[0], roots[0].Left, roots[0].Right)
+	}
+}
