@@ -15,7 +15,7 @@ import (
 // 1) push root into queue
 // 2) iterate queue while queue is not empty
 // 3) iterate levelSize times, pop node from queue, push left and right of node into queue
-// 4) append levelNodes into result
+// 4) append levelVals into result
 // 5) return result
 // TC = O(N), SC = O(N)
 // * this is the best solution for me currently
@@ -29,13 +29,13 @@ func levelOrder1[T int](root *util.TreeNode[T]) [][]T {
 
 	for len(queue) > 0 {
 		levelSize := len(queue)
-		levelNodes := []T{}
+		levelVals := []T{}
 
 		for i := 0; i < levelSize; i++ {
 			node := queue[0]
 			queue = queue[1:]
 
-			levelNodes = append(levelNodes, node.Val)
+			levelVals = append(levelVals, node.Val)
 
 			if node.Left != nil {
 				queue = append(queue, node.Left)
@@ -46,7 +46,7 @@ func levelOrder1[T int](root *util.TreeNode[T]) [][]T {
 			}
 		}
 
-		result = append(result, levelNodes)
+		result = append(result, levelVals)
 	}
 
 	return result
@@ -74,7 +74,7 @@ func levelOrder2DFS[T int](root *util.TreeNode[T], level int, result *[][]T) {
 		return
 	}
 
-	// * this is the key point, initialize memory of index in result to append levelNodes
+	// * this is the key point, initialize memory of index in result to append levelVals
 	if len(*result) == level {
 		*result = append(*result, []T{})
 	}

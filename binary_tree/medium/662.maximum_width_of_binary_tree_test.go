@@ -22,7 +22,7 @@ type NodeInfo[T any] struct {
 // 2) use a queue to store NodeInfo
 // 3) for each level, get the leftMostIndex and rightMostIndex, then calculate the maxWidth
 // 4) return the maxWidth
-// TC = O(N), SC = O(N), N is the number of nodes in tree
+// TC = O(N), SC = O(N)
 func widthOfBinaryTree1[T int](root *util.TreeNode[T]) (maxWidth int) {
 	if root == nil {
 		return 0
