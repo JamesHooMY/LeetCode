@@ -17,20 +17,20 @@ import (
 // 3) path is a slice to store the path from root to leaf
 // 4) result is a slice to store all paths
 // 5) return result
-// TC = O(N), SC = O(N), N is the height of tree
-func pathSum1[T int](root *util.TreeNode[T], targetSum T) [][]T {
+// TC = O(N), SC = O(N)
+func pathSumII1[T int](root *util.TreeNode[T], targetSum T) [][]T {
 	result := [][]T{}
 	if root == nil {
 		return result
 	}
 
 	path := []T{}
-	pathSum1DFS(root, targetSum, &path, &result)
+	pathSumII1DFS(root, targetSum, &path, &result)
 
 	return result
 }
 
-func pathSum1DFS[T int](node *util.TreeNode[T], targetSum T, path *[]T, result *[][]T) {
+func pathSumII1DFS[T int](node *util.TreeNode[T], targetSum T, path *[]T, result *[][]T) {
 	if node == nil {
 		return
 	}
@@ -46,14 +46,14 @@ func pathSum1DFS[T int](node *util.TreeNode[T], targetSum T, path *[]T, result *
 		*result = append(*result, append([]T{}, *path...))
 	}
 
-	pathSum1DFS(node.Left, targetSum-node.Val, path, result)
-	pathSum1DFS(node.Right, targetSum-node.Val, path, result)
+	pathSumII1DFS(node.Left, targetSum-node.Val, path, result)
+	pathSumII1DFS(node.Right, targetSum-node.Val, path, result)
 
 	// backtrack, remove the last element
 	*path = (*path)[:len(*path)-1]
 }
 
-func Test_pathSum1(t *testing.T) {
+func Test_pathSumII1(t *testing.T) {
 	type args struct {
 		root      *util.TreeNode[int]
 		targetSum int
@@ -104,7 +104,7 @@ func Test_pathSum1(t *testing.T) {
 		assert.Equal(
 			t,
 			tc.expected.result,
-			pathSum1(tc.args.root, tc.args.targetSum),
+			pathSumII1(tc.args.root, tc.args.targetSum),
 			fmt.Sprintf("testCase name: %s", tc.name),
 		)
 	}

@@ -18,7 +18,7 @@ import (
 // 4) call lowestCommonAncestor1(root.Right, p, q) and assign to right
 // 5) if left is not nil and right is not nil, return root
 // 6) if left is nil, return right
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func lowestCommonAncestor1[T int](root, p, q *util.TreeNode[T]) *util.TreeNode[T] {
 	if root == nil {

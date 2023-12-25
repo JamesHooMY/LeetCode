@@ -16,7 +16,7 @@ import (
 // 1) get height of left subtree, get height of right subtree
 // 2) if |height of left subtree - height of right subtree| <= 1, then check if left subtree is balanced, check if right subtree is balanced
 // 3) return true if both left subtree and right subtree are balanced
-// TC = O(N^2), SC = O(N), N is the height of tree
+// TC = O(N^2), SC = O(N)
 func isBalanced1[T int](root *util.TreeNode[T]) bool {
 	// child nodes (Left, Right) of leaf nodes are nil, thus return true directly
 	if root == nil {
@@ -54,7 +54,7 @@ func getHeight[T int](node *util.TreeNode[T]) int {
 // 2) if height of left subtree or height of right subtree is -1, return -1
 // 3) if |height of left subtree - height of right subtree| > 1, return -1
 // 4) return max(height of left subtree, height of right subtree) + 1
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func isBalanced2[T int](root *util.TreeNode[T]) bool {
 	return getHeightAndBalance(root) != -1
@@ -92,7 +92,7 @@ func getHeightAndBalance[T int](node *util.TreeNode[T]) int {
 // 1) use queue to store each node
 // 2) for each node, check if |height of left subtree - height of right subtree| <= 1
 // 3) return true if all nodes are balanced
-// TC = O(N^2), SC = O(N), N is the height of tree
+// TC = O(N^2), SC = O(N)
 func isBalanced3[T int](root *util.TreeNode[T]) bool {
 	// child nodes (Left, Right) of leaf nodes are nil, thus return true directly
 	if root == nil {
@@ -137,7 +137,7 @@ func isBalanced3[T int](root *util.TreeNode[T]) bool {
 // 1) use queue to store each node
 // 2) for each node, check if height of left subtree or height of right subtree is -1
 // 3) return false if all nodes are not balanced
-// TC = O(N^2), SC = O(N), N is the height of tree
+// TC = O(N^2), SC = O(N)
 func isBalanced4[T int](root *util.TreeNode[T]) bool {
 	// child nodes (Left, Right) of leaf nodes are nil, thus return true directly
 	if root == nil {

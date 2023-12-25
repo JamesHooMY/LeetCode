@@ -16,7 +16,7 @@ import (
 // 2) after the above 1) check, if one of p and q is nil, that means exist child nodes (Left, Right) not match, return false
 // 3) after the above 1) and 2) check, if both p and q are not nil, check if p.Val == q.Val, if not match, return false
 // 4) return isSameTree1(p.Left, q.Left) && isSameTree1(p.Right, q.Right)
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func isSymmetric1[T int](root *util.TreeNode[T]) bool {
 	if root == nil {

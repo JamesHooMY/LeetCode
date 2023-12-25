@@ -56,7 +56,7 @@ func levelOrder1[T int](root *util.TreeNode[T]) [][]T {
 // 1) if root is nil, return result
 // 2) call levelOrder2DFS(root, 0, &result)
 // 3) return result
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 func levelOrder2[T int](root *util.TreeNode[T]) [][]T {
 	result := [][]T{}
 	if root == nil {

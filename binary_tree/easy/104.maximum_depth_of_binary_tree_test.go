@@ -13,7 +13,7 @@ import (
 
 // method 1 recursive DFS (top-down) Postorder Traversal
 // getHeight same as binary_tree/easy/110.balanced_binary_tree.go
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func maxDepth1[T int](root *util.TreeNode[T]) int {
 	return getHeight(root)
@@ -24,7 +24,7 @@ func maxDepth1[T int](root *util.TreeNode[T]) int {
 // 2) iterate queue while queue is not empty, pop node from queue, push left and right of node into queue
 // 3) increase depth by 1
 // 4) return depth
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 func maxDepth2[T int](root *util.TreeNode[T]) int {
 	if root == nil {
 		return 0

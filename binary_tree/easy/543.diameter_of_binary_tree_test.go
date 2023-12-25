@@ -16,7 +16,7 @@ import (
 // 1) calculate the height of left subtree, calculate the height of right subtree
 // 2) calculate the diameter of current node and update the maxDiameter
 // 3) return the height of parent node
-// TC = O(N), SC = O(N), N is the height of tree
+// TC = O(N), SC = O(N)
 // * this is the best solution for me currently
 func diameterOfBinaryTree1[T int](root *util.TreeNode[T]) int {
 	if root == nil {
