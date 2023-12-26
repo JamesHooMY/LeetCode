@@ -18,6 +18,7 @@ import (
 // 4) result is a slice to store all paths
 // 5) return result
 // TC = O(N), SC = O(N)
+// * this is the best solution for me currently
 func pathSumII1[T int](root *util.TreeNode[T], targetSum T) [][]T {
 	result := [][]T{}
 	if root == nil {

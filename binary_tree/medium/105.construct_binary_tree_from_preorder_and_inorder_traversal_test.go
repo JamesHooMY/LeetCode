@@ -12,6 +12,14 @@ import (
 // https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
 
 // method 1
+// 1) if preorder or inorder is empty, return nil
+// 2) get rootVal from preorder[0]
+// 3) find the index of rootVal in inorder
+// 4) build left subtree recursively by preorder[1:rootIdxInorder+1] and inorder[:rootIdxInorder]
+// 5) build right subtree recursively by preorder[rootIdxInorder+1:] and inorder[rootIdxInorder+1:]
+// 6) return root
+// TC = O(N), SC = O(N)
+// * this is the best solution for me currently
 func buildTree1[T int](preorder []T, inorder []T) *util.TreeNode[T] {
 	if len(preorder) == 0 || len(inorder) == 0 {
 		return nil
