@@ -46,9 +46,9 @@ func lowestCommonAncestor1[T int](root, p, q *util.TreeNode[T]) *util.TreeNode[T
 }
 
 // method 2 iterative BFS (top-down)
-// 1) push root into queue, and add root into parent map with nil as value
+// 1) push root into queue, and add root into nodeParentMap with nil as value, because root has no parent
 // 2) iterate queue while queue is not empty
-// 3) iterate levelSize times, pop node from queue, push left and right of node into queue, and add left and right into parent map with node as value
+// 3) iterate levelSize times, pop node from queue, push left and right of node into queue, and add left and right into nodeParentMap with node (parent node of left and right) as value
 // 4) add p and its ancestors into ancestors map
 // 5) iterate q and its ancestors, if q is in ancestors map, return q
 // 6) return nil
@@ -61,41 +61,41 @@ func lowestCommonAncestor2[T int](root, p, q *util.TreeNode[T]) *util.TreeNode[T
 	queue := []*util.TreeNode[T]{root}
 
 	// * this map is used to store parent of each node
-	parent := make(map[*util.TreeNode[T]]*util.TreeNode[T])
+	nodeParentMap := make(map[*util.TreeNode[T]]*util.TreeNode[T]) // key: node, value: parent
 	// root has no parent
-	parent[root] = nil
+	nodeParentMap[root] = nil
 
 	for len(queue) > 0 {
 		node := queue[0]
 		queue = queue[1:]
 
 		if node.Left != nil {
-			parent[node.Left] = node
+			nodeParentMap[node.Left] = node
 			queue = append(queue, node.Left)
 		}
 		if node.Right != nil {
-			parent[node.Right] = node
+			nodeParentMap[node.Right] = node
 			queue = append(queue, node.Right)
 		}
 	}
 
 	// * this map is used to store all ancestors of p
-	ancestors := make(map[*util.TreeNode[T]]bool)
+	ancestorMap := make(map[*util.TreeNode[T]]bool) // key: node, value: true
 	for p != nil {
-		ancestors[p] = true
+		ancestorMap[p] = true
 
 		// update p to its parent
-		p = parent[p]
+		p = nodeParentMap[p]
 	}
 
 	// * find the first ancestor of q which is also ancestor of p
 	for q != nil {
-		if ancestors[q] {
+		if ancestorMap[q] {
 			return q
 		}
 
 		// update q to its parent
-		q = parent[q]
+		q = nodeParentMap[q]
 	}
 
 	return nil

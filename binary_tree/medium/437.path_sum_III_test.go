@@ -64,7 +64,7 @@ func pathSumIII2DFS[T int](node *util.TreeNode[T], targetSum T, curSum T, sumCou
 
 	curSum += node.Val
 	var count T
-	if sumCount, ok := sumCountMap[curSum-targetSum]; ok {
+	if sumCount, exist := sumCountMap[curSum-targetSum]; exist {
 		count = T(sumCount)
 	}
 

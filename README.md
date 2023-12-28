@@ -15,20 +15,20 @@
 - [x] Array
 - [x] String
 - [x] Linked List
+- [ ] Matrix (Not included Hard)
 - [x] Hash Table
 - [x] Stack
 - [x] Queue
-- [ ] Binary Tree
+- [x] Binary Tree (Not included Hard)
 - [ ] Binary Search Tree
-- [ ] Heap
-- [ ] Graph
-- [ ] Trie
-- [ ] Matrix
-- [ ] Binary Search
-- [ ] Recursion
-- [ ] Dynamic Programming
-- [ ] Binary
-- [ ] Math
+- [ ] Heap (Not included Hard)
+- [ ] Graph (Not included Hard)
+- [ ] Trie (Not included Hard)
+- [ ] Binary Search (Not included Hard)
+- [ ] Recursion (Not included Hard)
+- [ ] Dynamic Programming (Not included Hard)
+- [ ] Binary (Not included Hard)
+- [ ] Math (Not included Hard)
 
 ## References
 - processing ...
