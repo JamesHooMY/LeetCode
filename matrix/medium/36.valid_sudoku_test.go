@@ -10,6 +10,7 @@ import (
 // https://leetcode.com/problems/valid-sudoku/description/
 
 // method 1 hash map
+// TC: O(1), SC: O(1)
 func isValidSudoku1(board [][]byte) bool {
 	rowSliceMap := make([]map[byte]bool, 9) // index i means row i, rowSliceMap[i][num] means whether num is in row i
 	colSliceMap := make([]map[byte]bool, 9) // index i means col i, colSliceMap[i][num] means whether num is in col i
