@@ -83,7 +83,7 @@ func rotate2(matrix [][]int) [][]int {
 
 	// reverse each row with j < colNum/2
 	for i := 0; i < rowNum; i++ {
-		for j := 0; j < (colNum+1)/2; j++ {
+		for j := 0; j < colNum/2; j++ {
 			/*
 				i is row index, j is col index
 
@@ -128,7 +128,8 @@ func rotate2(matrix [][]int) [][]int {
 }
 
 // method 3 in-place rotate four rectangles
-//  TC: O(N^2), SC: O(1), N is the number of rows or columns
+//
+//	TC: O(N^2), SC: O(1), N is the number of rows or columns
 func rotate3(matrix [][]int) [][]int {
 	rowNum := len(matrix)
 	colNum := len(matrix[0])
@@ -143,6 +144,54 @@ func rotate3(matrix [][]int) [][]int {
 				1 2 3		7 2 1
 				4 5 6  =>	4 5 6
 				7 8 9		9 8 3
+
+				eg. i = 0, j = 1
+				matrix[0][1], matrix[1][2], matrix[2][1], matrix[2][0] = matrix[2][0], matrix[0][1], matrix[1][2], matrix[2][1] => 2, 6, 8, 4 = 4, 2, 6, 8
+
+				7 2 1		7 4 1
+				4 5 6  =>	8 5 2
+				9 8 3		9 6 3
+
+				eg. i = 1, j = 1
+				matrix[1][1], matrix[1][1], matrix[1][1], matrix[1][1] = matrix[1][1], matrix[1][1], matrix[1][1], matrix[1][1] => 5, 5, 5, 5 = 5, 5, 5, 5
+
+				7 2 1		7 4 1
+				4 5 6  =>	8 5 2
+				9 8 3		9 6 3
+
+				===============================================================================
+
+				eg. i = 0, j = 0
+				matrix[0][0], matrix[0][3], matrix[3][3], matrix[3][0] = matrix[3][0], matrix[0][0], matrix[0][3], matrix[3][3] => 1, 4, 16, 13 = 13, 1, 4, 16
+
+				1  2  3  4		13 2  3  1
+				5  6  7  8  =>	5  6  7  8
+				9  10 11 12	    9  10 11 12
+				13 14 15 16	    16 14 15 4
+
+				eg. i = 0, j = 1
+				matrix[0][1], matrix[1][3], matrix[3][2], matrix[3][0] = matrix[3][0], matrix[0][1], matrix[1][3], matrix[3][3] => 2, 8, 15, 9 = 9, 2, 8, 15
+
+				13 2  3  1		13 9  3  1
+				5  6  7  8  =>	5  6  7  2
+				9  10 11 12	    15 10 11 12
+				16 14 15 4	    16 14 8  4
+
+				eg. i = 1, j = 0
+				matrix[1][0], matrix[0][2], matrix[2][3], matrix[3][1] = matrix[3][1], matrix[1][0], matrix[0][2], matrix[2][3] => 5, 3, 12, 14 = 14, 5, 3, 12
+
+				13 9  3  1		13 9  5  1
+				5  6  7  2  =>	14 6  7  2
+				15 10 11 12		15 10 11 3
+				16 14 8  4	    16 12 8  4
+
+				eg. i = 1, j = 1
+				matrix[1][1], matrix[1][2], matrix[2][1], matrix[2][2] = matrix[2][2], matrix[1][1], matrix[1][2], matrix[2][1] => 6, 7, 11, 10 = 10, 6, 7, 11
+
+				13 9  5  1		13 9  5  1
+				14 6  7  2  =>	14 10 6  2
+				15 10 11 3		15 11 7  3
+				16 12 8  4	    16 12 8  4
 			*/
 			matrix[i][j], matrix[j][colNum-1-i], matrix[rowNum-1-i][colNum-1-j], matrix[rowNum-1-j][i] = matrix[rowNum-1-j][i], matrix[i][j], matrix[j][colNum-1-i], matrix[rowNum-1-i][colNum-1-j]
 		}
