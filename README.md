@@ -20,7 +20,7 @@
 - [x] Stack
 - [x] Queue
 - [x] Binary Tree (Not included Hard)
-- [ ] Binary Search Tree
+- [ ] Binary Search Tree (Not included Hard)
 - [ ] Heap (Not included Hard)
 - [ ] Graph (Not included Hard)
 - [ ] Trie (Not included Hard)
