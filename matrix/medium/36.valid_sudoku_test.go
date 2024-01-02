@@ -11,6 +11,7 @@ import (
 
 // method 1 hash map
 // TC: O(1), SC: O(1)
+// * this is the best solution for me currently
 func isValidSudoku1(board [][]byte) bool {
 	rowSliceMap := make([]map[byte]bool, 9) // index i means row i, rowSliceMap[i][num] means whether num is in row i
 	colSliceMap := make([]map[byte]bool, 9) // index i means col i, colSliceMap[i][num] means whether num is in col i

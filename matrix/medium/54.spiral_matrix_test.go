@@ -11,6 +11,7 @@ import (
 
 // method 1 iterative
 // TC: O(M*N), SC: O(1), M is the number of rows, N is the number of columns
+// * this is the best solution for me currently
 func spiralOrder1(matrix [][]int) []int {
 	if len(matrix) == 0 {
 		return nil

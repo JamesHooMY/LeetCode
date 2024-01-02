@@ -9,7 +9,10 @@ import (
 
 // https://leetcode.com/problems/rotate-image/description/
 
-// method 1 tmpMatrix store rotate result and copy to matrix
+// method 1 tmpMatrix
+// 1) create tmp matrix
+// 2) copy and rotate 90 degree clockwise from matrix to tmp matrix
+// 3) copy tmp matrix back to matrix
 // TC: O(2*N^2), SC: O(N^2), N is the number of rows or columns
 func rotate1(matrix [][]int) [][]int {
 	rowNum := len(matrix)
@@ -54,6 +57,9 @@ func rotate1(matrix [][]int) [][]int {
 }
 
 // method 2 transpose matrix and reverse each row, need to think about why it works
+// 1) transpose matrix
+// 2) reverse each row
+// 3) return matrix
 // TC: O(2*N^2), SC: O(1), N is the number of rows or columns
 func rotate2(matrix [][]int) [][]int {
 	rowNum := len(matrix)
@@ -128,8 +134,10 @@ func rotate2(matrix [][]int) [][]int {
 }
 
 // method 3 in-place rotate four rectangles
-//
+// 1) rotate four rectangles in-place from outer to inner with i < rowNum/2 && j < (colNum+1)/2
+// 2) return matrix
 //	TC: O(N^2), SC: O(1), N is the number of rows or columns
+// * this is the best solution for me currently
 func rotate3(matrix [][]int) [][]int {
 	rowNum := len(matrix)
 	colNum := len(matrix[0])

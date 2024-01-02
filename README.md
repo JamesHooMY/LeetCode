@@ -15,7 +15,7 @@
 - [x] Array
 - [x] String
 - [x] Linked List
-- [ ] Matrix (Not included Hard)
+- [x] Matrix (Not included Hard)
 - [x] Hash Table
 - [x] Stack
 - [x] Queue
