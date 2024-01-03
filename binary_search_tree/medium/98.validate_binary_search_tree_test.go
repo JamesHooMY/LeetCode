@@ -12,6 +12,13 @@ import (
 // https://leetcode.com/problems/validate-binary-search-tree/description/
 
 // method 1 recursive DFS (top-down) Inorder Traversal
+// 1) if root is nil, return true
+// 2) if root.Left is not nil, call isValidBSTHelper(root.Left)
+// 3) if prev != nil && prev.Val >= root.Val, return false
+// 4) prev = root
+// 5) if root.Right is not nil, call isValidBSTHelper(root.Right)
+// 6) return true
+// TC: O(N), SC: O(N)
 func isValidBST1[T int](root *util.TreeNode[T]) bool {
 	return isValidBSTHelper1(root, nil, nil)
 }
@@ -21,12 +28,20 @@ func isValidBSTHelper1[T int](root, min, max *util.TreeNode[T]) bool {
 		return true
 	}
 
-	// isValidBSTHelper1(root.Right, root, max), min == root, max == nil
+	/*
+		Right: min == root, max == nil
+
+		isValidBSTHelper1(root.Right, root, max)
+	*/
 	if min != nil && root.Val <= min.Val {
 		return false
 	}
 
-	// isValidBSTHelper1(root.Left, min, root), min == nil, max == root
+	/*
+		Left: min == nil, max == root
+
+		isValidBSTHelper1(root.Left, min, root)
+	*/
 	if max != nil && root.Val >= max.Val {
 		return false
 	}
