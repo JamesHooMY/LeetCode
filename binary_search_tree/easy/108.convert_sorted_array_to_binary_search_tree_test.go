@@ -20,6 +20,7 @@ import (
 // 6) root.Right = sortedArrayToBST1(nums[midIndex+1:])
 // 7) return root
 // TC: O(N), SC: O(N)
+// * this is the best solution for me currently
 func sortedArrayToBST1[T int](nums []T) *util.TreeNode[T] {
 	if len(nums) == 0 {
 		return nil
@@ -96,6 +97,15 @@ func Test_sortedArrayToBST1(t *testing.T) {
 				result: util.ArrayToBinaryTree([]int{0, -3, 9, -10, -1, 5}),
 			},
 		},
+		{
+			name: "2",
+			args: args{
+				nums: []int{1, 3},
+			},
+			expected: expected{
+				result: util.ArrayToBinaryTree([]int{3, 1}),
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -128,7 +138,16 @@ func Test_sortedArrayToBST2(t *testing.T) {
 				nums: []int{-10, -3, 0, 5, 9},
 			},
 			expected: expected{
-				result: util.ArrayToBinaryTree([]int{0, -3, 9, -10, -1, 5}),
+				result: util.ArrayToBinaryTree([]int{0, -10, 5, -1, -3, -1, 9}),
+			},
+		},
+		{
+			name: "2",
+			args: args{
+				nums: []int{1, 3},
+			},
+			expected: expected{
+				result: util.ArrayToBinaryTree([]int{1, -1, 3}),
 			},
 		},
 	}
