@@ -19,6 +19,7 @@ import (
 // 5) if root.Right is not nil, call isValidBSTHelper(root.Right)
 // 6) return true
 // TC: O(N), SC: O(N)
+// * this is the best solution for me currently
 func isValidBST1[T int](root *util.TreeNode[T]) bool {
 	return isValidBSTHelper1(root, nil, nil)
 }

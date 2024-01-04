@@ -40,7 +40,7 @@ func sortedArrayToBST1[T int](nums []T) *util.TreeNode[T] {
 	return root
 }
 
-// method 2 use helper function
+// method 2 recursive DFS (top-down) Preorder Traversal with helper function
 // 1) call sortedArrayToBSTHelper(nums, 0, len(nums)-1)
 // 2) if start > end, return nil
 // 3) midIndex = start + (end - start) / 2

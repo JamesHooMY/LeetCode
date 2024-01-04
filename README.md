@@ -13,9 +13,9 @@
 ## My Roadmap
 ### Grind 169
 - [x] Array
+- [x] Matrix (Not included Hard)
 - [x] String
 - [x] Linked List
-- [x] Matrix (Not included Hard)
 - [x] Hash Table
 - [x] Stack
 - [x] Queue
