@@ -23,9 +23,6 @@ func (h *MinHeap) Len() int { return len(*h) }
 // min heap
 func (h *MinHeap) Less(i, j int) bool { return (*h)[i].distance < (*h)[j].distance }
 
-// max heap
-// func (h *MinHeap) Less(i, j int) bool { return (*h)[i].distance > (*h)[j].distance }
-
 func (h *MinHeap) Swap(i, j int) { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
 
 func (h *MinHeap) Push(x any) { *h = append(*h, x.(Point)) }
