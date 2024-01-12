@@ -16,18 +16,18 @@ type Point struct {
 	distance int
 }
 
-type MinHeap []Point
+type MinHeapPoint []Point
 
-func (h *MinHeap) Len() int { return len(*h) }
+func (h *MinHeapPoint) Len() int { return len(*h) }
 
 // min heap
-func (h *MinHeap) Less(i, j int) bool { return (*h)[i].distance < (*h)[j].distance }
+func (h *MinHeapPoint) Less(i, j int) bool { return (*h)[i].distance < (*h)[j].distance }
 
-func (h *MinHeap) Swap(i, j int) { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
+func (h *MinHeapPoint) Swap(i, j int) { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
 
-func (h *MinHeap) Push(x any) { *h = append(*h, x.(Point)) }
+func (h *MinHeapPoint) Push(x any) { *h = append(*h, x.(Point)) }
 
-func (h *MinHeap) Pop() any {
+func (h *MinHeapPoint) Pop() any {
 	old := *h
 	n := len(old)
 	x := old[n-1]
@@ -44,7 +44,7 @@ func (h *MinHeap) Pop() any {
 // * this is the best solution for me currently
 func kClosest1(points [][]int, k int) [][]int {
 	// every time heap push will compare with the parent node, it slower than code below
-	// h := &MinHeap{}
+	// h := &MinHeapPoint{}
 	// for _, point := range points {
 	// 	heap.Push(h, Point{
 	// 		x:        point[0],
@@ -53,7 +53,7 @@ func kClosest1(points [][]int, k int) [][]int {
 	// 	})
 	// }
 
-	h := &MinHeap{}
+	h := &MinHeapPoint{}
 	for _, point := range points {
 		point := Point{
 			x:        point[0],

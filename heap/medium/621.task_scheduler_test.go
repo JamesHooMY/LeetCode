@@ -13,18 +13,18 @@ import (
 
 // https://leetcode.com/problems/task-scheduler/
 
-type MaxHeap []int // store frequency of each task
+type MaxHeapFreq []int // store frequency of each task
 
-func (h *MaxHeap) Len() int { return len(*h) }
+func (h *MaxHeapFreq) Len() int { return len(*h) }
 
 // max heap
-func (h *MaxHeap) Less(i, j int) bool { return (*h)[i] > (*h)[j] }
+func (h *MaxHeapFreq) Less(i, j int) bool { return (*h)[i] > (*h)[j] }
 
-func (h *MaxHeap) Swap(i, j int) { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
+func (h *MaxHeapFreq) Swap(i, j int) { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
 
-func (h *MaxHeap) Push(x any) { *h = append(*h, x.(int)) }
+func (h *MaxHeapFreq) Push(x any) { *h = append(*h, x.(int)) }
 
-func (h *MaxHeap) Pop() any {
+func (h *MaxHeapFreq) Pop() any {
 	old := *h
 	n := len(old)
 	x := old[n-1]
@@ -43,24 +43,24 @@ func leastInterval1(tasks []byte, n int) int {
 		freq[task-'A']++
 	}
 
-	pq := &MaxHeap{}
+	h := &MaxHeapFreq{}
 	for _, f := range freq {
 		if f > 0 {
-			*pq = append(*pq, f)
+			*h = append(*h, f)
 		}
 	}
-	heap.Init(pq) // TC: O(N), SC: O(1)
+	heap.Init(h) // TC: O(N), SC: O(1)
 
 	time := 0
 	// TC: O(NlogM), SC: O(1), M is the total types of tasks
 	// * but here the max of M is 26, which is a constant, so we can estimate TC: O(N)
-	for pq.Len() > 0 {
+	for h.Len() > 0 {
 		// k is the number of tasks can be executed in one interval
 		k := n + 1
 
 		tmp := []int{}
-		for k > 0 && pq.Len() > 0 {
-			f := heap.Pop(pq).(int)
+		for k > 0 && h.Len() > 0 {
+			f := heap.Pop(h).(int)
 			if f > 1 {
 				tmp = append(tmp, f-1)
 			}
@@ -70,11 +70,11 @@ func leastInterval1(tasks []byte, n int) int {
 
 		// push back the tasks which can not be executed in this interval
 		for _, f := range tmp {
-			heap.Push(pq, f)
+			heap.Push(h, f)
 		}
 
-		// if pq is empty, it means we have finished all tasks
-		if pq.Len() > 0 {
+		// if h is empty, it means we have finished all tasks
+		if h.Len() > 0 {
 			// the remain k is the idle time that we don't have enough tasks to execute in this interval
 			time += k
 		}
@@ -123,20 +123,20 @@ func leastInterval3(tasks []byte, n int) int {
 		freq[task-'A']++
 	}
 
-	pq := &MaxHeap{}
+	h := &MaxHeapFreq{}
 	for _, f := range freq {
 		if f > 0 {
-			*pq = append(*pq, f)
+			*h = append(*h, f)
 		}
 	}
-	heap.Init(pq) // TC: O(N), SC: O(1)
+	heap.Init(h) // TC: O(N), SC: O(1)
 
-	maxFreq := heap.Pop(pq).(int)
+	maxFreq := heap.Pop(h).(int)
 	maxFreqInterval := maxFreq - 1  // the interval between maxFreq tasks
 	idleTime := maxFreqInterval * n // the idle time in the interval between maxFreq tasks
-	for pq.Len() > 0 && idleTime > 0 {
+	for h.Len() > 0 && idleTime > 0 {
 		// maxFreqInterval is the interval between maxFreq tasks, each interval can execute every different task once
-		idleTime -= commonUtil.Min(maxFreqInterval, heap.Pop(pq).(int))
+		idleTime -= commonUtil.Min(maxFreqInterval, heap.Pop(h).(int))
 	}
 
 	if idleTime < 0 {
