@@ -5,6 +5,8 @@ import (
 	"sort"
 	"testing"
 
+	commonUtil "leetcode/util"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -33,7 +35,7 @@ func threeSumClosest1(nums []int, target int) int {
 				return curSum
 			}
 
-			if abs(curSum-target) < abs(closestSum-target) {
+			if commonUtil.Abs(curSum-target) < commonUtil.Abs(closestSum-target) {
 				closestSum = curSum
 			}
 
@@ -46,14 +48,6 @@ func threeSumClosest1(nums []int, target int) int {
 	}
 
 	return closestSum
-}
-
-func abs(num int) int {
-	if num < 0 {
-		return -num
-	}
-
-	return num
 }
 
 func Test_threeSumClosest1(t *testing.T) {

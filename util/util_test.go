@@ -106,3 +106,58 @@ func Test_Max(t *testing.T) {
 		})
 	}
 }
+
+func Test_Abs(t *testing.T) {
+	type args struct {
+		a int
+	}
+	type expected struct {
+		result int
+	}
+	type testCase struct {
+		name     string
+		args     args
+		expected expected
+	}
+
+	testCases := []testCase{
+		{
+			name: "1",
+			args: args{
+				a: 1,
+			},
+			expected: expected{
+				result: 1,
+			},
+		},
+		{
+			name: "2",
+			args: args{
+				a: -1,
+			},
+			expected: expected{
+				result: 1,
+			},
+		},
+		{
+			name: "3",
+			args: args{
+				a: 0,
+			},
+			expected: expected{
+				result: 0,
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			assert.Equal(
+				t,
+				tc.expected.result,
+				util.Abs(tc.args.a),
+				fmt.Sprintf("testCase name: %s", tc.name),
+			)
+		})
+	}
+}
