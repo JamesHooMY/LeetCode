@@ -21,7 +21,7 @@
 - [x] Queue
 - [x] Binary Tree (Not included Hard)
 - [x] Binary Search Tree
-- [ ] Heap (Not included Hard)
+- [x] Heap (Not included Hard)
 - [ ] Graph (Not included Hard)
 - [ ] Trie (Not included Hard)
 - [ ] Binary Search (Not included Hard)
