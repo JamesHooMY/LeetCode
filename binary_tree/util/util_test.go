@@ -79,6 +79,15 @@ func Test_ArrayToBinaryTree(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "4",
+			args: args{
+				arr: []int{},
+			},
+			expected: expected{
+				result: nil,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
