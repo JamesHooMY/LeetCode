@@ -196,7 +196,6 @@ func partition(nums []int, left, right int) int {
 // 2) recursion the left part (nums[:mid]) and right part (nums[mid:])
 // 3) merge the left part and right part
 // TC: O(NlogN), SC: O(N)
-// * this is the best solution for me currently
 func sortArray5(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
@@ -325,10 +324,96 @@ func sortArray6(nums []int) []int {
 	return nums
 }
 
-// method 7 heap sort, https://www.youtube.com/watch?v=2DmK_H7IdTo
-// 1) build a maxheap
-// TODO: waiting for implementation after heap structure learned
+// method 7 heap sort
+// 1) build the max heap with maxHeapify functionn, n/2-1 is the index of the last non-leaf node
+// 2) extract the max element from the heap, then swap the max element with the last element of the heap
+// 3) heapify the heap from the root node, the length of the heap is decreased by 1 after each iteration
+// 4) finally, the array is sorted
+// TC: O(NlogN), SC: O(1)
+// * this is the best solution for me currently
+func sortArray7(nums []int) []int {
+	n := len(nums)
+	if n <= 1 {
+		return nums
+	}
 
+	/*
+		build the max heap, n/2-1 is the index of the last non-leaf node, bottom-up
+
+		example: [5, 2, 3, 1, 6, 4], len(nums) => n = 6
+		* n/2-1 => 2, i => 2 1 0
+
+		i => 2:
+		heapify(nums, 6, 2) => 3 <-> 4 => [5, 2, 4, 1, 6, 3]
+
+		i => 1:
+		heapify(nums, 6, 1) => 2 <-> 6 => [5, 6, 4, 1, 2, 3]
+
+		i => 0:
+		heapify(nums, 6, 0) => 5 <-> 6 => [6, 5, 4, 1, 2, 3]
+	*/
+	for i := n/2 - 1; i >= 0; i-- { // TC: O(N), SC: O(1)
+		maxHeapify(nums, n, i) // TC: O(logN), SC: O(1)
+	}
+
+	/*
+		change the max element with the last element, then heapify the heap from the root node, top-down
+
+		example: [6, 5, 4, 1, 2, 3], len(nums) => n = 6
+		* i => 5 4 3 2 1 0
+
+		i => 5:
+		nums[0], nums[5] = nums[5], nums[0] => [3, 5, 4, 1, 2, 6]
+		heapify(nums, 5, 0) => 3 <-> 5 => [5, 3, 4, 1, 2, 6]
+
+		i => 4:
+		nums[0], nums[4] = nums[4], nums[0] => [2, 3, 4, 1, 5, 6]
+		heapify(nums, 4, 0) => 2 <-> 4 => [4, 3, 2, 1, 5, 6]
+
+		i => 3:
+		nums[0], nums[3] = nums[3], nums[0] => [1, 3, 2, 4, 5, 6]
+		heapify(nums, 3, 0) => 1 <-> 3 => [3, 1, 2, 4, 5, 6]
+
+		i => 2:
+		nums[0], nums[2] = nums[2], nums[0] => [2, 1, 3, 4, 5, 6]
+		heapify(nums, 2, 0) => [2, 1, 3, 4, 5, 6]
+
+		i => 1:
+		nums[0], nums[1] = nums[1], nums[0] => [1, 2, 3, 4, 5, 6]
+		heapify(nums, 1, 0) => [1, 2, 3, 4, 5, 6]
+	*/
+	for i := n - 1; i >= 0; i-- { // TC: O(N), SC: O(1)
+		nums[0], nums[i] = nums[i], nums[0]
+		maxHeapify(nums, i, 0) // TC: O(logN), SC: O(1)
+	}
+
+	return nums
+}
+
+// TC: O(logN), SC: O(1)
+func maxHeapify(nums []int, n, i int) {
+	// i is the index of the node for heapify start from
+	largest := i
+	left := 2*i + 1
+	right := 2*i + 2
+
+	// find the largest element among the parent node and its children
+	if left < n && nums[left] > nums[largest] {
+		largest = left
+	}
+
+	if right < n && nums[right] > nums[largest] {
+		largest = right
+	}
+
+	// if the largest element is not the parent node, swap the largest element with the parent node
+	if largest != i {
+		nums[i], nums[largest] = nums[largest], nums[i]
+		maxHeapify(nums, n, largest)
+	}
+}
+
+// selection sort
 func Test_sortArray1(t *testing.T) {
 	type args struct {
 		nums []int
@@ -391,6 +476,7 @@ func Test_sortArray1(t *testing.T) {
 	}
 }
 
+// bubble sort
 func Test_sortArray2(t *testing.T) {
 	type args struct {
 		nums []int
@@ -453,6 +539,7 @@ func Test_sortArray2(t *testing.T) {
 	}
 }
 
+// insertion sort
 func Test_sortArray3(t *testing.T) {
 	type args struct {
 		nums []int
@@ -515,6 +602,7 @@ func Test_sortArray3(t *testing.T) {
 	}
 }
 
+// quick sort
 func Test_sortArray4(t *testing.T) {
 	type args struct {
 		nums []int
@@ -577,6 +665,7 @@ func Test_sortArray4(t *testing.T) {
 	}
 }
 
+// merge sort (recursion + divide and conquer) top-down
 func Test_sortArray5(t *testing.T) {
 	type args struct {
 		nums []int
@@ -639,6 +728,7 @@ func Test_sortArray5(t *testing.T) {
 	}
 }
 
+// merge sort (iteration + divide and conquer) bottom-up
 func Test_sortArray6(t *testing.T) {
 	type args struct {
 		nums []int
@@ -701,41 +791,118 @@ func Test_sortArray6(t *testing.T) {
 	}
 }
 
+// heap sort
+func Test_sortArray7(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	type expected struct {
+		result []int
+	}
+	type testCase struct {
+		name     string
+		args     args
+		expected expected
+	}
+
+	testCases := []testCase{
+		{
+			name: "1",
+			args: args{
+				nums: []int{5, 2, 3, 1},
+			},
+			expected: expected{
+				result: []int{1, 2, 3, 5},
+			},
+		},
+		{
+			name: "2",
+			args: args{
+				nums: []int{5, 1, 1, 2, 0, 0},
+			},
+			expected: expected{
+				result: []int{0, 0, 1, 1, 2, 5},
+			},
+		},
+		{
+			name: "3",
+			args: args{
+				nums: []int{5, 1, 1, 2, 0, 0, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13},
+			},
+			expected: expected{
+				result: []int{0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				nums: []int{-4, 0, 7, 4, 9, -5, -1, 0, -7, -1},
+			},
+			expected: expected{
+				result: []int{-7, -5, -4, -1, -1, 0, 0, 4, 7, 9},
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		assert.Equal(
+			t,
+			tc.expected.result,
+			sortArray7(tc.args.nums),
+			fmt.Sprintf("testCase name: %s", tc.name),
+		)
+	}
+}
+
 var nums = []int{5, 1, 1, 2, 0, 0, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13}
 
 // benchmark
+
+// selection sort
 func Benchmark_sortArray1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray1(nums)
 	}
 }
 
+// bubble sort
 func Benchmark_sortArray2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray2(nums)
 	}
 }
 
+// insertion sort
 func Benchmark_sortArray3(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray3(nums)
 	}
 }
 
+// quick sort
 func Benchmark_sortArray4(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray4(nums)
 	}
 }
 
+// merge sort (recursion + divide and conquer) top-down
 func Benchmark_sortArray5(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray5(nums)
 	}
 }
 
+// merge sort (iteration + divide and conquer) bottom-up
 func Benchmark_sortArray6(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sortArray6(nums)
+	}
+}
+
+// heap sort
+func Benchmark_sortArray7(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		sortArray7(nums)
 	}
 }

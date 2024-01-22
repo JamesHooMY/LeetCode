@@ -37,10 +37,11 @@ func distanceK1[T int](root, target *util.TreeNode[T], k T) []T {
 			8: [1]
 	*/
 	listGraph := map[T][]T{} // key: node.Val, value: Val of node's neighbors
+	// recursive DFS (top-down) Preorder Traversal build adjacency list graph
 	buildListGraph(root, nil, listGraph)
 
-	// iterative BFS (top-down)
-	queue := []T{target.Val} // queue stores node.Val
+	// iterative BFS (top-down) find all nodes that are k distance from target
+	queue := []T{target.Val}                // queue stores node.Val
 	visited := map[T]bool{target.Val: true} // key: node.Val, value: visited or not
 	depth := T(0)
 	for len(queue) > 0 {
@@ -180,7 +181,7 @@ func distanceK2DFS[T int](node, target *util.TreeNode[T], k T, result *[]T) T {
 			8) distanceK2NodeKDFS(node: 1, k-leftDepth-1: 0, result: [7, 4]) => result: [7, 4, 1]
 			9) return leftDepth + 1: 2
 	*/
-	leftDepth := distanceK2DFS(node.Left, target, k, result) // distance of (node.Left <-> node)
+	leftDepth := distanceK2DFS(node.Left, target, k, result)   // distance of (node.Left <-> node)
 	rightDepth := distanceK2DFS(node.Right, target, k, result) // distance of (node.Right <-> node)
 
 	// leftDepth == -1 means target is not in the left subtree of node

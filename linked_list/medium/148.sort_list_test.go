@@ -327,9 +327,6 @@ func partition(head, end *util.ListNode) (pivotPrev *util.ListNode) {
 	return pivotPrev
 }
 
-// method 4 heap sort
-// TODO: waiting for implementation after heap structure learned
-
 func Test_sortList1(t *testing.T) {
 	type args struct {
 		head *util.ListNode
