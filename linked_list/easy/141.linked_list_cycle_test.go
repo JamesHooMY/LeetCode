@@ -58,8 +58,8 @@ func hasCycle2(head *util.ListNode) bool {
 		return false
 	}
 
-	fast := head
 	slow := head
+	fast := head.Next
 
 	for fast != slow {
 		// if fast pointer reaches nil, then return false
@@ -68,8 +68,8 @@ func hasCycle2(head *util.ListNode) bool {
 		}
 
 		// fast pointer moves two steps each time, slow pointer moves one step each time
-		fast = fast.Next.Next
 		slow = slow.Next
+		fast = fast.Next.Next
 	}
 
 	// if fast pointer meets slow pointer, then return true
@@ -112,6 +112,15 @@ func Test_hasCycle1(t *testing.T) {
 			name: "3",
 			args: args{
 				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
+			},
+			expected: expected{
+				result: false,
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2}, -1).Head,
 			},
 			expected: expected{
 				result: false,
@@ -165,6 +174,15 @@ func Test_hasCycle2(t *testing.T) {
 			name: "3",
 			args: args{
 				head: util.ArrayToCycleOrSinglyLinkedList([]int{1}, -1).Head,
+			},
+			expected: expected{
+				result: false,
+			},
+		},
+		{
+			name: "4",
+			args: args{
+				head: util.ArrayToCycleOrSinglyLinkedList([]int{1, 2}, -1).Head,
 			},
 			expected: expected{
 				result: false,
