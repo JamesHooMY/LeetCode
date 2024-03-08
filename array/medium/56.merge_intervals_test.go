@@ -32,8 +32,8 @@ func merge1(intervals [][]int) [][]int {
 		previousInterval := mergedIntervals[len(mergedIntervals)-1]
 
 		if currentInterval[0] <= previousInterval[1] {
-			mergedIntervals[len(mergedIntervals)-1][0] = previousInterval[0]
-			mergedIntervals[len(mergedIntervals)-1][1] = currentInterval[1]
+			mergedIntervals[len(mergedIntervals)-1][0] = util.Min(currentInterval[0], previousInterval[0])
+			mergedIntervals[len(mergedIntervals)-1][1] = util.Max(currentInterval[1], previousInterval[1])
 		} else {
 			mergedIntervals = append(mergedIntervals, currentInterval)
 		}
@@ -113,6 +113,15 @@ func Test_merge1(t *testing.T) {
 				result: [][]int{{1, 5}},
 			},
 		},
+		{
+			name: "3",
+			args: args{
+				intervals: [][]int{{1, 4}, {2, 3}},
+			},
+			expected: expected{
+				result: [][]int{{1, 4}},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -155,6 +164,15 @@ func Test_merge2(t *testing.T) {
 			},
 			expected: expected{
 				result: [][]int{{1, 5}},
+			},
+		},
+		{
+			name: "3",
+			args: args{
+				intervals: [][]int{{1, 4}, {2, 3}},
+			},
+			expected: expected{
+				result: [][]int{{1, 4}},
 			},
 		},
 	}
