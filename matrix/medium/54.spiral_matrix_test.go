@@ -19,36 +19,36 @@ func spiralOrder1(matrix [][]int) []int {
 
 	result := []int{}
 	rowNum, colNum := len(matrix), len(matrix[0])
-	topIndex, bottomIndex, leftIndex, rightIndex := 0, rowNum-1, 0, colNum-1
+	topIdx, btmIdx, leftIdx, rightIdx := 0, rowNum-1, 0, colNum-1
 
 	// matrix[rowIndex][colIndex]
-	for topIndex <= bottomIndex && leftIndex <= rightIndex {
-		// left -> right, traverse current topmost row, from leftIndex to rightIndex
-		for i := leftIndex; i <= rightIndex; i++ {
-			result = append(result, matrix[topIndex][i])
+	for topIdx <= btmIdx && leftIdx <= rightIdx {
+		// left -> right, traverse current topmost row, from leftIdx to rightIdx
+		for i := leftIdx; i <= rightIdx; i++ {
+			result = append(result, matrix[topIdx][i])
 		}
-		topIndex++
+		topIdx++
 
-		// top -> bottom, traverse current rightmost column, from topIndex to bottomIndex
-		for i := topIndex; i <= bottomIndex; i++ {
-			result = append(result, matrix[i][rightIndex])
+		// top -> bottom, traverse current rightmost column, from topIdx to btmIdx
+		for i := topIdx; i <= btmIdx; i++ {
+			result = append(result, matrix[i][rightIdx])
 		}
-		rightIndex--
+		rightIdx--
 
-		// right -> left, traverse current bottommost row, from rightIndex to leftIndex
-		if topIndex <= bottomIndex { // this condition make sure we don't traverse the same row again
-			for i := rightIndex; i >= leftIndex; i-- {
-				result = append(result, matrix[bottomIndex][i])
+		// right -> left, traverse current bottommost row, from rightIdx to leftIdx
+		if topIdx <= btmIdx { // this condition make sure we don't traverse the same row again
+			for i := rightIdx; i >= leftIdx; i-- {
+				result = append(result, matrix[btmIdx][i])
 			}
-			bottomIndex--
+			btmIdx--
 		}
 
-		// bottom -> top, traverse current leftmost column, from bottomIndex to topIndex
-		if leftIndex <= rightIndex { // this condition make sure we don't traverse the same column again
-			for i := bottomIndex; i >= topIndex; i-- {
-				result = append(result, matrix[i][leftIndex])
+		// bottom -> top, traverse current leftmost column, from btmIdx to topIdx
+		if leftIdx <= rightIdx { // this condition make sure we don't traverse the same column again
+			for i := btmIdx; i >= topIdx; i-- {
+				result = append(result, matrix[i][leftIdx])
 			}
-			leftIndex++
+			leftIdx++
 		}
 	}
 
