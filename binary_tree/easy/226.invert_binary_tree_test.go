@@ -14,7 +14,7 @@ import (
 // method 1 recursive DFS (top-down) Preorder Traversal
 // 1) invert left subtree, invert right subtree
 // 2) swap left and right
-// TC = O(N), SC = O(N)
+// TC = O(N), SC = O(h), h is the height of tree
 // * this is the best solution for me currently
 func invertTree1[T int](root *util.TreeNode[T]) *util.TreeNode[T] {
 	if root == nil || (root.Left == nil && root.Right == nil) {
@@ -35,7 +35,7 @@ func invertTree1[T int](root *util.TreeNode[T]) *util.TreeNode[T] {
 // 3) if left is not nil, push left into queue
 // 4) if right is not nil, push right into queue
 // 5) return root
-// TC = O(N), SC = O(N)
+// TC = O(N), SC = O(M), M is the max number of nodes in the same level, M = 2^h, h is the height of tree
 func invertTree2[T int](root *util.TreeNode[T]) *util.TreeNode[T] {
 	if root == nil || (root.Left == nil && root.Right == nil) {
 		return root
