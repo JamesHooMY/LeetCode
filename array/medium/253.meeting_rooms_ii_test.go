@@ -9,14 +9,13 @@ import (
 
 // https://blog.csdn.net/tzh_linux/article/details/103821483
 
-// method 1 minHeap
+// method 1 minHeap, this is more easy to understand
 // 1) sort the intervals by start time
 // 2) use minHeap to store the end time of each meeting
 // 3) if the start time of current meeting is bigger than the minHeap top, then pop the minHeap top
 // 4) push the end time of current meeting to minHeap
 // 5) sort the minHeap by end time
 // TC = O(NlogN), SC = O(logN)
-// * this is the best solution for me currently
 func minMeetingRooms1(intervals [][]int) int {
 	if len(intervals) == 0 {
 		return 0
@@ -73,6 +72,7 @@ func minMeetingRooms1(intervals [][]int) int {
 // 4) if the start time of current meeting is bigger than the end time of current meeting, then pop the end time of current meeting
 // 5) push the end time of current meeting to the end time array
 // TC = O(NlogN), SC = O(N)
+// * this is the best solution for me currently
 func minMeetingRooms2(intervals [][]int) int {
 	if len(intervals) == 0 {
 		return 0
