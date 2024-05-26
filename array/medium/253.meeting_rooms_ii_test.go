@@ -162,6 +162,15 @@ func Test_minMeetingRooms1(t *testing.T) {
 				result: 1,
 			},
 		},
+		{
+			name: "3",
+			args: args{
+				intervals: [][]int{{0, 30}, {5, 10}, {15, 20}, {7, 10}, {2, 4}},
+			},
+			expected: expected{
+				result: 3,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -207,6 +216,15 @@ func Test_minMeetingRooms2(t *testing.T) {
 				result: 1,
 			},
 		},
+		{
+			name: "3",
+			args: args{
+				intervals: [][]int{{0, 30}, {5, 10}, {15, 20}, {7, 10}, {2, 4}},
+			},
+			expected: expected{
+				result: 3,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -222,14 +240,14 @@ func Test_minMeetingRooms2(t *testing.T) {
 
 // benchmark
 func Benchmark_minMeetingRooms1(b *testing.B) {
-	intervals := [][]int{{0, 30}, {5, 10}, {15, 20}}
+	intervals := [][]int{{0, 30}, {5, 10}, {15, 20}, {7, 10}, {2, 4}}
 	for i := 0; i < b.N; i++ {
 		minMeetingRooms1(intervals)
 	}
 }
 
 func Benchmark_minMeetingRooms2(b *testing.B) {
-	intervals := [][]int{{0, 30}, {5, 10}, {15, 20}}
+	intervals := [][]int{{0, 30}, {5, 10}, {15, 20}, {7, 10}, {2, 4}}
 	for i := 0; i < b.N; i++ {
 		minMeetingRooms2(intervals)
 	}

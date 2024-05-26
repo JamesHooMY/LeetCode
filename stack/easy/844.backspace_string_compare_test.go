@@ -15,7 +15,7 @@ import (
 // 3) compare the stackChar of two strings
 // TC = O(N), SC = O(N)
 func backspaceCompare1(s string, t string) bool {
-    return backSpaceProcess(s) == backSpaceProcess(t)
+	return backSpaceProcess(s) == backSpaceProcess(t)
 }
 
 func backSpaceProcess(str string) string {
@@ -141,6 +141,16 @@ func Test_backspaceCompare1(t *testing.T) {
 				result: false,
 			},
 		},
+		{
+			name: "5",
+			args: args{
+				s: "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#",
+				t: "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#",
+			},
+			expected: expected{
+				result: true,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -208,6 +218,16 @@ func Test_backspaceCompare2(t *testing.T) {
 				result: false,
 			},
 		},
+		{
+			name: "5",
+			args: args{
+				s: "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#",
+				t: "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#",
+			},
+			expected: expected{
+				result: true,
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -223,12 +243,12 @@ func Test_backspaceCompare2(t *testing.T) {
 // benchmark
 func Benchmark_backspaceCompare1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		backspaceCompare1("ab#c", "ad#c")
+		backspaceCompare1("a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#", "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#")
 	}
 }
 
 func Benchmark_backspaceCompare2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		backspaceCompare2("ab#c", "ad#c")
+		backspaceCompare2("a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#", "a#c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v#w#x#y#z#")
 	}
 }
