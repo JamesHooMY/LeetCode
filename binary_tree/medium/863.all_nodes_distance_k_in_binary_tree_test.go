@@ -11,7 +11,7 @@ import (
 
 // https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/
 
-// method 1 iterative BFS (top-down) + recursive DFS (top-down) Preorder Traversal build adjacency list graph, more easy to understand
+// method 1 iterative BFS (top-down) + recursive DFS (top-down) Preorder Traversal of binary tree to build adjacency list graph, more easy to understand
 // 1) build adjacency list graph
 // 2) iterative BFS (top-down) to find all nodes that are k distance from target
 // 3) return the result
@@ -97,7 +97,7 @@ func distanceK1[T int](root, target *util.TreeNode[T], k T) []T {
 	return []T{}
 }
 
-// recursive DFS (top-down) Preorder Traversal build adjacency list graph
+// recursive DFS (top-down) Preorder Traversal of binary tree to build adjacency list graph
 func buildListGraph[T int](node *util.TreeNode[T], parent *util.TreeNode[T], listGraph map[T][]T) {
 	if node == nil {
 		return

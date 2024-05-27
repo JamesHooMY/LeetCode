@@ -51,7 +51,7 @@ func rightSideView1[T int](root *util.TreeNode[T]) []T {
 	return result
 }
 
-// method 2 recursive DFS (top-down)
+// method 2 recursive DFS (top-down) Preorder Traversal
 // 1) if root is nil, return result
 // 2) call rightSideView2DFS(root, 0, &result)
 // 3) return result

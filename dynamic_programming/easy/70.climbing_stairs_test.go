@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-// method 1 recursion, DFS bottom-up
+// method 1 recursion, DFS (top-down)
 // 1) use recursion to calculate the number of ways to climb to the top
 // 2) if n == 0 || n == 1 || n == 2, return n
 // 3) return climbStairs1(n-1) + climbStairs1(n-2)
@@ -17,7 +17,7 @@ func climbStairs1(n int) int {
 	return climbStairs1(n-1) + climbStairs1(n-2)
 }
 
-// method 2 dynamic programming
+// method 2 dynamic programming (bottom-up)
 // 1) use an array to store the number of ways to climb to the top
 // 2) if n == 0 || n == 1 || n == 2, return n
 // 3) use a for loop to calculate the number of ways to climb to the top
