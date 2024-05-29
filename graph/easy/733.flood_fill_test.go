@@ -7,11 +7,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// https://leetcode.com/problems/flood-fill/
+
 // method 1 recursive DFS (top-down) Preorder Traversal of adjacent matrix graph
 // 1) if image[sr][sc] == color, return image
 // 2) call fill1(image, sr, sc, image[sr][sc], color)
 // 3) return image
 // TC: O(N), SC: O(N), N is the number of pixels in the image
+// * this is the best solution for me currently
 func floodFill1(image [][]int, sr int, sc int, color int) [][]int {
 	// sr: start row, sc: start column
 	if image[sr][sc] == color {
@@ -315,6 +318,24 @@ func Test_floodFill1(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "5",
+			args: args{
+				image: [][]int{
+					{0, 0, 0},
+					{0, 0, 0},
+				},
+				sr:    1,
+				sc:    0,
+				color: 2,
+			},
+			expected: expected{
+				result: [][]int{
+					{2, 2, 2},
+					{2, 2, 2},
+				},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -441,6 +462,24 @@ func Test_floodFill2(t *testing.T) {
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+				},
+			},
+		},
+		{
+			name: "5",
+			args: args{
+				image: [][]int{
+					{0, 0, 0},
+					{0, 0, 0},
+				},
+				sr:    1,
+				sc:    0,
+				color: 2,
+			},
+			expected: expected{
+				result: [][]int{
+					{2, 2, 2},
+					{2, 2, 2},
 				},
 			},
 		},
@@ -573,6 +612,24 @@ func Test_floodFill3(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "5",
+			args: args{
+				image: [][]int{
+					{0, 0, 0},
+					{0, 0, 0},
+				},
+				sr:    1,
+				sc:    0,
+				color: 2,
+			},
+			expected: expected{
+				result: [][]int{
+					{2, 2, 2},
+					{2, 2, 2},
+				},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -699,6 +756,24 @@ func Test_floodFill4(t *testing.T) {
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+				},
+			},
+		},
+		{
+			name: "5",
+			args: args{
+				image: [][]int{
+					{0, 0, 0},
+					{0, 0, 0},
+				},
+				sr:    1,
+				sc:    0,
+				color: 2,
+			},
+			expected: expected{
+				result: [][]int{
+					{2, 2, 2},
+					{2, 2, 2},
 				},
 			},
 		},
@@ -831,6 +906,24 @@ func Test_floodFill5(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "5",
+			args: args{
+				image: [][]int{
+					{0, 0, 0},
+					{0, 0, 0},
+				},
+				sr:    1,
+				sc:    0,
+				color: 2,
+			},
+			expected: expected{
+				result: [][]int{
+					{2, 2, 2},
+					{2, 2, 2},
+				},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -953,5 +1046,3 @@ func Benchmark_floodFill5(b *testing.B) {
 		}, 8, 8, 2)
 	}
 }
-
-
