@@ -7,5 +7,8 @@ tidy:
 test:
 	go clean -testcache && go test ./...
 
+bench:
+	go clean -testcache && go test -bench=. ./...
+
 cover:
 	go clean -testcache && go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out

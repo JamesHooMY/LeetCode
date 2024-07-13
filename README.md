@@ -13,7 +13,6 @@
 ## My Roadmap
 ### Grind 169
 - [x] Array
-- [x] Matrix (Not included Hard)
 - [x] String
 - [x] Linked List
 - [x] Hash Table
@@ -22,6 +21,7 @@
 - [x] Binary Tree (Not included Hard)
 - [x] Binary Search Tree
 - [x] Heap (Not included Hard)
+- [x] Matrix (Not included Hard)
 - [ ] Graph (Not included Hard)
 - [ ] Trie (Not included Hard)
 - [ ] Binary Search (Not included Hard)
