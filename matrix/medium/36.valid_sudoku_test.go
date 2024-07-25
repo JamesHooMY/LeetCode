@@ -10,7 +10,13 @@ import (
 // https://leetcode.com/problems/valid-sudoku/description/
 
 // method 1 hash map
-// TC: O(1), SC: O(1)
+// 1) use 3 hash maps to store the numbers in rows, cols, and boxes
+// 2) iterate the board
+// 3) check whether the number is in the row, col, and box
+// 4) if the number is in the row, col, or box, return false
+// 5) if the number is not in the row, col, or box, store the number in the row, col, and box
+// 6) return true
+// TC = O(1), SC = O(1)
 // * this is the best solution for me currently
 func isValidSudoku1(board [][]byte) bool {
 	rowSliceMap := make([]map[byte]bool, 9) // index i means row i, rowSliceMap[i][num] means whether num is in row i

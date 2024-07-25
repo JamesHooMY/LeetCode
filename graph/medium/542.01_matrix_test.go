@@ -9,6 +9,7 @@ import (
 
 	"leetcode/util"
 )
+// https://leetcode.com/problems/01-matrix/description/
 
 // method 1 iterative BFS (top-down)
 // 1) use dist to store the distance from 0 to 1, and set all dist to -1 for initialization
