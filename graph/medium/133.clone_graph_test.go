@@ -26,10 +26,10 @@ func cloneGraph1[T int](node *util.Node[T]) *util.Node[T] {
 
 	visited := make(map[*util.Node[T]]*util.Node[T])
 
-	return dfs1(node, visited)
+	return cloneGraphDfs1(node, visited)
 }
 
-func dfs1[T int](node *util.Node[T], visited map[*util.Node[T]]*util.Node[T]) *util.Node[T] {
+func cloneGraphDfs1[T int](node *util.Node[T], visited map[*util.Node[T]]*util.Node[T]) *util.Node[T] {
 	if node == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func dfs1[T int](node *util.Node[T], visited map[*util.Node[T]]*util.Node[T]) *u
 	visited[node] = clone // mark original node as visited key, clone as value
 
 	for _, neighbor := range node.Neighbors {
-		clone.Neighbors = append(clone.Neighbors, dfs1(neighbor, visited))
+		clone.Neighbors = append(clone.Neighbors, cloneGraphDfs1(neighbor, visited))
 	}
 
 	return clone
