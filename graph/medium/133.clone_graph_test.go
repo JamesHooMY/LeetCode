@@ -10,7 +10,7 @@ import (
 
 // https://leetcode.com/problems/clone-graph/description/
 
-// method 1 recursive DFS (top-down) Preorder Traversal
+// method 1 recursive DFS
 // use a map to store visited nodes
 // clone the node and its neighbors
 // if the node is visited, return the clone node
@@ -48,7 +48,7 @@ func dfs1[T int](node *util.Node[T], visited map[*util.Node[T]]*util.Node[T]) *u
 	return clone
 }
 
-// method 2 iterative DFS (bottom-up) Postorder Traversal, prevent stack overflow for large graphs
+// method 2 iterative DFS, prevent stack overflow for large graphs
 // use a map to store visited nodes
 // use a stack to store nodes
 // clone the node and its neighbors
@@ -84,7 +84,7 @@ func cloneGraph2[T int](node *util.Node[T]) *util.Node[T] {
 	return visited[node]
 }
 
-// method 3 BFS (top-down) Level Order Traversal, prevent stack overflow for large graphs
+// method 3 BFS, prevent stack overflow for large graphs
 // use a map to store visited nodes
 // use a queue to store nodes
 // clone the node and its neighbors

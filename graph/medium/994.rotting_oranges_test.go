@@ -25,7 +25,7 @@ func orangesRotting1(grid [][]int) int {
 	rows, cols := len(grid), len(grid[0])
 
 	// count fresh oranges, and add rotten oranges to queue
-	queue := [][]int{}
+	queue := [][]int{} // store rotten oranges
 	for r := 0; r < rows; r++ {
 		for c := 0; c < cols; c++ {
 			if grid[r][c] == 1 {

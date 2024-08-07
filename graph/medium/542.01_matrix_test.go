@@ -11,7 +11,7 @@ import (
 )
 // https://leetcode.com/problems/01-matrix/description/
 
-// method 1 iterative BFS (top-down)
+// method 1 iterative BFS
 // 1) use dist to store the distance from 0 to 1, and set all dist to -1 for initialization
 // 2) push all 0s into queue, and set dist to 0, because 0 is the starting point
 // 3) iterate queue while queue is not empty
@@ -62,7 +62,7 @@ func updateMatrix1(mat [][]int) [][]int {
 	return dist
 }
 
-// method 2 iterative BFS (top-down) combine the initialization of dist and pushing 0s into queue with inplace
+// method 2 iterative BFS combine the initialization of dist and pushing 0s into queue with inplace
 // 1) push all 0s into queue, and set other cells to -1
 // 2) iterate queue while queue is not empty
 // 3) pop cell from queue, iterate directions, calculate newX and newY

@@ -9,7 +9,7 @@ import (
 
 // https://leetcode.com/problems/flood-fill/
 
-// method 1 recursive DFS (top-down) Preorder Traversal of adjacent matrix graph
+// method 1 recursive DFS of adjacent matrix graph
 // 1) if image[sr][sc] == color, return image
 // 2) call fill1(image, sr, sc, image[sr][sc], color)
 // 3) return image
@@ -27,7 +27,7 @@ func floodFill1(image [][]int, sr int, sc int, color int) [][]int {
 	return image
 }
 
-// recursive DFS (top-down) Preorder Traversal of adjacent matrix graph
+// recursive DFS of adjacent matrix graph
 func fill1(image [][]int, sr int, sc int, oldColor int, newColor int) {
 	// row edge case: sr < 0 || sr >= len(image)
 	// column edge case: sc < 0 || sc >= len(image[0])
@@ -43,7 +43,7 @@ func fill1(image [][]int, sr int, sc int, oldColor int, newColor int) {
 	fill1(image, sr, sc+1, oldColor, newColor) // right
 }
 
-// method 2 recursive DFS (top-down) Preorder Traversal of adjacent matrix graph with visited matrix
+// method 2 recursive DFS of adjacent matrix graph with visited matrix
 // 1) if image[sr][sc] == color, return image
 // 2) call fill2(image, sr, sc, image[sr][sc], color, visited)
 // 3) return image
@@ -63,7 +63,7 @@ func floodFill2(image [][]int, sr int, sc int, color int) [][]int {
 	return image
 }
 
-// recursive DFS (top-down) Preorder Traversal of adjacent matrix graph with visited matrix
+// recursive DFS of adjacent matrix graph with visited matrix
 func fill2(image [][]int, sr int, sc int, oldColor int, newColor int, visited [][]bool) {
 	// row edge case: sr < 0 || sr >= len(image)
 	// column edge case: sc < 0 || sc >= len(image[0])
@@ -80,7 +80,7 @@ func fill2(image [][]int, sr int, sc int, oldColor int, newColor int, visited []
 	fill2(image, sr, sc+1, oldColor, newColor, visited) // right
 }
 
-// method 3 iterative DFS (top-down) of adjacent matrix graph with a directions array
+// method 3 iterative DFS of adjacent matrix graph with a directions array
 // 1) if image[sr][sc] == color, return image
 // 2) use a stack to store the pixel that needs to be changed
 // 3) iterate the stack, change the pixel and add the pixel to the stack
@@ -117,7 +117,7 @@ func floodFill3(image [][]int, sr int, sc int, color int) [][]int {
 	return image
 }
 
-// method 4 iterative BFS (top-down) of adjacent matrix graph, too much redundant code for each direction !!!
+// method 4 iterative BFS of adjacent matrix graph, too much redundant code for each direction !!!
 // 1) if image[sr][sc] == color, return image
 // 2) use a queue to store the pixel that needs to be changed
 // 3) iterate the queue, change the pixel and add the pixel to the queue
@@ -164,7 +164,7 @@ func floodFill4(image [][]int, sr int, sc int, color int) [][]int {
 	return image
 }
 
-// method 5 iterative BFS (top-down) of adjacent matrix graph with a directions array
+// method 5 iterative BFS of adjacent matrix graph with a directions array
 // 1) if image[sr][sc] == color, return image
 // 2) use a queue to store the pixel that needs to be changed
 // 3) iterate the queue, change the pixel and add the pixel to the queue
