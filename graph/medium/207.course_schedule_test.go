@@ -78,6 +78,7 @@ func canFinish1(numCourses int, prerequisites [][]int) bool {
 // TC: O(V+E), SC: O(V+E), where V is the number of vertices (nodes), E is the number of edges (prerequisites)
 // * this is the best solution for me currently
 func canFinish2(numCourses int, prerequisites [][]int) bool {
+	// adjacency list
 	graph := make(map[int][]int) // key: prerequisite, value: course
 	inDegree := make([]int, numCourses) // index: course, value: in-degree, if value is 0 means can take the course
 

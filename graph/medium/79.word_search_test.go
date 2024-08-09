@@ -8,7 +8,7 @@ import (
 
 // https://leetcode.com/problems/word-search/description/
 
-// method 1 DFS
+// method 1 DFS (Backtracking) + Recursion
 // 1) use a for loop to scan the rows of the board
 // 2) use a for loop to scan the columns of the board
 // 3) call the dfs function to check if the word exists
