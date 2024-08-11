@@ -3,10 +3,12 @@
   - [Roadmap Resources](#roadmap-resources)
   - [My Roadmap](#my-roadmap)
     - [Grind 169](#grind-169)
+    - [AlgoMap.io](#algomapio)
   - [References](#references)
 
 ## Roadmap Resources
 - [ ] [Grind 169](https://link-url-here.org)
+- [ ] [AlgoMap.io](https://algomap.io/)
 - [ ] [NeetCode Roadmap](https://www.techinterviewhandbook.org/grind75?weeks=28&hours=6)
 - [ ] [LeetCode 75](https://leetcode.com/studyplan/leetcode-75/)
 
@@ -29,6 +31,20 @@
 - [ ] Dynamic Programming (Not included Hard)
 - [ ] Binary (Not included Hard)
 - [ ] Math (Not included Hard)
+
+### AlgoMap.io
+- [ ] Arrays and Strings
+- [ ] Hashmaps and Sets
+- [ ] 2 Pointers
+- [ ] Stacks
+- [ ] Linked Lists
+- [ ] Binary Search
+- [ ] Sliding Window
+- [ ] Trees
+- [ ] Heaps
+- [ ] Recursive Backtracking
+- [ ] Graphs
+- [ ] Dynamic Programming
 
 ## References
 - processing ...
